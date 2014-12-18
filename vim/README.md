@@ -1,4 +1,4 @@
 vim configuration
 ===
-git submodule init
-git submodule udpate
+git submodule init;
+git submodule udpate;
