@@ -1,0 +1,182 @@
+let mapleader = ","
+let maplocalleader = "\\"
+
+if has('multi_byte')
+    set enc=utf-8
+    set fenc=utf-8
+end
+set nocompatible     " disable vi compatibility (emulation of old bugs)
+set noeol            " no empty line at the end of file
+
+filetype off
+
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'The-NERD-tree'
+Plugin 'The-NERD-Commenter'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+set autoindent       " use indentation of previous line
+set smartindent      " use intelligent indentation for C
+set tabstop=3        " tab width is 4 spaces
+set shiftwidth=3     " indent also with 4 spaces
+set expandtab        " expand tabs to spaces
+set nowrap           " do not wrap words (view)
+set textwidth=0      " do not wrap words (insert)
+set ruler            " line and column number of cursor
+set showcmd          " show partial command in status bar
+set showmatch        " highlight matching braces
+set wildmenu         " enhanced command completion
+set wildignore+=*.so,*.swp,*.zip,*.o
+set wildmode=list:longest,full
+set visualbell       " visual bell instead of beeping
+set number           " turn line numbers on
+set ttimeoutlen=50   " fast escape to normal mode
+set noswapfile       " do not write .swp files
+set nobackup         " do not write backup files
+
+" folding
+set foldcolumn=0     " columns for folding
+set foldmethod=indent
+set foldlevel=9
+set nofoldenable     "dont fold by default "
+
+" search settings
+set incsearch        " Incremental search
+set hlsearch         " Highlight search match
+set ignorecase       " Do case insensitive matching
+set smartcase        " do not ignore if search pattern has CAPS
+map <Space> :nohlsearch<CR>
+set guioptions-=T    " disable toolbar"
+
+" buffer
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>q :bp <BAR> bd #<CR>
+
+" Make indenting and unindenting in visual mode retain the selection so
+" you don't have to re-select or type gv every time.
+vnoremap > ><CR>gv
+vnoremap < <<CR>gv
+
+" Make CTRL+u and CTRL+d less confusing
+map <C-u> 10<C-Y>10k
+map <C-d> 10<C-E>10j
+
+" Switch windows quickly with CTRL+{h,j,k,l}
+" This breaks backspace in a terminal, but I never use backspace in normal mode
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+" This would break in a terminal where ^H is backspace.
+if has("gui_running")
+    imap <C-h> <Esc><C-W>h
+endif
+imap <C-j> <Esc><C-W>j
+imap <C-k> <Esc><C-W>k
+imap <C-l> <Esc><C-W>l
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
+" turn syntax highlighting on
+syntax on
+"set t_Co=256
+"set t_Co=16
+"let g:256-jungle_termcolors=256 
+"set background=dark
+"colorscheme bensday
+"colorscheme xemacs
+colorscheme ansi_blows
+
+"set comments=sl:/*,mb:\ *,elx:\ */  " intelligent comments
+
+" pathogen
+" execute pathogen#infect()
+
+" nerdtree
+nmap <silent> <leader>f :NERDTreeToggle<CR>
+
+"****** ack ********
+
+"let g:ackprg = '/opt/local/bin/ag --nocolor --nogroup --column --ignore Makefile --ignore Bin --ignore .git --ignore .svn --ignore .obj --ignore .moc --ignore .DS_Store --ignore .mak' 
+let g:ackprg = '/opt/local/bin/ag --nocolor --nogroup --column' 
+nnoremap <leader>u :Ack <cword><CR>
+
+"if executable('/opt/local/bin/ack')
+   "let g:ackprg = "/opt/local/bin/ack"
+"endif
+
+"****** ack end ******
+
+"***** ctrlp *****
+
+map <leader>b :CtrlPBuffer<CR>
+" The Silver Searcher
+if executable('/opt/local/bin/ag')
+  " Use ag over grep
+  set grepprg=/opt/local/bin/ag\ --ignore-case\ --nogroup\ --nocolor\ --ignore\ .git\ --ignore\ .svn\ --ignore\ .obj\ --ignore\ .moc\ --ignore\ .DS_Store\ --ignore\ \"**/*.sym\"\ -g ""'
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = '/opt/local/bin/ag %s -l --nocolor --ignore .git --ignore .svn --ignore .obj --ignore .moc --ignore .DS_Store --ignore "**/*.sym" -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+"let g:ctrlp_user_command = 'find %s -type f'
+"let g:ctrlp_use_caching = 1
+let g:p_max_files=0
+let g:ctrlp_by_filename = 1
+"let g:ctrlp_regexp = 1
+"let g:ctrlp_working_path_mode = 0 "search from current directory instead of project root
+" Use vim's current working directory but fall back to the file directory
+" if it's way off.
+let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_custom_ignore = 'git\|moc\|obj'
+let g:ctrlp_custom_ignore = {
+  \ 'dir'  : '\v[\/]\.(obj|moc|git|hg|svn)$',
+  \ 'file' : '\v\.(exe|so|dll|class|aux|log)$',
+  \}
+
+"***** ctrlp end *****
+
+"if exists("g:ctrl_user_command")
+"  unlet g:ctrlp_user_command
+"endif
+
+" Enhanced keyboard mappings
+
+" switch between header/source with F4
+" map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" recreate tags file with F5
+" map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
+
+" create doxygen comment
+" map <F6> :Dox<CR>
+
+" build using makeprg with <F7>
+" map <F7> :make<CR>
+
+" build using makeprg with <S-F7>
+" map <S-F7> :make clean all<CR>
+
+" goto definition with F12
+" map <F12> <C-]>
+"
