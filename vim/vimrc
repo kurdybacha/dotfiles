@@ -101,10 +101,11 @@ syntax on
 "set t_Co=256
 "set t_Co=16
 "let g:256-jungle_termcolors=256 
-"set background=dark
+set background=dark
 "colorscheme bensday
 "colorscheme xemacs
 colorscheme ansi_blows
+"colorscheme solarized
 
 "set comments=sl:/*,mb:\ *,elx:\ */  " intelligent comments
 
@@ -114,17 +115,19 @@ colorscheme ansi_blows
 " nerdtree
 nmap <silent> <leader>f :NERDTreeToggle<CR>
 
+
+
 "****** ack ********
 
 "let g:ackprg = '/usr/local/bin/ag --nocolor --nogroup --column --ignore Makefile --ignore Bin --ignore .git --ignore .svn --ignore .obj --ignore .moc --ignore .DS_Store --ignore .mak' 
-let g:ackprg = '/usr/local/bin/ag --nocolor --nogroup --column' 
+if executable('/usr/local/bin/ag')
+  let g:ackprg = '/usr/local/bin/ag --nocolor --nogroup --column' 
+endif
 nnoremap <leader>u :Ack <cword><CR>
 
-"if executable('/usr/local/bin/ack')
-   "let g:ackprg = "/usr/local/bin/ack"
-"endif
-
 "****** ack end ******
+
+
 
 "***** ctrlp *****
 
@@ -185,7 +188,7 @@ let g:ycm_add_preview_to_completeopt = 0
 
 " build using makeprg with <F7>
 " map <F7> :make<CR>
-set makeprg=clang++\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -lzmq\ -o\ %<\ %
+set makeprg=clang++\ -Wall\ -std=c++14\ -stdlib=libc++\ -lc++abi\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -lzmq\ -o\ %<\ %
 map <F7> :make!<CR>
 map <F5> :!./%:r<CR>
 
