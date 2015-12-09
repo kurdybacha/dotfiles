@@ -13,6 +13,6 @@
 * `$  cd ~/.vim`
 * `$  git submodule init`
 * `$  git submodule udpate`
-* `$  vim +NeoBundleInstall
-* `$  cd ~/.vim/bundle/YouCompleteMe ./install.sh --clang-completer
+* `$  vim +NeoBundleInstall`
+* `$  cd ~/.vim/bundle/YouCompleteMe ./install.sh --clang-completer`
    
