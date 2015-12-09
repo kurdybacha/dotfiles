@@ -18,4 +18,5 @@ source ~/.vim/mappings.vim
 source ~/.vim/abbrev.vim
 
 " Autogroup/autocmd
-source ~/.vim/augroup.vim
+source ~/.vim/augroup.vim"
+
