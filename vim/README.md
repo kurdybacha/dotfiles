@@ -11,8 +11,7 @@
 * `$  git clone https://github.com/kladku/vim.git ~/.vim`
 * `$  ln -s ~/.vim/vimrc ~/.vimrc`
 * `$  cd ~/.vim`
-* `$  git submodule init`
-* `$  git submodule udpate`
+* `$  git clone https://github.com/Shougo/neobundle.vim.git bundle/neobundle.vim`
 * `$  vim +NeoBundleInstall`
 * `$  cd ~/.vim/bundle/YouCompleteMe ./install.sh --clang-completer`
    
