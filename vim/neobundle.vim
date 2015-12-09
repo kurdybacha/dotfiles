@@ -38,7 +38,7 @@ NeoBundle "https://github.com/NLKNguyen/papercolor-theme.git"
 "================
 
 NeoBundle 'Valloric/YouCompleteMe', {
-\	'lazy' : 1,
+\	'lazy' : 0,
 \	'autoload' : {
 \		'filetypes' : [
 \			'c',

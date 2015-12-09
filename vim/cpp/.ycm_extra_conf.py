@@ -20,7 +20,7 @@ flags = [
 # language to use when compiling headers. So it will guess. Badly. So C++
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
 # a "-std=<something>".
-'-std=c++11',
+'-std=c++14',
 '-x', 'c++',
 '-stdlib=libc++',
 '-I', '.',
