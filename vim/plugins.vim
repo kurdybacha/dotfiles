@@ -59,19 +59,19 @@ let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_confirm_extra_conf = 0
-"let g:ycm_semantic_triggers =  {
-"	\   'c' : ['->', '.'],
-"	\   'objc' : ['->', '.'],
-"	\   'ocaml' : ['.', '#'],
-"	\   'cpp,objcpp' : ['->', '.', '::'],
-"	\   'perl' : ['->'],
-"	\   'php' : ['->', '::'],
-"	\   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
-"	\   'ruby' : ['.', '::'],
-"	\   'lua' : ['.', ':'],
-"	\   'erlang' : [':'],
-"	\   'latex' : ['\{'],
-"	\ }
+let g:ycm_semantic_triggers =  {
+	\   'c' : ['->', '.'],
+	\   'objc' : ['->', '.'],
+	\   'ocaml' : ['.', '#'],
+	\   'cpp,objcpp' : ['->', '.', '::'],
+	\   'perl' : ['->'],
+	\   'php' : ['->', '::'],
+	\   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
+	\   'ruby' : ['.', '::'],
+	\   'lua' : ['.', ':'],
+	\   'erlang' : [':'],
+	\   'latex' : ['\{'],
+	\ }
 
 "==========================================
 " tagbar
@@ -131,10 +131,10 @@ let delimitMate_balance_matchpairs = 1
 let delimitMate_excluded_regions = "Comment,String"
 
 let delimitMate_excluded_ft = "mail,text,txt,log,messages"
-
-if has("autocmd")
-	au FileType c,cpp,perl let b:delimitMate_eol_marker = ";"
-endif
+"if has("autocmd")
+"	au FileType c,cpp,perl let b.delimitMate_insert_eol_marker = 0
+"	au FileType c,cpp,perl let b:delimitMate_eol_marker = ";"
+"endif
 
 "==================================================
 " unite-colorscheme

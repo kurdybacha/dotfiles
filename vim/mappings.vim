@@ -65,8 +65,8 @@ vnoremap Q gq
 nnoremap Q gqap
 
 " make ctrl+u and ctrl+d less confusing
-"map <c-u> 10<c-y>10k
-"map <c-d> 10<c-e>10j
+nnoremap <c-u> 10<c-y>10k
+nnoremap <c-d> 10<c-e>10j
 
 " insert current date and time
 nnoremap <F5> "=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>P

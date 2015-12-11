@@ -25,6 +25,7 @@ flags = [
 '-stdlib=libc++',
 '-I', '.',
 '-I', '/usr/include/c++',
+'-I', '/usr/include/c++/5',
 '-I', '/usr/include',
 '-I', '/usr/include/arpa',
 '-I', '/usr/include/bits',
