@@ -113,6 +113,7 @@ set laststatus=2             " statusline always visible
 set shortmess=aToO           " see: help shortmess
 set ruler                    " Show cursor line and column number position
 set number                   " show line numbers
+set relativenumber           " show relative line numbers
 set scrolloff=2              " number of screen lines to keep above and below the cursor.
 set splitright               " Always splits to the right and below
 set splitbelow

@@ -73,6 +73,7 @@ NeoBundle 'Tagbar', {
 \}
 
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'kien/ctrlp.vim'
 
 "NeoBundle 'https://github.com/oblitum/rainbow', {
 "\	'lazy' : 1,

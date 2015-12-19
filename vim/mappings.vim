@@ -69,9 +69,9 @@ nnoremap <c-u> 10<c-y>10k
 nnoremap <c-d> 10<c-e>10j
 
 " insert current date and time
-nnoremap <F5> "=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>P
-vnoremap <F5> "=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>P
-inoremap <F5> <C-R>=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>
+" nnoremap <F5> "=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>P
+" vnoremap <F5> "=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>P
+" inoremap <F5> <C-R>=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>
 
 " make indenting and unindenting in visual mode retain the selection so
 " you don't have to re-select or type gv every time.
@@ -79,7 +79,8 @@ inoremap <F5> <C-R>=strftime("%Y.%m.%d (%a) %H:%M:%S (UTC %z %Z)")<CR>
 " vnoremap < <<CR>gv
 
 " build using makeprg with <F7>
-" map <F7> :make<CR>
-" set makeprg=clang++\ -Wall\ -std=c++14\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -lzmq\ -lczmq\ -o\ %<\ %
-" map <F7> :make!<CR>
-" map <F5> :!./%:r<CR>
+"" map <F7> :make<CR>
+set makeprg=clang++\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -o\ %<\ %
+"set makeprg=clang++\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -lzmq\ -lczmq\ -o\ %<\ %
+nnoremap <F7> :make!<CR>
+nnoremap <F5> :!./%:r<CR>
