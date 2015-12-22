@@ -123,7 +123,7 @@ let g:tagbar_type_armasm = {
 "===========================================
 
 let delimitMate_matchpairs = "(:),[:],{:}"
-let delimitMate_expand_cr = 0
+let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_inside_quotes = 1
