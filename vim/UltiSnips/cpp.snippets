@@ -12,7 +12,7 @@ private:
 endsnippet
 
 snippet cout "std::cout << .. << std::endl" b
-	std::cout << ${1} << std::endl;${2}
+std::cout << ${1} << std::endl;${2}
 endsnippet
 
 snippet ss "std::string"
@@ -45,4 +45,8 @@ endsnippet
 
 snippet tp "template <typename ..> (template)"
 template <typename ${1:T}>
+endsnippet
+
+snippet todo "TODO (todo)"
+// TODO: ${1:description} # `!v g:snips_author` `!v strftime("%c")`
 endsnippet
