@@ -1,0 +1,48 @@
+extends c
+
+snippet class "class .. (class)"
+class ${1:`!p snip.rv = snip.basename or "name"`} 
+{
+public:
+	${1/(\w+).*/$1/}(${2:arguments});
+
+private:
+	${0:/* data */}
+};
+endsnippet
+
+snippet cout "std::cout << .. << std::endl" b
+	std::cout << ${1} << std::endl;${2}
+endsnippet
+
+snippet ss "std::string"
+std::string
+endsnippet
+
+snippet sv "std::vector"
+std::vector<${1:int}>
+endsnippet
+
+snippet sm "std::map"
+std::map<${1:key}, ${2:value}>
+endsnippet
+
+snippet ns "namespace .. (namespace)" !
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
+$0
+}${1/.+/ \/\/ namespace /m}$1
+endsnippet
+
+snippet uns "unnamed namespace" !
+namespace {
+$0
+}  // unnamed namespace
+endsnippet
+
+snippet cr "const type&"
+const ${1:type} &${2:var}
+endsnippet
+
+snippet tp "template <typename ..> (template)"
+template <typename ${1:T}>
+endsnippet
