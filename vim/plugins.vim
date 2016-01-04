@@ -12,7 +12,7 @@ nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gt :YcmCompleter GoTo<CR>
 
 " not used for semantic completion (default: 2)
-let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_min_num_of_chars_for_completion = 2
 
 " identifier completion (default: 0)
 let g:ycm_min_num_identifier_candidate_chars = 1
@@ -116,6 +116,67 @@ let g:tagbar_type_armasm = {
 "    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
 "    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
 "    \ ]
+"
+"======================================
+" Ack
+" https://github.com/mileszs/ack.vim.git 
+"======================================
+
+if executable('/usr/local/bin/ag')
+    let g:ackprg = '/usr/local/bin/ag --nocolor --nogroup --column' 
+endif
+nnoremap <leader>u :Ack <cword><CR>
+vnoremap <leader>a y:Ack <C-r>=fnameescape(@")<CR><CR>
+
+"======================================
+" Ctrlp
+" https://github.com/kien/ctrlp.vim.git
+"======================================
+
+nnoremap <leader>b :CtrlPBuffer<CR>
+" The Silver Searcher
+if executable('/usr/local/bin/ag')
+  " Use ag over grep
+  set grepprg=/usr/local/bin/ag\ --ignore-case\ --nogroup\ --nocolor\ --ignore\ .git\ --ignore\ .svn\ --ignore\ .obj\ --ignore\ .moc\ --ignore\ .DS_Store\ --ignore\ \"**/*.sym\"\ -g ""'
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --ignore .git --ignore .svn --ignore .obj --ignore .moc --ignore .DS_Store --ignore "**/*.sym" -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+"let g:ctrlp_user_command = 'find %s -type f'
+"let g:ctrlp_use_caching = 1
+let g:p_max_files=0
+"let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
+let g:ctrlp_match_window = 'min:4,max:72'
+let g:ctrlp_by_filename=1
+"let g:ctrlp_max_depth=40
+"let g:ctrlp_regexp = 1
+"let g:ctrlp_working_path_mode = 0 "search from current directory instead of project root
+" Use vim's current working directory but fall back to the file directory
+" if it's way off.
+let g:ctrlp_working_path_mode = 0 
+"let g:ctrlp_custom_ignore = 'git\|moc\|obj'
+let g:ctrlp_custom_ignore = {
+  \ 'dir'  : '\v[\/]\.(obj|moc|git|hg|svn)$',
+  \ 'file' : '\v\.(exe|so|dll|class|aux|log)$',
+  \}
+
+"===========================================
+" UltiSnips
+" https://github.com/SirVer/ultisnips.git
+"===========================================
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:SnipsSnippetsDir = "~/.vim/UltiSnips"
+let g:UltiSnipsExpandTrigger="<c-b>"
+
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-f>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:snips_author = 'Paweł Kurdybacha'
 
 "===========================================
 " delimitmate
@@ -330,48 +391,3 @@ let g:undotree_SplitWidth = 40
 "======================================
 nnoremap K :Man <cword><cr>
 
-"======================================
-" ack
-" 
-"======================================
-
-if executable('/usr/local/bin/ag')
-    let g:ackprg = '/usr/local/bin/ag --nocolor --nogroup --column' 
-endif
-nnoremap <leader>u :Ack <cword><CR>
-vnoremap <leader>a y:Ack <C-r>=fnameescape(@")<CR><CR>
-
-"======================================
-" Ctrlp
-" https://github.com/kien/ctrlp.vim.git
-"======================================
-
-"map <leader>b :CtrlPBuffer<CR>
-" The Silver Searcher
-if executable('/usr/local/bin/ag')
-  " Use ag over grep
-  set grepprg=/usr/local/bin/ag\ --ignore-case\ --nogroup\ --nocolor\ --ignore\ .git\ --ignore\ .svn\ --ignore\ .obj\ --ignore\ .moc\ --ignore\ .DS_Store\ --ignore\ \"**/*.sym\"\ -g ""'
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --ignore .git --ignore .svn --ignore .obj --ignore .moc --ignore .DS_Store --ignore "**/*.sym" -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-"let g:ctrlp_user_command = 'find %s -type f'
-"let g:ctrlp_use_caching = 1
-let g:p_max_files=0
-"let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
-let g:ctrlp_match_window = 'min:4,max:72'
-let g:ctrlp_by_filename=1
-"let g:ctrlp_max_depth=40
-"let g:ctrlp_regexp = 1
-"let g:ctrlp_working_path_mode = 0 "search from current directory instead of project root
-" Use vim's current working directory but fall back to the file directory
-" if it's way off.
-let g:ctrlp_working_path_mode = 0 
-"let g:ctrlp_custom_ignore = 'git\|moc\|obj'
-let g:ctrlp_custom_ignore = {
-  \ 'dir'  : '\v[\/]\.(obj|moc|git|hg|svn)$',
-  \ 'file' : '\v\.(exe|so|dll|class|aux|log)$',
-  \}

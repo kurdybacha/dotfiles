@@ -55,6 +55,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
 \	},
 \}
 
+
 NeoBundle 'Tagbar', {
 \	'lazy' : 1,
 \	'autoload' : {
@@ -75,6 +76,9 @@ NeoBundle 'Tagbar', {
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mileszs/ack.vim'
+
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'SirVer/ultisnips'
 
 "NeoBundle 'https://github.com/oblitum/rainbow', {
 "\	'lazy' : 1,
