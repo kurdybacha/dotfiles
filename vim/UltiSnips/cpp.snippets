@@ -27,6 +27,18 @@ snippet sm "std::map" i
 std::map<${1:key}, ${2:value}>
 endsnippet
 
+snippet sp "std::pair" i
+std::pair<${1:bool}, ${2:int}>
+endsnippet
+
+snippet sb "std::begin" i
+std::begin(${1:data})
+endsnippet
+
+snippet se "std::end" i
+std::end(${1:data})
+endsnippet
+
 snippet ns "namespace .. (namespace)" !
 namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
 $0
@@ -39,11 +51,27 @@ $0
 }  // unnamed namespace
 endsnippet
 
-snippet cr "const type&"
-const ${1:type} &${2:var}
+snippet cr "const type&" i
+const ${1:type}& ${2:var}
 endsnippet
 
-snippet tp "template <typename ..> (template)"
+snippet cast "static_cast"
+static_cast<${1}>(${2})${0}
+endsnippet
+
+snippet cast "reinterpret_cast"
+reinterpret_cast<${1}>(${2})${0}
+endsnippet
+
+snippet cast "dynamic_cast"
+dynamic_cast<${1}>(${2})${0}
+endsnippet
+
+snippet cast "const_cast"
+const_cast<${1}>(${2})${0}
+endsnippet
+
+snippet tp "template <typename T>"
 template <typename ${1:T}>
 endsnippet
 
@@ -56,7 +84,7 @@ snippet <<vector "std::ostream& operator<<(std::ostream& os, const std::vector<T
 //#include <iterator>
 //#include <ostream>
 template<typename T>
-std::ostream& operator<<(std::ostream &os, const std::vector<T> &v)
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 {
     os << "vector = { ";
     if (!v.empty()) {
