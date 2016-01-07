@@ -82,8 +82,8 @@ nnoremap <c-d> 10<c-e>10j
 "" map <F7> :make<CR>
 "set makeprg=clang++\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -o\ %<\ %
 "set makeprg=clang++\ -g\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -o\ %<\ %
-set makeprg=/usr/local/bin/g++-5\ -g\ -Wall\ -fno-weak\ -std=c++11\ -o\ %<\ %
-"set makeprg=g++\ -ggdb\ -Wall\ -O0\ -std=c++11\ -o\ %<\ %
+"set makeprg=/usr/local/bin/g++-5\ -g\ -Wall\ -fno-weak\ -std=c++11\ -o\ %<\ %
+set makeprg=g++\ -ggdb\ -Wall\ -O0\ -std=c++11\ -o\ %<\ %
 nnoremap <F7> :make!<CR>
 nnoremap <F5> :!./%:r<CR>
 nnoremap <F10> :!gdb --tui %<<CR>
