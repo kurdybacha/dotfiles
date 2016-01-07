@@ -79,6 +79,21 @@ snippet todo "TODO (todo)"
 // TODO: ${1:description} # `!v g:snips_author` `!v strftime("%c")`
 endsnippet
 
+snippet unit_tests "unit_tests functions"
+namespace unit_tests {
+
+template<typename T>
+void compare(const T& actual, const T& expected, const char* actual_s, const char* expected_s, const char* file, int line)
+{
+    std::cout << (actual == expected ? "OK" : "FAILED") << "\t" << file << ":" << line << "\t(" << actual_s << " == " << expected_s << ")\tActual (" << actual << ") Expected (" << expected << ")\n";
+}
+
+} // namespace unit_tests
+
+#define COMPARE(actual, expected) unit_tests::compare(actual, expected, #actual, #expected, __FILE__, __LINE__)
+endsnippet
+
+
 snippet <<vector "std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)"
 //#include <algorithm>
 //#include <iterator>
