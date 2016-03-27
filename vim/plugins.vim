@@ -122,11 +122,11 @@ let g:tagbar_type_armasm = {
 " https://github.com/mileszs/ack.vim.git 
 "======================================
 
-if executable('/usr/local/bin/ag')
-    let g:ackprg = '/usr/local/bin/ag --nocolor --nogroup --column' 
+if executable('ag')
+    let g:ackprg = 'ag --nocolor --nogroup --column' 
 endif
-nnoremap <leader>u :Ack <cword><CR>
-vnoremap <leader>a y:Ack <C-r>=fnameescape(@")<CR><CR>
+nnoremap <leader>u :Ack! <cword><CR>
+vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
 
 "======================================
 " Ctrlp
