@@ -83,11 +83,17 @@ nnoremap <c-d> 10<c-e>10j
 "set makeprg=clang++\ -g\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -o\ %<\ %\ -lzmq
 "set makeprg=clang++\ -g\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -o\ %<\ %
 "set makeprg=/usr/local/bin/g++-5\ -g\ -Wall\ -fno-weak\ -std=c++11\ -o\ %<\ %
-set makeprg=/usr/local/bin/g++-5\ -g\ -Wall\ -fno-weak\ -std=c++14\ -o\ %<\ %
-"
+" OS X
+"set makeprg=/usr/local/bin/g++-5\ -g\ -Wall\ -fno-weak\ -std=c++14\ -o\ %<\ %
 "set makeprg=clang++\ -g\ -Wall\ -std=c++11\ -DZYRE_BUILD_DRAFT_API=1\ -DMLM_BUILD_DRAFT_API=1\ -DCZMQ_BUILD_DRAFT_API=1\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm\ -lczmq\ -lzmq\ -lzyre
 "set makeprg=clang\ -g\ -Wall\ -DZYRE_BUILD_DRAFT_API=1\ -DMLM_BUILD_DRAFT_API=1\ -DCZMQ_BUILD_DRAFT_API=1\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm\ -lczmq\ -lzmq\ -lzyre
 "set makeprg=g++\ -ggdb\ -Wall\ -O0\ -std=c++11\ -o\ %<\ %
+" Linux
+"set makeprg=g++\ -ggdb\ -Wall\ -fno-weak\ -std=c++11\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -lzmq\ -o\ %<\ %
+"set makeprg=g++\ -ggdb\ -Wall\ -O0\ -std=c++14\ -o\ %<\ %
+"set makeprg=g++\ -g\ -std=c++11\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm
+"set makeprg=g++\ -g\ -DWITH_DRAFTS\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm\ -lczmq
+set makeprg=g++\ -g\ -std=c++14\ -O0\ -DZYRE_BUILD_DRAFT_API=1\ -DWITH_DRAFTS=1\ -DCZMQ_BUILD_DRAFT_API=1\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lzyre\ -lmlm\ -lczmq\ -lzmq\ -lpthread
 nnoremap <F7> :make!<CR>
 nnoremap <F5> :!./%:r<CR>
 nnoremap <F10> :!gdb --tui %<<CR>
