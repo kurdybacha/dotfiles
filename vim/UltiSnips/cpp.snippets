@@ -11,6 +11,13 @@ private:
 };
 endsnippet
 
+snippet struct "struct .. (struct)"
+struct ${1:name} 
+{
+	${0}
+};
+endsnippet
+
 snippet cout "std::cout << .. << std::endl" b
 std::cout << ${1} << std::endl;${2}
 endsnippet
@@ -39,6 +46,10 @@ snippet se "std::end" i
 std::end(${1:data})
 endsnippet
 
+snippet sup "std::unique_ptr" i
+std::unique_ptr<${1:int}>
+endsnippet
+
 snippet ns "namespace .. (namespace)" !
 namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
 $0
@@ -55,19 +66,19 @@ snippet cr "const type&" i
 const ${1:type}& ${2:var}
 endsnippet
 
-snippet cast "static_cast"
+snippet cast "static_cast" i
 static_cast<${1}>(${2})${0}
 endsnippet
 
-snippet cast "reinterpret_cast"
+snippet cast "reinterpret_cast" i
 reinterpret_cast<${1}>(${2})${0}
 endsnippet
 
-snippet cast "dynamic_cast"
+snippet cast "dynamic_cast" i
 dynamic_cast<${1}>(${2})${0}
 endsnippet
 
-snippet cast "const_cast"
+snippet cast "const_cast" i
 const_cast<${1}>(${2})${0}
 endsnippet
 
