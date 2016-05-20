@@ -125,7 +125,8 @@ NeoBundle 'Shougo/neomru.vim'
 "6 - Miscelaneous
 "================
 
-NeoBundle 'https://github.com/bling/vim-airline'
+NeoBundle 'https://github.com/vim-airline/vim-airline.git'
+NeoBundle 'https://github.com/vim-airline/vim-airline-themes'
 
 NeoBundle 'jistr/vim-nerdtree-tabs', {
 \	'depends': 'https://github.com/scrooloose/nerdtree.git',
