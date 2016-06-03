@@ -1,24 +1,114 @@
 #!/usr/bin/env python
-#
-# Copyright (C) 2014  Google Inc.
-#
-# This file is part of YouCompleteMe.
-#
-# YouCompleteMe is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# YouCompleteMe is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with YouCompleteMe.  If not, see <http://www.gnu.org/licenses/>.
-
 import os
-import ycm_core
+import copy
+import subprocess
+import sys
+try:
+    import ycm_core
+    ycm = True
+except Exception, e:
+    ycm = False
+
+def GetDefaultRoutes():
+  try:
+    p = subprocess.Popen('gcc -x c++ -v -E /dev/null 2>&1 | '\
+                         "sed -n '/here:/,/End of search list/p' | "\
+                         'grep ^" " | cut -f 2 -d " "',
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                         shell=True)
+    p.wait()
+    out, err = p.communicate()
+    return out.splitlines()
+  except Exception, e:
+    return []
+
+def DirectoryOfThisScript():
+  return os.path.dirname( os.path.abspath( __file__ ) )
+
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
+HEADER_EXTENSIONS = [ '.h', '.hxx', '.hpp', '.hh' ]
+
+compilation_database_folder = os.path.join(DirectoryOfThisScript(), 'build')
+
+if ycm and os.path.exists(compilation_database_folder):
+  database = ycm_core.CompilationDatabase(compilation_database_folder)
+  print "db loaded from %s" % (compilation_database_folder)
+else:
+  database = None
+
+def IsHeaderFile(filename):
+  extension = os.path.splitext(filename)[1]
+  return extension in HEADER_EXTENSIONS
+
+def RunTagsCmd(args):
+  try:
+    c = ["rc"]
+    c.extend(args)
+    p = subprocess.Popen(c, stdout=subprocess.PIPE,
+               stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    return out
+  except Exception, e:
+    return None
+
+path_flags = [ '-isystem', '-I', '-iquote', '--sysroot=', '-iframework' ]
+
+def RtagsFlagsForFile(filename):
+  project = RunTagsCmd(["--find-project-root", filename])
+  if not project or "=> []" in project:
+    return None
+
+  dir = os.path.dirname(filename)
+  project_root = project.split('[')[2][:-2]
+  sources = [filename, dir, project_root]
+  out = None
+  for source in sources:
+    out = RunTagsCmd(["--source", source])
+    if out:
+      break
+  if not out:
+    return None
+
+  lines = out.splitlines()
+  path_set = set()
+  flags = set()
+  is_cpp = False
+  for line in lines:
+    flags_line = line.split(' ')
+    if "++" in flags_line[0]:
+      is_cpp = True
+
+    flags_line = flags_line[1:-7]
+    last_path_flag = None
+
+    for flag in flags_line:
+      is_path_flag = False
+      if last_path_flag:
+        path_set.add((last_path_flag, flag))
+        last_path_flag = None
+        continue
+      for path_flag in path_flags:
+        if flag == path_flag:
+          last_path_flag = flag
+          is_path_flag = True
+          break
+        if flag.startswith(path_flag):
+          path = flag[len(path_flag):]
+          path_set.add((path_flag, path))
+          is_path_flag = True
+          break
+      if not is_path_flag:
+        flags.add(flag)
+
+  res = ['-x', 'c++'] if is_cpp else []
+  res.extend(list(flags))
+  for i in path_set:
+    res.append(i[0])
+    res.append(i[1])
+  for inc in default_includes:
+    res.append('-isystem')
+    res.append(inc)
+  return res
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -27,57 +117,33 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-fexceptions',
+#'-Wc++98-compat',
+#'-Wno-long-long',
+#'-Wno-variadic-macros',
+#'-fexceptions',
+#'-Wno-unused-parameter',
 '-DNDEBUG',
-# THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
-# language to use when compiling headers. So it will guess. Badly. So C++
-# headers will be compiled as C headers. You don't want that so ALWAYS specify
-# a "-std=<something>".
-# For a C project, you would set this to something like 'c99' instead of
-# 'c++11'.
-'-std=c++11',
-# ...and the same thing goes for the magic -x option which specifies the
-# language that the files to be compiled are written in. This is mostly
-# relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-'-isystem',
-'/usr/include',
-'-isystem',
-'/usr/local/include',
-'-isystem',
-'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/c++/v1',
-'-isystem',
-'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+'-std=c++11',
 ]
 
+default_includes = [
+'/usr/include'
+]
 
-# Set this to the absolute path to the folder (NOT the file!) containing the
-# compile_commands.json file to use that instead of 'flags'. See here for
-# more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
-#
-# Most projects will NOT need to set this to anything; you can just change the
-# 'flags' list of compilation flags.
-compilation_database_folder = ''
-
-if os.path.exists( compilation_database_folder ):
-  database = ycm_core.CompilationDatabase( compilation_database_folder )
-else:
-  database = None
-
-SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
-
-def DirectoryOfThisScript():
-  return os.path.dirname( os.path.abspath( __file__ ) )
-
+vcs_root = [
+'.svn',
+'.git',
+'LICENSE'
+]
 
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
   if not working_directory:
     return list( flags )
   new_flags = []
   make_next_absolute = False
-  path_flags = [ '-isystem', '-I', '-iquote', '--sysroot=' ]
   for flag in flags:
     new_flag = flag
 
@@ -100,49 +166,79 @@ def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
       new_flags.append( new_flag )
   return new_flags
 
-
-def IsHeaderFile( filename ):
-  extension = os.path.splitext( filename )[ 1 ]
-  return extension in [ '.h', '.hxx', '.hpp', '.hh' ]
-
-
 def GetCompilationInfoForFile( filename ):
-  # The compilation_commands.json file generated by CMake does not have entries
-  # for header files. So we do our best by asking the db for flags for a
-  # corresponding source file, if any. If one exists, the flags for that file
-  # should be good enough.
-  if IsHeaderFile( filename ):
-    basename = os.path.splitext( filename )[ 0 ]
-    for extension in SOURCE_EXTENSIONS:
-      replacement_file = basename + extension
-      if os.path.exists( replacement_file ):
-        compilation_info = database.GetCompilationInfoForFile(
-          replacement_file )
-        if compilation_info.compiler_flags_:
-          return compilation_info
-    return None
   return database.GetCompilationInfoForFile( filename )
 
 
-# This is the entry point; this function is called by ycmd to produce flags for
-# a file.
 def FlagsForFile( filename, **kwargs ):
+
+  if IsHeaderFile(filename):
+    basename = os.path.splitext(filename)[0]
+    for extension in SOURCE_EXTENSIONS:
+      replacement_file = basename + extension
+      print replacement_file
+      if os.path.exists(replacement_file):
+        return FlagsForFile(replacement_file, **kwargs)
+
+  relative_to = DirectoryOfThisScript()
+
+  mflags = None
+
+  # Try compilation database
   if database:
     # Bear in mind that compilation_info.compiler_flags_ does NOT return a
     # python list, but a "list-like" StringVec object
     compilation_info = GetCompilationInfoForFile( filename )
     if not compilation_info:
       return None
-
-    final_flags = MakeRelativePathsInFlagsAbsolute(
+    mflags = MakeRelativePathsInFlagsAbsolute(
       compilation_info.compiler_flags_,
-      compilation_info.compiler_working_dir_ )
-  else:
-    relative_to = DirectoryOfThisScript()
-    final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )
+      compilation_info.compiler_working_dir_)
+
+  # Try rtags
+  if mflags is None:
+      mflags = RtagsFlagsForFile(filename)
+
+  # Use default flags
+  if mflags is None:
+    mflags = flags
+    dir = os.path.dirname(os.path.abspath(filename))
+
+    while True:
+      if True in [os.path.exists(os.path.join(dir, x)) for x in vcs_root]:
+        mflags = copy.copy(flags)
+        if os.path.exists(os.path.join(dir, 'Include')):
+          mflags.extend(['-I', os.path.join(dir, 'Include')])
+        elif os.path.exists(os.path.join(dir, 'include')):
+          mflags.extend(['-I', os.path.join(dir, 'include')])
+        elif os.path.exists(os.path.join(dir, 'src')):
+          mflags.extend(['-I', os.path.join(dir, 'src')])
+        else:
+          mflags.extend(['-I', dir])
+        break
+
+      odir = dir
+      dir = os.path.dirname(odir)
+      if dir == odir:
+        break
+
+  for inc in GetDefaultRoutes():
+    if inc not in mflags:
+      mflags.append('-isystem')
+      mflags.append(inc)
+
+  final_flags = MakeRelativePathsInFlagsAbsolute( mflags, relative_to )
 
   return {
     'flags': final_flags,
     'do_cache': True
   }
+
+if __name__ == '__main__':
+  import pprint
+  for i in sys.argv[1:]:
+    flags = FlagsForFile(i)
+    print " ".join(flags['flags'])
+    pprint.pprint(flags)
+
 

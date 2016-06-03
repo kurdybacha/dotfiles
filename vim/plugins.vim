@@ -50,8 +50,8 @@ let g:ycm_filetype_specific_completion_to_disable = {
 	\}
 
 let g:ycm_show_diagnostics_ui = 1
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_always_populate_location_list = 0
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_always_populate_location_list = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_max_diagnostics_to_display = 50
@@ -123,13 +123,13 @@ let g:tagbar_type_armasm = {
 "======================================
 
 if executable('ag')
-    let g:ackprg = 'ag --nocolor --nogroup --column' 
+    let g:ackprg = 'ag --silent --nocolor --nogroup --column' 
 endif
 nnoremap <leader>u :Ack! <cword><CR>
 vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
 
 "======================================
-" Ctrlp
+" CtrlP
 " https://github.com/kien/ctrlp.vim.git
 "======================================
 
@@ -148,15 +148,15 @@ endif
 "let g:ctrlp_user_command = 'find %s -type f'
 "let g:ctrlp_use_caching = 1
 let g:p_max_files=0
+let g:ctrlp_max_depth=40
 "let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
-let g:ctrlp_match_window = 'min:4,max:72'
+"let g:ctrlp_match_window = 'min:4,max:72'
 let g:ctrlp_by_filename=1
-"let g:ctrlp_max_depth=40
 "let g:ctrlp_regexp = 1
-"let g:ctrlp_working_path_mode = 0 "search from current directory instead of project root
+let g:ctrlp_working_path_mode = 0 "search from current directory instead of project root
+let g:ctrlp_follow_symlinks=1
 " Use vim's current working directory but fall back to the file directory
 " if it's way off.
-let g:ctrlp_working_path_mode = 0 
 "let g:ctrlp_custom_ignore = 'git\|moc\|obj'
 let g:ctrlp_custom_ignore = {
   \ 'dir'  : '\v[\/]\.(obj|moc|git|hg|svn)$',
@@ -214,7 +214,7 @@ endif
 " https://github.com/Shougo/unite.vim
 "=========================================
 
-source ~/.vim/unite.vim
+"source ~/.vim/unite.vim
 
 "==========================================
 " vim-airline
@@ -294,7 +294,7 @@ let g:airline#extensions#eclim#enabled = 0
 
 let NERDTreeCaseSensitiveSort = 1
 let NERDTreeChDirMode         = 1
-let NERDTreeQuitOnOpen        = 1
+let NERDTreeQuitOnOpen        = 0
 let NERDTreeShowHidden        = 1
 let NERDTreeShowLineNumbers   = 1
 

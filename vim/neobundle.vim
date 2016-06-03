@@ -79,6 +79,7 @@ NeoBundle 'mileszs/ack.vim'
 
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'lyuts/vim-rtags'
 
 "NeoBundle 'https://github.com/oblitum/rainbow', {
 "\	'lazy' : 1,
@@ -112,10 +113,10 @@ NeoBundle 'https://github.com/Raimondi/delimitMate', {
 "4 - Unite
 "=========
 
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'ujihisa/unite-outline'
-NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'ujihisa/unite-colorscheme'
+"NeoBundle 'ujihisa/unite-outline'
+"NeoBundle 'Shougo/neomru.vim'
 
 "================
 "5 - Filetypes

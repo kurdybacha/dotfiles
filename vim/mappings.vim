@@ -93,7 +93,8 @@ nnoremap <c-d> 10<c-e>10j
 "set makeprg=g++\ -ggdb\ -Wall\ -O0\ -std=c++14\ -o\ %<\ %
 "set makeprg=g++\ -g\ -std=c++11\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm
 "set makeprg=g++\ -g\ -DWITH_DRAFTS\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm\ -lczmq
-set makeprg=g++\ -g\ -std=c++14\ -O0\ -DZYRE_BUILD_DRAFT_API=1\ -DWITH_DRAFTS=1\ -DCZMQ_BUILD_DRAFT_API=1\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lzyre\ -lmlm\ -lczmq\ -lzmq\ -lpthread
+"set makeprg=g++\ -g\ -std=c++14\ -O0\ -DZYRE_BUILD_DRAFT_API=1\ -DWITH_DRAFTS=1\ -DCZMQ_BUILD_DRAFT_API=1\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lzyre\ -lmlm\ -lczmq\ -lzmq\ -lpthread
+set makeprg=g++\ -Wall\ -O3\ -std=c++11\ -o\ %<\ %
 nnoremap <F7> :make!<CR>
 nnoremap <F5> :!./%:r<CR>
 nnoremap <F10> :!gdb --tui %<<CR>

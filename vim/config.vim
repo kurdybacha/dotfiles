@@ -96,7 +96,7 @@ set smartcase        " do not ignore if search pattern has CAPS
 
 " wildmenu: ignore these extensions
 
-set wildmode=longest:full,full
+"set wildmode=longest:full,full
 set wildignore=*.o,*.obj,*.bak,*.exe,*~,*.aux,*.fls
 if has('unix')
 	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
