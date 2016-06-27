@@ -74,6 +74,13 @@ let g:ycm_semantic_triggers =  {
 	\ }
 
 "==========================================
+" vim-rtags
+" https://github.com/lyuts/vim-rtags
+"==========================================
+
+let g:rtagsUseLocationList = 0
+
+"==========================================
 " tagbar
 " https://github.com/majutsushi/tagbar
 " http://majutsushi.github.io/tagbar/
@@ -160,7 +167,7 @@ let g:ctrlp_follow_symlinks=1
 "let g:ctrlp_custom_ignore = 'git\|moc\|obj'
 let g:ctrlp_custom_ignore = {
   \ 'dir'  : '\v[\/]\.(obj|moc|git|hg|svn)$',
-  \ 'file' : '\v\.(exe|so|dll|class|aux|log)$',
+  \ 'file' : '\v\.(exe|so|dll|class|aux|log|d)$',
   \}
 
 "===========================================
@@ -307,6 +314,22 @@ nnoremap <silent> <F9> :NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_gui_startup     = 0
 let g:nerdtree_tabs_open_on_console_startup = 0
 let g:nerdtree_tabs_no_startup_for_diff     = 0
+
+"====================================================
+" nerdtreecommenter 
+" https://github.com/scrooloose/nerdcommenter.git
+"====================================================
+
+" add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 "============================================
 " calendar.vim

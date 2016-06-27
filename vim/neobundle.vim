@@ -74,6 +74,7 @@ NeoBundle 'Tagbar', {
 \}
 
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mileszs/ack.vim'
 
@@ -129,6 +130,7 @@ NeoBundle 'https://github.com/Raimondi/delimitMate', {
 NeoBundle 'https://github.com/vim-airline/vim-airline.git'
 NeoBundle 'https://github.com/vim-airline/vim-airline-themes'
 
+
 NeoBundle 'jistr/vim-nerdtree-tabs', {
 \	'depends': 'https://github.com/scrooloose/nerdtree.git',
 \	'lazy' : 0,
@@ -136,6 +138,10 @@ NeoBundle 'jistr/vim-nerdtree-tabs', {
 \		'mappings' : 'F9',
 \		'commands' : 'NERDTreeTabsToggle',
 \	},
+\}
+
+NeoBundle 'https://github.com/scrooloose/nerdcommenter.git', {
+\	'depends': 'https://github.com/scrooloose/nerdtree.git'
 \}
 
 NeoBundle 'https://github.com/itchyny/calendar.vim', {

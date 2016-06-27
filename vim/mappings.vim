@@ -9,9 +9,6 @@ let mapleader = ","
 " 2 - Alt related mappings 
 "==============================
 
-" clears highlighted searches
-nnoremap <silent> <a-c> :nohlsearch<CR>
-
 " go to next buffer
 nnoremap <a-n> :bn<CR>
 
@@ -49,6 +46,9 @@ nnoremap <c-right>  <c-w>L
 "==============================
 " 4 - Miscelaneous mappings 
 "==============================
+
+" clears highlighted searches
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 
 " visual mode pressing * or # searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<CR>
@@ -94,7 +94,11 @@ nnoremap <c-d> 10<c-e>10j
 "set makeprg=g++\ -g\ -std=c++11\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm
 "set makeprg=g++\ -g\ -DWITH_DRAFTS\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lmlm\ -lczmq
 "set makeprg=g++\ -g\ -std=c++14\ -O0\ -DZYRE_BUILD_DRAFT_API=1\ -DWITH_DRAFTS=1\ -DCZMQ_BUILD_DRAFT_API=1\ -I/usr/local/include\ -L/usr/local/lib\ -o\ %<\ %\ -lzyre\ -lmlm\ -lczmq\ -lzmq\ -lpthread
-set makeprg=g++\ -Wall\ -O3\ -std=c++11\ -o\ %<\ %
-nnoremap <F7> :make!<CR>
+"set makeprg=g++\ -Wall\ -O3\ -std=c++11\ -o\ %<\ %
+"set makeprg=g++\ -static\ -Wall\ -std=c++11\ -I\ .\ -I\ /usr/local/include/\ -L\ /usr/local/lib/\ -o\ %<\ %\ -lzmq\ -lpthread\ -lsodium\ -lrt\ -lm
+"set makeprg
+"silent! nnoremap <F7> :make<CR> <bar> :botright copen<CR>
+"noremap <M-4> :botright copen<CR>
+nnoremap <F7> :Dispatch<CR>
 nnoremap <F5> :!./%:r<CR>
 nnoremap <F10> :!gdb --tui %<<CR>
