@@ -135,7 +135,8 @@ endif
 "colorscheme jellybeans
 "colorscheme solarized
 colorscheme PaperColor
-let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c'  }
+"let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c'  }
+set t_ut=                    " disable Background Color Erase (BCE) so that color schemes work properly when vim is used inside tmux
 if has('gui_running')
 	set guioptions=aAgi      " see: help guioptions
 	set background=dark

@@ -79,6 +79,7 @@ let g:ycm_semantic_triggers =  {
 "==========================================
 
 let g:rtagsUseLocationList = 0
+let g:rtagsMaxSearchResultWindowHeight = 20 
 
 "==========================================
 " tagbar

@@ -19,7 +19,7 @@ nnoremap <a-p> :bp<CR>
 nnoremap <a-s> :wa<CR>
 
 " close current buffer and move to the previous one
-nmap <leader>q :bp <BAR> bd #<CR>
+nmap <leader>w :bp <BAR> bd #<CR>
 
 " save all current mappings on a text file
 nnoremap <silent> <a-d> :call DumpMaps()<CR>
@@ -31,11 +31,11 @@ noremap <a-q> :ccl<CR>
 " 3 - Ctrl related mappings 
 "==============================
 
-" switch windows quickly
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+" switch windows quickly (this is now handled by vim-tmux-navigator)
+" nnoremap <c-h> <c-w>h
+" nnoremap <c-j> <c-w>j
+" nnoremap <c-k> <c-w>k
+" nnoremap <c-l> <c-w>l
 
 " move a windown down, up, left, right respectively
 nnoremap <c-down>   <c-w>J
@@ -99,6 +99,7 @@ nnoremap <c-d> 10<c-e>10j
 "set makeprg
 "silent! nnoremap <F7> :make<CR> <bar> :botright copen<CR>
 "noremap <M-4> :botright copen<CR>
-nnoremap <F7> :Dispatch<CR>
-nnoremap <F5> :!./%:r<CR>
+nnoremap <F7> :Make<CR>
+nnoremap <F5> :Dispatch<CR>
+"nnoremap <F5> :!./%:r<CR>
 nnoremap <F10> :!gdb --tui %<<CR>
