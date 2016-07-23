@@ -39,8 +39,11 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	chmod +x ./create_symbolic_links.sh
     ./create_symbolic_links.sh
+	chmod +x ./ubuntu/install.sh
     ./ubuntu/install.sh
+	chmod +x ./ubuntu/preferences.sh
     ./ubuntu/preferences.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

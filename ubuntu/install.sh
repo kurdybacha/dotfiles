@@ -89,11 +89,19 @@ install_packages() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    install_package "cgdb" "cgdb"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     #install_package "ImageMagick" "imagemagick"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_package "tmux" "tmux"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    install_package "Tmuxinator" "tmuxinator"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
