@@ -19,6 +19,25 @@ main() {
     ask_for_sudo
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   
+    if ! $skipQuestions; then
+
+        print_info "Git"
+
+        ask_for_confirmation "Do you want to setup git user and email?"
+        printf "\n"
+
+        if answer_is_yes; then
+            ask "user.name: "
+            git config --global user.name "$(get_answer)"
+            ask "user.email: "
+            git config --global user.email "$(get_answer)"
+        fi
+
+    fi
+    
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./create_symbolic_links.sh
     ./ubuntu/install.sh
