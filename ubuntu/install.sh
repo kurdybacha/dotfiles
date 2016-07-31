@@ -19,9 +19,19 @@ install_packages() {
 
     # Tools for compiling/building software from source
 
-    install_package "Build Essential" "build-essential"
+    install_package "build-essential" "build-essential"
 
-    install_package "Clang" "clang"
+    install_package "clang" "clang"
+
+    install_package "libtool" "libtool"
+
+    install_package "autoconf" "autoconf"
+
+    install_package "cmake" "cmake"
+
+    install_package "python-dev" "python-dev"
+
+    install_package "linux-tools-generic" "linux-tools-generic"
 
     # GnuPG archive keys of the Debian archive
     #install_package "GnuPG archive keys" "debian-archive-keyring"
@@ -106,6 +116,10 @@ install_packages() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_package "Midnight Commander" "mc"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    install_package "tree" "tree"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
