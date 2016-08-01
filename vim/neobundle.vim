@@ -83,6 +83,8 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'lyuts/vim-rtags'
 NeoBundle 'christoomey/vim-tmux-navigator'
 
+NeoBundle 'pangloss/vim-javascript'
+
 "NeoBundle 'https://github.com/oblitum/rainbow', {
 "\	'lazy' : 1,
 "\	'autoload' : {
