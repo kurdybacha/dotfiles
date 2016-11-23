@@ -21,6 +21,8 @@ install_packages() {
 
     install_package "Build Essential" "build-essential"
 
+    install_package "linux-tools-common" "linux-tools-common"
+
     install_package "Clang" "clang"
 
     # GnuPG archive keys of the Debian archive
