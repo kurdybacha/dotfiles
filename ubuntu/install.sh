@@ -19,7 +19,41 @@ install_packages() {
 
     # Tools for compiling/building software from source
 
-    install_package "Build Essential" "build-essential"
+    install_package "build-essential" "build-essential"
+
+    install_package "clang" "clang"
+
+    install_package "libclang-dev" "libclang-dev"
+
+    install_package "libtool" "libtool"
+
+    install_package "autoconf" "autoconf"
+
+    install_package "cmake" "cmake"
+
+    install_package "python-dev" "python-dev"
+
+    install_package "python-pip" "python-pip"
+
+    install_package "python-numpy" "python-numpy"
+
+    install_package "python-wheel" "python-wheel"
+
+    install_package "swig" "swig"
+
+    install_package "python3-dev" "python3-dev"
+
+    install_package "python3-numpy" "python3-numpy"
+
+    install_package "python3-wheel" "python3-wheel"
+
+    install_package "linux-tools-generic" "linux-tools-generic"
+
+    install_package "libssl-dev" "libssl-dev"
+
+    install_package "libcurl4-openssl-dev" "libcurl4-openssl-dev"
+
+    install_package "uuid-dev" "uuid-dev"
 
     install_package "linux-tools-common" "linux-tools-common"
 
@@ -87,6 +121,10 @@ install_packages() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    install_package "gitk" "gitk"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     install_package "GNOME Vim" "vim-gnome"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -108,6 +146,14 @@ install_packages() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_package "Midnight Commander" "mc"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    install_package "tree" "tree"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    install_package "htop" "htop"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

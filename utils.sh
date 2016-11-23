@@ -87,6 +87,10 @@ ask_for_confirmation() {
     printf "\n"
 }
 
+get_answer() {
+    printf "%s" "$REPLY"
+}
+
 ask_for_sudo() {
 
     # Ask for the administrator password upfront
