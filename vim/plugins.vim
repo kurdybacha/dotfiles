@@ -133,8 +133,10 @@ let g:tagbar_type_armasm = {
 if executable('ag')
     let g:ackprg = 'ag --silent --nocolor --nogroup --column' 
 endif
-nnoremap <leader>u :Ack! <cword><CR>
-vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
+"nnoremap <leader>u :Ack! <cword><CR>
+nnoremap <leader>u :Ack!<Space>
+"vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
+vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR>
 
 "======================================
 " CtrlP
