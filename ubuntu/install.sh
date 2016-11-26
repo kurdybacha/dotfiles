@@ -126,6 +126,10 @@ install_packages() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    install_package "ctags" "ctags"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     install_package "cgdb" "cgdb"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
