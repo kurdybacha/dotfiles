@@ -55,6 +55,9 @@ install_packages() {
 
     install_package "uuid-dev" "uuid-dev"
 
+    install_package "linux-tools-common" "linux-tools-common"
+
+    install_package "Clang" "clang"
 
     # GnuPG archive keys of the Debian archive
     #install_package "GnuPG archive keys" "debian-archive-keyring"
