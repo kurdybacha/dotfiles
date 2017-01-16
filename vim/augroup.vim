@@ -15,21 +15,4 @@ if has("autocmd")
 		autocmd BufEnter,BufWinEnter *.cpp,*.hpp if !Ycmconf_exist() | let g:ycm_global_ycm_extra_conf='~/.vim/cpp/.ycm_extra_conf.py' | endif
 	augroup END
 
-	augroup python
-		au!
-		autocmd BufEnter,BufWinEnter *.py,SConstruct call ShowTabs()
-		autocmd BufEnter,BufWinEnter *.py,SConstruct setlocal noexpandtab
-	augroup END
-
-	augroup sh
-		au!
-		autocmd BufEnter,BufWinEnter *.sh call ShowTabs()
-		autocmd BufEnter,BufWinEnter *.sh setlocal noexpandtab
-	augroup END
-
-	augroup vim
-		au!
-		autocmd BufEnter,BufWinEnter *.vim call ShowTabs()
-		autocmd BufEnter,BufWinEnter *.vim setlocal noexpandtab
-	augroup END
 endif

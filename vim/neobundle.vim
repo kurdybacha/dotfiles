@@ -131,6 +131,7 @@ NeoBundle 'https://github.com/Raimondi/delimitMate', {
 NeoBundle 'https://github.com/vim-airline/vim-airline.git'
 NeoBundle 'https://github.com/vim-airline/vim-airline-themes'
 
+NeoBundle 'djoshea/vim-autoread'
 
 NeoBundle 'jistr/vim-nerdtree-tabs', {
 \	'depends': 'https://github.com/scrooloose/nerdtree.git',
