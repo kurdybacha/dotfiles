@@ -55,9 +55,6 @@ let g:ycm_always_populate_location_list = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_max_diagnostics_to_display = 50
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
-let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_semantic_triggers =  {
 	\   'c' : ['->', '.'],
@@ -79,7 +76,7 @@ let g:ycm_semantic_triggers =  {
 "==========================================
 
 let g:rtagsUseLocationList = 0
-let g:rtagsMaxSearchResultWindowHeight = 20 
+let g:rtagsMaxSearchResultWindowHeight = 30 
 
 "==========================================
 " tagbar
@@ -186,17 +183,16 @@ let g:UltiSnipsJumpBackwardTrigger="<c-f>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:snips_author = 'Paweł Kurdybacha'
+let g:snips_author = 'Pawel Kurdybacha'
 
 "===========================================
 " delimitmate
 " https://github.com/blueyed/delimitMate
 "===========================================
 
-let delimitMate_matchpairs = "(:),[:],{:}"
+"let delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
-let delimitMate_jump_expansion = 1
 let delimitMate_expand_inside_quotes = 1
 let delimitMate_balance_matchpairs = 1
 let delimitMate_excluded_regions = "Comment,String"

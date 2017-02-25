@@ -5,7 +5,7 @@
 
 set nocompatible                   " disable vi compatibility
 set autowriteall                   " automatically save all buffers
-set autoread                       " load file modified outside vim
+set autoread                      " load file modified outside vim
 set nobackup                       " do not write backup files
 set noswapfile                     " do not write .swp files
 set backspace=indent,eol,start     " see :help bs
@@ -72,9 +72,10 @@ syntax enable        " syntax highlight on and keep your settings
 set autoindent       " use indentation of previous line
 set smartindent      " use intelligent indentation for C
 set tabstop=4        " tab width is 4 spaces
-set softtabstop=4     " unify
+set softtabstop=4    " unify
 set shiftwidth=4     " indent also with 4 spaces
 set expandtab        " expand tabs to spaces
+set smarttab         " expand tabs to spaces
 set nowrap           " do not wrap words (view)
 set textwidth=0      " do not wrap words (insert)
 "filetype off
