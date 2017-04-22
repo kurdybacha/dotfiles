@@ -12,63 +12,13 @@ nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gt :YcmCompleter GoTo<CR>
 
 " not used for semantic completion (default: 2)
-let g:ycm_min_num_of_chars_for_completion = 2
+" let g:ycm_min_num_of_chars_for_completion = 2
 
-" identifier completion (default: 0)
-let g:ycm_min_num_identifier_candidate_chars = 1
-let g:ycm_auto_trigger = 1
-let g:ycm_filetype_whitelist = {
-								\'lua': 1,
-								\'verilog': 1,
-								\'vhdl': 1,
-								\'vim': 1,
-								\'python': 1,
-								\'c': 1,
-								\'cpp': 1,
-								\'matlab': 1,
-								\'maple': 1,
-								\'git': 1,
-								\'sh': 1,
-								\'tex': 1,
-								\'txt': 1,
-								\'zsh': 1,
-								\}
-
-let g:ycm_filetype_blacklist = {
-	\ 'tagbar' : 1,
-	\ 'qf' : 1,
-	\ 'notes' : 1,
-	\ 'markdown' : 1,
-	\ 'text' : 1,
-	\ 'undo' : 1,
-	\ 'unite' : 1,
-	\ 'vimwiki' : 1,
-	\}
-
-let g:ycm_filetype_specific_completion_to_disable = {
-	\ 'gitcommit': 1
-	\}
-
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_always_populate_location_list = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_max_diagnostics_to_display = 50
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_semantic_triggers =  {
-	\   'c' : ['->', '.'],
-	\   'objc' : ['->', '.'],
-	\   'ocaml' : ['.', '#'],
-	\   'cpp,objcpp' : ['->', '.', '::'],
-	\   'perl' : ['->'],
-	\   'php' : ['->', '::'],
-	\   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
-	\   'ruby' : ['.', '::'],
-	\   'lua' : ['.', ':'],
-	\   'erlang' : [':'],
-	\   'latex' : ['\{'],
-	\ }
 
 "==========================================
 " vim-rtags
