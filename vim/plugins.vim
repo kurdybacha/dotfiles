@@ -81,9 +81,9 @@ if executable('ag')
     let g:ackprg = 'ag --silent --nocolor --nogroup --column' 
 endif
 "nnoremap <leader>u :Ack! <cword><CR>
-nnoremap <leader>u :Ack!<Space>
+nnoremap <leader>a :Ack!<Space>
 "vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
-vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR>
+vnoremap <leader>u y:Ack! <C-r>=fnameescape(@")<CR>
 
 "======================================
 " CtrlP
