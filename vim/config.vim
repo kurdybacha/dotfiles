@@ -97,7 +97,7 @@ set smartcase        " do not ignore if search pattern has CAPS
 
 " wildmenu: ignore these extensions
 
-"set wildmode=longest:full,full
+set wildmode=longest:full,full
 set wildignore=*.o,*.obj,*.bak,*.exe,*~,*.aux,*.fls
 if has('unix')
 	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -127,7 +127,7 @@ set ead=both                 " set in which direction 'equalalways' works (ver, 
 set wildmenu                 " use autocompletion on command line
 set cursorline               " sets cursor line highlight.
 set display=uhex             " show unprintable characters hexadecimal
-"set listchars=tab:▸\ ,eol:¬
+set list listchars=tab:▸\ ,trail:¬
 if has('mouse')
 	set mouse=a              " enable mouse in all modes
 	set mousehide            " hides the mouse while typing
