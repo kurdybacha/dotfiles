@@ -173,6 +173,10 @@ install_packages() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    install_package "ranger" "ranger"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     install_package "System Load indicators" "indicator-multiload"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
