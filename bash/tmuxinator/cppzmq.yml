@@ -1,0 +1,8 @@
+name: cppzmq
+root: ~/Repo/cppzmq
+
+windows:
+    - editor:
+        - systemctl --user start rdm.service
+        - vim -c 'set makeprg=cd\ build/src\ &&\ make' src/main.cpp
+    - tests:

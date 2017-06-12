@@ -1,0 +1,10 @@
+automake
+gcc
+gcc-c++
+kernel-devel
+python3
+python3-devel
+cmake
+gitk
+clang
+perf

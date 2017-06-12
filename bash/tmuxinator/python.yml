@@ -1,0 +1,9 @@
+name: python
+root: ~/Repo/google-python-course/google-python-exercises
+
+windows:
+    - editor:
+        layout: main-horizontal
+        panes:
+            - vim basic/string1.py
+            - ls

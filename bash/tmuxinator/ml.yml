@@ -1,0 +1,6 @@
+name: ml
+root: ~/Repo/coursera/Machine_Learning
+
+windows:
+    - editor: vim
+    - octave: octave-cli
