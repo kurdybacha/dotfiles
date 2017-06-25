@@ -1,0 +1,14 @@
+snippet once
+#ifndef ${1:`!v toupper(vim_snippets#Filename('$1', 'name'))`_H}
+#define $1
+
+${2}
+
+#endif /* end of include guard: $1 */
+endsnippet
+
+snippet fori "for int loop (fori)"
+for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
+	${0:/* code */}
+}
+endsnippet

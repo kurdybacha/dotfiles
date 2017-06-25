@@ -1,0 +1,22 @@
+
+" Load all plugins
+source ~/.vim/neobundle.vim
+
+" Vim basic configuration.
+source ~/.vim/config.vim
+
+" Functions
+source ~/.vim/functions.vim
+
+" All hotkeys, not dependant on plugins, are mapped here.
+source ~/.vim/mappings.vim
+
+" Plugin-specific configuration.
+ source ~/.vim/plugins.vim
+
+" Abbreviations
+source ~/.vim/abbrev.vim
+
+" Autogroup/autocmd
+source ~/.vim/augroup.vim"
+

@@ -1,0 +1,123 @@
+extends c
+
+snippet class "class .. (class)"
+class ${1:`!p snip.rv = snip.basename or "name"`} 
+{
+public:
+	${1/(\w+).*/$1/}(${2:arguments});
+
+private:
+	${0:/* data */}
+};
+endsnippet
+
+snippet struct "struct .. (struct)"
+struct ${1:name} 
+{
+	${0}
+};
+endsnippet
+
+snippet cout "std::cout << .. << std::endl" b
+std::cout << ${1} << std::endl;${2}
+endsnippet
+
+snippet ss "std::string" i
+std::string
+endsnippet
+
+snippet sv "std::vector" i
+std::vector<${1:int}>
+endsnippet
+
+snippet sm "std::map" i
+std::map<${1:key}, ${2:value}>
+endsnippet
+
+snippet sp "std::pair" i
+std::pair<${1:bool}, ${2:int}>
+endsnippet
+
+snippet sb "std::begin" i
+std::begin(${1:data})
+endsnippet
+
+snippet se "std::end" i
+std::end(${1:data})
+endsnippet
+
+snippet sup "std::unique_ptr" i
+std::unique_ptr<${1:int}>
+endsnippet
+
+snippet ns "namespace .. (namespace)" !
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
+$0
+}${1/.+/ \/\/ namespace /m}$1
+endsnippet
+
+snippet uns "unnamed namespace" !
+namespace {
+$0
+}  // unnamed namespace
+endsnippet
+
+snippet cr "const type&" i
+const ${1:type}& ${2:var}
+endsnippet
+
+snippet cast "static_cast" i
+static_cast<${1}>(${2})${0}
+endsnippet
+
+snippet cast "reinterpret_cast" i
+reinterpret_cast<${1}>(${2})${0}
+endsnippet
+
+snippet cast "dynamic_cast" i
+dynamic_cast<${1}>(${2})${0}
+endsnippet
+
+snippet cast "const_cast" i
+const_cast<${1}>(${2})${0}
+endsnippet
+
+snippet tp "template <typename T>"
+template <typename ${1:T}>
+endsnippet
+
+snippet todo "TODO (todo)"
+// TODO: ${1:description} # `!v g:snips_author` `!v strftime("%c")`
+endsnippet
+
+snippet unit_tests "unit_tests functions"
+namespace unit_tests {
+
+template<typename T>
+void compare(const T& actual, const T& expected, const char* actual_s, const char* expected_s, const char* file, int line)
+{
+    std::cout << (actual == expected ? "OK" : "FAILED") << "\t" << file << ":" << line << "\t(" << actual_s << " == " << expected_s << ")\tActual (" << actual << ") Expected (" << expected << ")\n";
+}
+
+} // namespace unit_tests
+
+#define COMPARE(actual, expected) unit_tests::compare(actual, expected, #actual, #expected, __FILE__, __LINE__)
+endsnippet
+
+
+snippet <<vector "std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)"
+//#include <algorithm>
+//#include <iterator>
+//#include <ostream>
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
+{
+    os << "vector = { ";
+    if (!v.empty()) {
+        std::copy(v.cbegin(), std::prev(v.cend()), std::ostream_iterator<T>(os, ", "));
+        os << v.back();
+    }
+    os << " }";
+    return os;
+}
+endsnippet
