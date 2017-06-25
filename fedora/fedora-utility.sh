@@ -48,3 +48,4 @@ install_packages() {
 
 install_packages "$dir/utils.list"
 install_packages "$dir/development.list"
+install_packages "$dir/favourites.list"
