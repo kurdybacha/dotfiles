@@ -16,19 +16,21 @@ create_symlinks() {
         #"bash/bash_logout"
         "bash/bash_options"
         "bash/bash_profile"
-        "bash/bash_prompt"
+#        "bash/bash_prompt"
         "bash/bashrc"
         #"bash/curlrc"
         #"bash/inputrc"
         #"bash/screenrc"
-        "bash/tmux.conf"
+
+        "tmux.conf"
+        "tmuxinator"
 
         #"git/gitattributes"
         #"git/gitconfig"
         #"git/gitignore"
 
-        #"vim/vim"
-        #"vim/vimrc"
+        "vim"
+        "vim/vimrc"
 
     )
 

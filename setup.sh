@@ -9,6 +9,19 @@ main() {
     # Load utils
     . "utils.sh" || exit 1
 
+    # Check supported distros
+
+    distro=$(echo $(os_distro) | tr '[:upper:]' '[:lower:]')
+    case "$distro" in
+        fedora)
+            ;;
+        ubuntu)
+            ;;
+        *)
+            print_info "Unsupported distribution"
+	    exit 1
+    esac
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     skip_questions "$@" \
@@ -41,10 +54,10 @@ main() {
 
 	chmod +x ./create_symbolic_links.sh
     ./create_symbolic_links.sh
-	chmod +x ./ubuntu/install.sh
-    ./ubuntu/install.sh
-	chmod +x ./ubuntu/preferences.sh
-    ./ubuntu/preferences.sh
+	chmod +x ./$distro/setup.sh
+    ./$distro/setup.sh
+	chmod +x ./vim/setup.sh
+    ./vim/setup.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

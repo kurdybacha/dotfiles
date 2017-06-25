@@ -5,6 +5,23 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+add_key() {
+
+    wget -qO - "$1" | sudo apt-key add - &> /dev/null
+    #     │└─ write output to file
+    #     └─ don't show output
+
+}
+
+add_ppa() {
+    sudo add-apt-repository -y ppa:"$1" &> /dev/null
+}
+
+add_to_source_list() {
+    sudo sh -c "printf 'deb $1' >> '/etc/apt/sources.list.d/$2'"
+}
+
+
 install_packages() {
 
 
@@ -19,45 +36,45 @@ install_packages() {
 
     # Tools for compiling/building software from source
 
-    install_package "build-essential" "build-essential"
+    install_package "build-essential"
 
-    install_package "clang" "clang"
+    install_package "clang"
 
-    install_package "libclang-dev" "libclang-dev"
+    install_package "libclang-dev"
 
-    install_package "libtool" "libtool"
+    install_package "libtool"
 
-    install_package "autoconf" "autoconf"
+    install_package "autoconf"
 
-    install_package "cmake" "cmake"
+    install_package "cmake"
 
-    install_package "python-dev" "python-dev"
+    install_package "python-dev"
 
-    install_package "python-pip" "python-pip"
+    install_package "python-pip"
 
-    install_package "python-numpy" "python-numpy"
+    install_package "python-numpy"
 
-    install_package "python-wheel" "python-wheel"
+    install_package "python-wheel"
 
-    install_package "swig" "swig"
+    install_package "swig"
 
-    install_package "python3-dev" "python3-dev"
+    install_package "python3-dev"
 
-    install_package "python3-numpy" "python3-numpy"
+    install_package "python3-numpy"
 
-    install_package "python3-wheel" "python3-wheel"
+    install_package "python3-wheel"
 
-    install_package "linux-tools-generic" "linux-tools-generic"
+    install_package "linux-tools-generic"
 
-    install_package "libssl-dev" "libssl-dev"
+    install_package "libssl-dev"
 
-    install_package "libcurl4-openssl-dev" "libcurl4-openssl-dev"
+    install_package "libcurl4-openssl-dev"
 
-    install_package "uuid-dev" "uuid-dev"
+    install_package "uuid-dev"
 
-    install_package "linux-tools-common" "linux-tools-common"
+    install_package "linux-tools-common"
 
-    install_package "Clang" "clang"
+    install_package "clang"
 
     # GnuPG archive keys of the Debian archive
     #install_package "GnuPG archive keys" "debian-archive-keyring"
@@ -83,11 +100,9 @@ install_packages() {
 
     fi
 
-    install_package "Chrome Canary" "google-chrome-unstable"
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Chromium" "chromium-browser"
+    install_package "chromium-browser"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -115,25 +130,20 @@ install_packages() {
 
     #install_package "GIMP" "gimp"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Git" "git"
+    install_package "git"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "gitk" "gitk"
+    install_package "gitk"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "GNOME Vim" "vim-gnome"
+    install_package "vim-gnome"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "ctags" "ctags"
+    install_package "ctags"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "cgdb" "cgdb"
+    install_package "cgdb"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -141,45 +151,35 @@ install_packages() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "tmux" "tmux"
+    install_package "tmux"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Tmuxinator" "tmuxinator"
+    install_package "tmuxinator"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Midnight Commander" "mc"
+    install_package "mc"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "tree" "tree"
+    install_package "tree"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "htop" "htop"
+    install_package "htop"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "The Silver Searcher" "silversearcher-ag"
+    install_package "silversearcher-ag"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "VLC" "vlc"
+    install_package "vlc"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Inconsolata font" "fonts-inconsolata"
+    install_package "fonts-inconsolata"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "ranger" "ranger"
+    install_package "ranger"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "System Load indicators" "indicator-multiload"
+    install_package "indicator-multiload"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_in_green "\n  ---\n\n"
     update

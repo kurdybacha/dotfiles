@@ -130,20 +130,28 @@ execute() {
 
 }
 
-add_key() {
-
-    wget -qO - "$1" | sudo apt-key add - &> /dev/null
-    #     │└─ write output to file
-    #     └─ don't show output
-
+os_distro() {
+    awk -F= '/^NAME/{print $2}' /etc/os-release
 }
 
-add_ppa() {
-    sudo add-apt-repository -y ppa:"$1" &> /dev/null
+is_fedora() {
+    [[ "$(os_distro)" =~ ^[Ff]edora$ ]] \
+        && return 0 \
+        || return 1
 }
 
-add_to_source_list() {
-    sudo sh -c "printf 'deb $1' >> '/etc/apt/sources.list.d/$2'"
+is_ubuntu() {
+    [[ "$(os_distro)" =~ ^[Uu]buntu$ ]] \
+        && return 0 \
+        || return 1
+}
+
+os_pkg() {
+    if is_fedora; then
+        echo "dnf"
+    else
+        echo "apt-get"
+    fi
 }
 
 autoremove() {
@@ -152,28 +160,31 @@ autoremove() {
     # dependencies for other packages and are no longer needed
 
     execute \
-        "sudo apt-get autoremove -qqy" \
+	"sudo $(os_pkg) autoremove -qqy" \
         "autoremove"
 
 }
 
 install_package() {
 
-    declare -r PACKAGE="$2"
-    declare -r PACKAGE_READABLE_NAME="$1"
+    declare -r PACKAGE="$1"
 
     if ! package_is_installed "$PACKAGE"; then
-        execute "sudo apt-get install --allow-unauthenticated -qqy $PACKAGE" "$PACKAGE_READABLE_NAME"
-        #                                      suppress output ─┘│
-        #            assume "yes" as the answer to all prompts ──┘
+	execute "sudo $(os_pkg) install -qqy $PACKAGE"
+  #                    suppress output ─┘│
+  # "yes" as the answer to all prompts ──┘
     else
-        print_success "$PACKAGE_READABLE_NAME"
+        print_success "$PACKAGE"
     fi
 
 }
 
 package_is_installed() {
-    dpkg -s "$1" &> /dev/null
+    if is_fedora; then
+        dnf list installed "$1" &> /dev/null
+    elif is_ubuntu; then
+        dpkg -s "$1" &> /dev/null
+    fi
 }
 
 update() {
@@ -181,9 +192,8 @@ update() {
     # Resynchronize the package index files from their sources
 
     execute \
-        "sudo apt-get update -qqy" \
+	"sudo $(os_pkg) update -qqy" \
         "update"
-
 }
 
 upgrade() {
@@ -191,7 +201,7 @@ upgrade() {
     # Install the newest versions of all packages installed
 
     execute \
-        "sudo apt-get upgrade -qqy" \
+	"sudo $(os_pkg) upgrade -qqy" \
         "upgrade"
 
 }
