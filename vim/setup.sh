@@ -7,4 +7,4 @@ if [ ! -d "bundle/neobundle.vim" ]; then
     git clone https://github.com/Shougo/neobundle.vim.git bundle/neobundle.vim
 fi
 bundle/neobundle.vim/bin/neoinstall
-cd bundle/YouCompleteMe && install.py --clang-completer
+cd bundle/YouCompleteMe && ./install.py --clang-completer

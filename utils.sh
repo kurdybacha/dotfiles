@@ -170,7 +170,7 @@ install_package() {
     declare -r PACKAGE="$1"
 
     if ! package_is_installed "$PACKAGE"; then
-	execute "sudo $(os_pkg) install -qqy $PACKAGE"
+	execute "sudo $(os_pkg) install -qqy $PACKAGE" "$PACKAGE"
   #                    suppress output ─┘│
   # "yes" as the answer to all prompts ──┘
     else
