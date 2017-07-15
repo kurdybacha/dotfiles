@@ -58,6 +58,8 @@ main() {
     ./$distro/setup.sh
 	chmod +x ./vim/setup.sh
     ./vim/setup.sh
+	chmod +x ./install_from_github.sh
+    ./install_from_github.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

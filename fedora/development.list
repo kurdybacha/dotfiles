@@ -8,4 +8,8 @@ python-devel
 cmake
 gitk
 clang
+llvm-devel
+clang-devel
+boost-devel
+redhat-rpm-config
 perf
