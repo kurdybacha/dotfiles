@@ -48,6 +48,14 @@ install_packages() {
 
     install_package "cmake"
 
+    install_package "libboost-all-dev"
+
+    install_package "flex"
+
+    install_package "bison"
+
+    install_package "libevent-dev"
+
     install_package "python-dev"
 
     install_package "python-pip"
