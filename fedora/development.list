@@ -11,5 +11,7 @@ clang
 llvm-devel
 clang-devel
 boost-devel
+zlib-devel
+openssl-devel
 redhat-rpm-config
 perf

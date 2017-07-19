@@ -34,4 +34,10 @@ install_packages() {
     autoremove
 }
 
+install_preferences() {
+    chmod +x ./preferences.sh
+    ./preferences.sh
+}
+
 install_packages
+install_preferences
