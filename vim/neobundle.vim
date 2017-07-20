@@ -15,16 +15,6 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Required
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Recommended to install
-NeoBundle 'Shougo/vimproc', {
-\	'build' : {
-\		'windows' : 'make -f make_mingw32.mak',
-\		'cygwin' : 'make -f make_cygwin.mak',
-\		'mac' : 'make -f make_mac.mak',
-\		'unix' : 'make -f make_unix.mak',
-\		},
-\	}
-
 "===============
 "2 - Colorscheme
 "===============
@@ -37,41 +27,9 @@ NeoBundle "https://github.com/NLKNguyen/papercolor-theme.git"
 "3 -  Programming
 "================
 
-NeoBundle 'Valloric/YouCompleteMe', {
-\	'lazy' : 0,
-\	'autoload' : {
-\		'filetypes' : [
-\			'c',
-\			'cpp',
-\			'lua',
-\			'python',
-\			'sh',
-\			'tex',
-\			'verilog',
-\			'vhdl',
-\			'vim',
-\			'zsh',
-\		],
-\	},
-\}
+NeoBundle 'Valloric/YouCompleteMe'
 
-
-NeoBundle 'Tagbar', {
-\	'lazy' : 1,
-\	'autoload' : {
-\		'filetypes' : [
-\			'c',
-\			'cpp',
-\			'vim',
-\			'latex',
-\			'make',
-\			'python',
-\			'sh',
-\			'vhdl',
-\			'verilog',
-\		],
-\	},
-\}
+NeoBundle 'Tagbar'
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-dispatch'
@@ -85,33 +43,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 
 NeoBundle 'pangloss/vim-javascript'
 
-"NeoBundle 'https://github.com/oblitum/rainbow', {
-"\	'lazy' : 1,
-"\	'autoload' : {
-"\		'filetypes' : [
-"\			'c',
-"\			'cpp',
-"\			'vim',
-"\			'sh',
-"\		],
-"\	},
-"\}
-
-NeoBundle 'https://github.com/Raimondi/delimitMate', {
-\	'lazy' : 1,
-\	'autoload' : {
-\		'filetypes' : [
-\			'c',
-\			'cpp',
-\			'vim',
-\			'latex',
-\			'python',
-\			'sh',
-\			'vhdl',
-\			'verilog',
-\		],
-\	},
-\}
+NeoBundle 'https://github.com/Raimondi/delimitMate'
 
 "=========
 "4 - Unite
@@ -134,15 +66,6 @@ NeoBundle 'https://github.com/vim-airline/vim-airline.git'
 NeoBundle 'https://github.com/vim-airline/vim-airline-themes'
 
 NeoBundle 'djoshea/vim-autoread'
-
-NeoBundle 'jistr/vim-nerdtree-tabs', {
-\	'depends': 'https://github.com/scrooloose/nerdtree.git',
-\	'lazy' : 0,
-\	'autoload' : {
-\		'mappings' : 'F9',
-\		'commands' : 'NERDTreeTabsToggle',
-\	},
-\}
 
 NeoBundle 'https://github.com/scrooloose/nerdcommenter.git', {
 \	'depends': 'https://github.com/scrooloose/nerdtree.git'

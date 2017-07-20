@@ -182,8 +182,14 @@ endif
 "
 " check whether a dictionary if it exists
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
+" fix messed up symbols
+" TODO: test it under windows
+"if has('unix')
+"	let g:airline_symbols.space = "\ua0"
+"endif
+let g:airline_symbols.space = "\ua0"
 
 " unicode symbols
 " TODO: test it under windows
@@ -210,21 +216,22 @@ endif
 "let g:airline_symbols.linenr = ''
 
 " Set airline theme manually
-let g:airline_theme="kolor"
-" fix messed up symbols
-" TODO: test it under windows
-if has('unix')
-	let g:airline_symbols.space = "\ua0"
-endif
+let g:airline_theme="bubblegum"
 
 " enable/disable enhanced tabline.
 let g:airline#extensions#tabline#enabled = 1
 
+" configure non collapsing parent directories in buffer name. >
+"let g:airline#extensions#tabline#fnamecollapse = 0
+
+" configure the formatting of filenames (see |filename-modifiers|). >
+" let g:airline#extensions#tabline#fnamemod = ':p:.'
+
 " enable/disable displaying buffers with a single tab.
-let g:airline#extensions#tabline#show_buffers = 1
+"let g:airline#extensions#tabline#show_buffers = 1
 
 " configure how numbers are calculated in tab mode.
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+"let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
 " enable paste detection
 let g:airline_detect_paste=1
@@ -253,16 +260,7 @@ let NERDTreeChDirMode         = 1
 let NERDTreeQuitOnOpen        = 0
 let NERDTreeShowHidden        = 1
 let NERDTreeShowLineNumbers   = 1
-
-"====================================================
-" vim-nerdtree-tabs
-" https://github.com/jistr/vim-nerdtree-tabs.git
-"====================================================
-
-nnoremap <silent> <F9> :NERDTreeTabsToggle<CR>
-let g:nerdtree_tabs_open_on_gui_startup     = 0
-let g:nerdtree_tabs_open_on_console_startup = 0
-let g:nerdtree_tabs_no_startup_for_diff     = 0
+nnoremap <F9>  :NERDTreeToggle<cr>
 
 "====================================================
 " nerdtreecommenter 

@@ -13,5 +13,9 @@ clang-devel
 boost-devel
 zlib-devel
 openssl-devel
+flex
+flex-devel
+bison
+libevent-devel
 redhat-rpm-config
 perf
