@@ -131,7 +131,7 @@ execute() {
 }
 
 os_distro() {
-    awk -F= '/^NAME/{print $2}' /etc/os-release
+    awk -F= '/^NAME/{print $2}' /etc/os-release | tr '[:upper:]' '[:lower:]' | tr -d "\"'"
 }
 
 is_fedora() {

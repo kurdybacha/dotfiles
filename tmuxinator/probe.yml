@@ -1,0 +1,16 @@
+name: probe
+root: ~/Repo/cnx_git/trunk
+
+windows:
+    - trunk:
+        root: ~/Repo/cnx_git/trunk
+        panes:
+            - vim make_world
+    - probe:
+        root: ~/Repo/cnx_git/trunk/components/probed
+        panes:
+            - vim -c "set makeprg=~/Repo/cnx_git/trunk/cnxshell\ -c\ 'cd\ components/probed/src;SKIP_DECODER_LIBRARY=1\ make\ -j6'" src/system/SensorsManager.cpp
+    - sensor:
+        root: ~/Repo/cnx_git/trunk/components/agents/hostagent
+        panes:
+            - vim -c "set makeprg=~/Repo/cnx_git/trunk/cnxshell\ -c\ 'cd\ components/agents/hostagent;make\ -j6'" sensor/Sensor.cpp

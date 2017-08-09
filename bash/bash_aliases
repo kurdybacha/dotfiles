@@ -8,3 +8,4 @@ alias ....="cd ../../.."
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias isvm='dmesg --notime | grep -i hypervisor | cut -d ':' -f2 | tr -d " \t\n\r"'
