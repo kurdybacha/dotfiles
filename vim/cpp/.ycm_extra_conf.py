@@ -61,55 +61,21 @@ def RtagsFlagsForFile(filename):
   dir = os.path.dirname(filename)
   project_root = project.split('[')[2][:-2]
   sources = [filename, dir, project_root]
-  out = None
+  flags_lines = None
   for source in sources:
-    out = RunTagsCmd(["--source", source])
-    if out:
+    flags_lines = RunTagsCmd(["--sources", source, "--compilation-flags-only", "--compilation-flags-split-line"])
+    if flags_lines:
       break
-  if not out:
+  if not flags_lines:
     return None
 
-  lines = out.splitlines()
-  path_set = set()
-  flags = set()
-  is_cpp = False
-  for line in lines:
-    flags_line = line.split(' ')
-    if "++" in flags_line[0]:
-      is_cpp = True
+  is_cpp = "++" in flags_lines
+  flags = flags_lines.split(os.linesep)
 
-    flags_line = flags_line[1:-7]
-    last_path_flag = None
+  if is_cpp:
+      flags = ['-x', 'c++'] + flags
 
-    for flag in flags_line:
-      is_path_flag = False
-      if last_path_flag:
-        path_set.add((last_path_flag, flag))
-        last_path_flag = None
-        continue
-      for path_flag in path_flags:
-        if flag == path_flag:
-          last_path_flag = flag
-          is_path_flag = True
-          break
-        if flag.startswith(path_flag):
-          path = flag[len(path_flag):]
-          path_set.add((path_flag, path))
-          is_path_flag = True
-          break
-      if not is_path_flag:
-        flags.add(flag)
-
-  res = ['-x', 'c++'] if is_cpp else []
-  res.extend(list(flags))
-  for i in path_set:
-    res.append(i[0])
-    res.append(i[1])
-  for inc in default_includes:
-    res.append('-isystem')
-    res.append(inc)
-  return res
-
+  return flags
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
@@ -227,7 +193,7 @@ def FlagsForFile( filename, **kwargs ):
       mflags.append('-isystem')
       mflags.append(inc)
 
-  final_flags = MakeRelativePathsInFlagsAbsolute( mflags, relative_to )
+  final_flags = MakeRelativePathsInFlagsAbsolute(mflags, relative_to)
 
   return {
     'flags': final_flags,
@@ -240,5 +206,3 @@ if __name__ == '__main__':
     flags = FlagsForFile(i)
     print " ".join(flags['flags'])
     pprint.pprint(flags)
-
-
