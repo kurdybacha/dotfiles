@@ -95,6 +95,8 @@ NeoBundle 'mbbill/undotree', {
 \	},
 \}
 
+NeoBundle 'ntpeters/vim-better-whitespace'
+
 "=========================
 "7 - Vim built-in plugins
 "=========================
