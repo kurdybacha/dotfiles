@@ -1,5 +1,5 @@
 name: python
-root: ~/Repo/google-python-course/google-python-exercises
+root: ~/Repo/google-python-exercises
 
 windows:
     - editor:

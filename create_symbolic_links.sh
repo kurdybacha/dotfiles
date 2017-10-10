@@ -13,15 +13,10 @@ create_symlinks() {
         "bash/bash_autocomplete"
         "bash/bash_exports"
         "bash/bash_functions"
-        #"bash/bash_logout"
         "bash/bash_options"
         "bash/bash_profile"
-#        "bash/bash_prompt"
+        "bash/bash_prompt"
         "bash/bashrc"
-        #"bash/curlrc"
-        #"bash/inputrc"
-        #"bash/screenrc"
-
         "tmux.conf"
         "tmuxinator"
 
