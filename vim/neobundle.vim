@@ -33,7 +33,8 @@ NeoBundle 'Tagbar'
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'junegunn/fzf'
+NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'mileszs/ack.vim'
 
 NeoBundle 'honza/vim-snippets'
