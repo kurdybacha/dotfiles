@@ -15,7 +15,7 @@ install_packages() {
     update
     upgrade
     print_in_green "\n  ---\n\n"
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_packages_list "utils.list"
@@ -23,13 +23,13 @@ install_packages() {
     install_packages_list "favourites.list"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
+
     print_in_green "\n  ---\n\n"
     update
     upgrade
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
+
     print_in_green "\n  ---\n\n"
     autoremove
 }

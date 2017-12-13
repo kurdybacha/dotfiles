@@ -32,7 +32,7 @@ main() {
     ask_for_sudo
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   
+
     if ! $skipQuestions; then
 
         print_info "Git"
@@ -48,7 +48,7 @@ main() {
         fi
 
     fi
-    
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
