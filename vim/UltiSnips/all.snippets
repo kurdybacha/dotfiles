@@ -26,3 +26,10 @@ THE SOFTWARE.
 ${2}
 endsnippet
 
+snippet ssh "expect SSH bash script with password" b
+#!/usr/bin/expect -f
+spawn ssh ${1:username@server}
+expect "assword:"
+send "${2:password}\r"
+interact
+endsnippet
