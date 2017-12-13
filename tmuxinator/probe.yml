@@ -9,8 +9,17 @@ windows:
     - probe:
         root: ~/Repo/cnx_git/trunk/components/probed
         panes:
-            - vim -c "set makeprg=~/Repo/cnx_git/trunk/cnxshell\ -c\ 'cd\ components/probed/src;SKIP_DECODER_LIBRARY=1\ make\ -j6'" src/system/SensorsManager.cpp
+            - vim -c "set makeprg=~/Repo/cnx_git/trunk/cnxshell\ -c\ 'cd\ components/probed;SKIP_DECODER_LIBRARY=1\ make\ -j7'" src/system/SensorsManager.cpp
     - sensor:
         root: ~/Repo/cnx_git/trunk/components/agents/hostagent
         panes:
-            - vim -c "set makeprg=~/Repo/cnx_git/trunk/cnxshell\ -c\ 'cd\ components/agents/hostagent;make\ -j6'" sensor/Sensor.cpp
+            - vim -c "set makeprg=make\ sensor\ -j6" sensor/Sensor.cpp
+            #- vim -c "set makeprg=~/Repo/cnx_git/trunk/cnxshell\ -c\ 'cd\ components/agents/hostagent;SKIP_DECODER_LIBRARY=1\ make\ -j7'" sensor/Sensor.cpp
+    - cnxshell:
+        layout: tiled
+        pre: ./cnxshell
+        panes:
+            -
+            -
+            -
+            -

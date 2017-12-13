@@ -1,5 +1,5 @@
 name: zmq
-root: ~/Repo/libzmq
+root: ~/Repo/opensource/libzmq
 
 windows:
     - editor:
