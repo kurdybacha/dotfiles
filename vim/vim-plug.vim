@@ -3,17 +3,13 @@
 "1 - vim-plug config
 "====================
 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-
 call plug#begin('~/.vim/bundle')
 
 "===============
 "2 - Colorscheme
 "===============
 
-Plug 'NLKNguyen/papercolor-theme.git'
+Plug 'NLKNguyen/papercolor-theme'
 "Plug 'nanotech/jellybeans.vim.git'
 "NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 
@@ -21,7 +17,7 @@ Plug 'NLKNguyen/papercolor-theme.git'
 "3 -  Programming
 "================
 
-Plug 'Tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/fzf', { 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -35,7 +31,6 @@ Plug 'pangloss/vim-javascript'
 " update
 Plug '~/.vim/plugged/YouCompleteMe'
 
-
 "================
 "4 - Miscelaneous
 "================
@@ -43,8 +38,8 @@ Plug '~/.vim/plugged/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'| Plug 'scrooloose/nerdcommenter'
-Plug 'itchyny/calendar.vim', { 'for': 'Calendar' }
-Plug 'mhinz/vim-startify.git'
+Plug 'itchyny/calendar.vim'
+Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'ntpeters/vim-better-whitespace'
 

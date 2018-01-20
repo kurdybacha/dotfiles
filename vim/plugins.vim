@@ -26,7 +26,7 @@ let g:ycm_confirm_extra_conf = 0
 "==========================================
 
 let g:rtagsUseLocationList = 0
-let g:rtagsMaxSearchResultWindowHeight = 30 
+let g:rtagsMaxSearchResultWindowHeight = 30
 
 "==========================================
 " tagbar
@@ -74,11 +74,11 @@ let g:tagbar_type_armasm = {
 "
 "======================================
 " Ack
-" https://github.com/mileszs/ack.vim.git 
+" https://github.com/mileszs/ack.vim.git
 "======================================
 
 if executable('ag')
-    let g:ackprg = 'ag --silent --nocolor --nogroup --column' 
+    let g:ackprg = 'ag --silent --nocolor --nogroup --column'
 endif
 "nnoremap <leader>u :Ack! <cword><CR>
 nnoremap <leader>a :Ack!<Space>
@@ -254,7 +254,7 @@ let NERDTreeShowLineNumbers   = 1
 nnoremap <F9>  :NERDTreeToggle<cr>
 
 "====================================================
-" nerdtreecommenter 
+" nerdtreecommenter
 " https://github.com/scrooloose/nerdcommenter.git
 "====================================================
 
