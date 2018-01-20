@@ -1,6 +1,6 @@
 
 " Load all plugins
-source ~/.vim/neobundle.vim
+source ~/.vim/vim-plug.vim
 
 " Vim basic configuration.
 source ~/.vim/config.vim
@@ -19,4 +19,3 @@ source ~/.vim/abbrev.vim
 
 " Autogroup/autocmd
 source ~/.vim/augroup.vim"
-

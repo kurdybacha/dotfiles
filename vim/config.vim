@@ -5,16 +5,18 @@
 
 set nocompatible                   " disable vi compatibility
 set autowriteall                   " automatically save all buffers
-set autoread                      " load file modified outside vim
+set autoread                       " load file modified outside vim
 set nobackup                       " do not write backup files
 set noswapfile                     " do not write .swp files
 set backspace=indent,eol,start     " see :help bs
 set helplang=en                    " help language
-set history=200                    " command history
+set history=1000                   " command history
 set spelllang=en,pl                " set your favorite language here
+set complete-=i                    " complete by scanning current and included files
 set completeopt=menu               " menu completion options
 set ttyfast                        " fast terminal connection
 set hidden                         " don't discard buffers
+set ttimeout
 set ttimeoutlen=50                 " timeout for a key sequence complete
 "set pastetoggle=<F2>              " enables paste mode
 set noeol                          " no empty line at the end of file
@@ -78,6 +80,7 @@ set expandtab        " expand tabs to spaces
 set smarttab         " expand tabs to spaces
 set nowrap           " do not wrap words (view)
 set textwidth=0      " do not wrap words (insert)
+set formatoptions+=j " Delete comment character when joining commented lines
 "filetype off
 
 " folding
@@ -135,7 +138,7 @@ endif
 
 "colorscheme jellybeans
 "colorscheme solarized
-colorscheme PaperColor
+silent! colorscheme PaperColor
 "let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c'  }
 set t_ut=                    " disable Background Color Erase (BCE) so that color schemes work properly when vim is used inside tmux
 if has('gui_running')

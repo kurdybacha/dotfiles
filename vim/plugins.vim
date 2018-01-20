@@ -162,24 +162,6 @@ if has("autocmd")
 	au FileType c,cpp,perl let delimitMate_eol_marker = ";"
 endif
 
-"==================================================
-" unite-colorscheme
-" https://github.com/ujihisa/unite-colorscheme
-"==================================================
-" Configured in unite
-
-"===============================================
-" unite-outline
-" https://github.com/h1mesuke/unite-outline
-"===============================================
-" Configured in unite
-
-"=========================================
-" Unite
-" https://github.com/Shougo/unite.vim
-"=========================================
-
-"source ~/.vim/unite.vim
 
 "==========================================
 " vim-airline

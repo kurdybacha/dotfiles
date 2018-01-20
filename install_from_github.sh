@@ -4,7 +4,20 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "utils.sh"
 
 # rtags - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-execute "git -C rtags pull --recurse-submodules && cd rtags && git submodule update --remote --recursive || git clone --recursive https://github.com/Andersbakken/rtags.git" \
-        "rtags pull"
-execute "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make -j4 && sudo make install" \
-        "rtags build"
+if [ -d rtags ]; then
+    execute "git -C rtags pull --recurse-submodules" "rtags pull"
+elif
+    execute "git clone --recurse-submodule https://github.com/Andersbakken/rtags.git" "rtags clone"
+fi
+
+execute "cd rtags && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make -j4 && sudo make install" "rtags build"
+
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+
+# YouCompleteMe
+if [ -d vim/plugged/YouCompleteMe ]; then
+    execute "git -C vim/plugged/YouCompleteMe pull --recurse-submodule" "YouCompleteMe update"
+elif
+    execute "git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe" "YouCompleteMe clone"
+fi
+execute "cd vim/plugged/YouCompleteMe && ./install.py --clang-completer" "YouCompleteMe build"

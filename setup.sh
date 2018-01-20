@@ -33,6 +33,34 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+        chmod +x ./create_symbolic_links.sh
+    ./create_symbolic_links.sh
+        chmod +x ./vim/setup.sh
+    ./vim/setup.sh
+
+    if ! $skipQuestions; then
+
+	print_info "Install mode"
+
+        ask_for_confirmation "Do you want to configure your distro and install packages?"
+        printf "\n"
+        if answer_is_yes; then
+		chmod +x ./$distro/setup.sh
+	    ./$distro/setup.sh
+	fi
+
+	ask_for_confirmation "Do you want to install heavy dev tools (e.g. YouCompleteMe, rtags,..) ?"
+        printf "\n"
+
+        if answer_is_yes; then
+		chmod +x ./install_from_github.sh
+	    ./install_from_github.sh
+	fi
+
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     if ! $skipQuestions; then
 
         print_info "Git"
@@ -48,18 +76,6 @@ main() {
         fi
 
     fi
-
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	chmod +x ./create_symbolic_links.sh
-    ./create_symbolic_links.sh
-	chmod +x ./$distro/setup.sh
-    ./$distro/setup.sh
-	chmod +x ./vim/setup.sh
-    ./vim/setup.sh
-	chmod +x ./install_from_github.sh
-    ./install_from_github.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
