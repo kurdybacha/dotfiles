@@ -40,22 +40,23 @@ main() {
 
     if ! $skipQuestions; then
 
-	print_info "Install mode"
+        print_info "Install mode"
 
         ask_for_confirmation "Do you want to configure your distro and install packages?"
         printf "\n"
-        if answer_is_yes; then
-		chmod +x ./$distro/setup.sh
-	    ./$distro/setup.sh
-	fi
 
-	ask_for_confirmation "Do you want to install heavy dev tools (e.g. YouCompleteMe, rtags,..) ?"
+        if answer_is_yes; then
+            chmod +x ./$distro/setup.sh
+            ./$distro/setup.sh
+        fi
+
+        ask_for_confirmation "Do you want to install heavy dev tools (e.g. YouCompleteMe, rtags,..) ?"
         printf "\n"
 
         if answer_is_yes; then
-		chmod +x ./install_from_github.sh
-	    ./install_from_github.sh
-	fi
+            chmod +x ./install_from_github.sh
+            ./install_from_github.sh
+        fi
 
     fi
 
