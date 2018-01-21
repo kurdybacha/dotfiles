@@ -12,10 +12,10 @@ fi
 
 execute "cd rtags && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make -j4 && sudo make install" "rtags build"
 
-cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # YouCompleteMe
-if [ -d vim/plugged/YouCompleteMe ]; then
+if [ -d "vim/plugged/YouCompleteMe" ]; then
     execute "git -C vim/plugged/YouCompleteMe pull --recurse-submodule" "YouCompleteMe pull"
 else
     execute "git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe" "YouCompleteMe clone"
