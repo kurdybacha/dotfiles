@@ -29,7 +29,6 @@ execute "gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:esca
 
 print_info "Apple keyboard"
 
-execute "printf '%s\n%s\n%s\n' '#!/bin/bash' 'echo 2 > /sys/module/hid_apple/parameters/fnmode' 'echo 1 > /sys/module/hid_apple/parameters/swap_opt_cmd' \
-                | sudo tee /etc/sysconfig/modules/apple_keys_fix.modules" \
-        "Apple keys fix module"
-execute "sudo chmod +x /etc/sysconfig/modules/apple_keys_fix.modules && sudo /etc/sysconfig/modules/apple_keys_fix.modules" "Apple keys fix enable"
+execute "echo options hid_apple swap_opt_cmd=1 fnmode=2 | sudo tee /etc/modprobe.d/hid_apple.conf" "Apple module keys fix"
+
+execute "sudo dracut -f" "initramfs update"
