@@ -5,6 +5,9 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Use vi mode in command line
+set -s vi
+
 # Automatically prepend `cd` to directory names
 shopt -s autocd
 
