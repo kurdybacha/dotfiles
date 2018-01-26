@@ -19,3 +19,8 @@ source ~/.vim/abbrev.vim
 
 " Autogroup/autocmd
 source ~/.vim/augroup.vim"
+
+" Loca overrides
+if filereadable(glob("~/.vim.local/vimrc"))
+    source ~/.vim.local/vimrc
+endif
