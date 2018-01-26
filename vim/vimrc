@@ -22,5 +22,6 @@ source ~/.vim/augroup.vim"
 
 " Loca overrides
 if filereadable(glob("~/.vim.local/vimrc"))
+    exe 'set rtp+=' .expand('~/.vim.local')
     source ~/.vim.local/vimrc
 endif
