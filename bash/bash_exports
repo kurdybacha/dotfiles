@@ -16,7 +16,7 @@ export HISTCONTROL=ignoreboth
 export HISTFILESIZE=10000
 
 # Don't add certain commands to the history file
-export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
+# export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 
 # Increase the maximum number of commands recorded in the
 # command history (default value is 500)
@@ -43,7 +43,8 @@ export NODE_REPL_HISTORY_SIZE=10000
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# disabling for now becasue it crashes tmux sometimes..
+# export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr
 export PYTHONIOENCODING="UTF-8"
