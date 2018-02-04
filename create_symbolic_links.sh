@@ -28,6 +28,7 @@ create_symlinks() {
         "vim/vimrc"
         "i3"
         "Xdefaults"
+        "Xkbmap"
 
     )
 
