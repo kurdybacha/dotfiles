@@ -23,5 +23,10 @@ source ~/.vim/augroup.vim"
 " Local overrides
 if filereadable(glob("~/.vim.local/vimrc"))
     exe 'set rtp+=' .expand('~/.vim.local')
+    " after changing your 'runtimepath', which would first unset the
+    " filetype-detection autocommands, and then re-source to set
+    " them again with the new 'runtimepath'
+    filetype off
+    filetype plugin indent on
     source ~/.vim.local/vimrc
 endif
