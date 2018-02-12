@@ -20,8 +20,8 @@ source ~/.vim/abbrev.vim
 " Autogroup/autocmd
 source ~/.vim/augroup.vim"
 
-" Loca overrides
-if filereadable(glob("~/.vim.local/vimrc"))
-    exe 'set rtp+=' .expand('~/.vim.local')
-    source ~/.vim.local/vimrc
+" Local overrides
+if filereadable(glob("~/.vim_local/vimrc"))
+    exe 'set rtp+=' .expand('~/.vim_local')
+    source ~/.vim_local/vimrc
 endif

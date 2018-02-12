@@ -8,6 +8,9 @@
 # Use vi mode in command line
 set -o vi
 
+# Use Alt+. to recall last argument (like in Emacs-mode)
+bind -m vi-command ".":insert-last-argument
+
 # Automatically prepend `cd` to directory names
 shopt -s autocd
 
