@@ -21,7 +21,7 @@ source ~/.vim/abbrev.vim
 source ~/.vim/augroup.vim"
 
 " Local overrides
-if filereadable(glob("~/.vim_local/vimrc"))
-    exe 'set rtp+=' .expand('~/.vim_local')
-    source ~/.vim_local/vimrc
+if filereadable(glob("~/.vim.local/vimrc"))
+    exe 'set rtp+=' .expand('~/.vim.local')
+    source ~/.vim.local/vimrc
 endif
