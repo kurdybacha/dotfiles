@@ -95,6 +95,7 @@ vnoremap <leader>u y:Ack! <C-r>=fnameescape(@")<CR>
 nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
+nnoremap <leader>m :Marks<CR>
 
 "======================================
 " CtrlP
