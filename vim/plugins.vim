@@ -80,7 +80,7 @@ let g:tagbar_type_armasm = {
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 elseif executable('rg')
-    let g:ackprg = 'rg --vimgrep'
+    let g:ackprg = 'rg --vimgrep --smart-case'
 endif
 "nnoremap <leader>u :Ack! <cword><CR>
 nnoremap <leader>a :Ack!<Space>
@@ -92,10 +92,39 @@ vnoremap <leader>u y:Ack! <C-r>=fnameescape(@")<CR>
 " fzf
 " https://github.com/junegunn/fzf.vim
 "======================================
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+"nnoremap <leader>u :Ack! <cword><CR>
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --vimgrep --smart-case --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
+
+"nnoremap <leader>a :Rg<Space>
+""vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
+"vnoremap <leader>u y:Rg <C-r>=fnameescape(@")<CR>
+
 
 "======================================
 " CtrlP
