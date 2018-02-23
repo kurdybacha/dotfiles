@@ -169,10 +169,3 @@ else
 	  set t_Co=256
 	" endif
 endif
-
-" make 86 column stand out
-" based on  "More Instantly Better Vim" talk at OSCON 2013
-" http://youtu.be/aHm36-na4-4
-highlight MyLineTooLongMarker ctermbg=magenta guibg=Magenta
-call matchadd('MyLineTooLongMarker', '\%86v\S', 100)
-
