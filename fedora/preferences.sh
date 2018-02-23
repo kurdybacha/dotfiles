@@ -11,7 +11,7 @@ print_info "Set preferences"
 
 print_info " Terminal"
 
-execute "mkdir -p ~/.config/xfce4/terminal/ && cp terminalrc ~/.config/xfce4/terminal/" "xfce4-terminal config"
+execute "mkdir -p ~/.config/xfce4/terminal/ && ln $PWD/terminalrc $HOME/.config/xfce4/terminal/terminalrc" "xfce4-terminal config"
 
 #execute "gsettings set org.gnome.desktop.interface monospace-font-name 'Inconsolata 13'" \
 #    "Change font size"
