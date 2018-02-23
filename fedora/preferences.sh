@@ -9,7 +9,9 @@ print_info "Set preferences"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-#print_info " Terminal"
+print_info " Terminal"
+
+execute "mkdir -p ~/.config/xfce4/terminal/ && cp terminalrc ~/.config/xfce4/terminal/" "xfce4-terminal config"
 
 #execute "gsettings set org.gnome.desktop.interface monospace-font-name 'Inconsolata 13'" \
 #    "Change font size"
@@ -30,5 +32,6 @@ execute "gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:esca
 print_info "Apple keyboard"
 
 execute "echo options hid_apple swap_opt_cmd=1 fnmode=2 | sudo tee /etc/modprobe.d/hid_apple.conf" "Apple module keys fix"
+
 
 execute "sudo dracut -f" "initramfs update"
