@@ -194,6 +194,13 @@ if has("autocmd")
 	au FileType c,cpp,perl let delimitMate_eol_marker = ";"
 endif
 
+"==========================================
+" vim-better-whitespace
+" https://github.com/ntpeters/vim-better-whitespace
+"==========================================
+
+highlight ExtraWhitespace ctermbg=52 guibg=#FF0000
+
 
 "==========================================
 " vim-airline
@@ -204,15 +211,15 @@ endif
 " https://github.com/Lokaltog/powerline-fonts
 "
 " check whether a dictionary if it exists
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-" fix messed up symbols
-" TODO: test it under windows
-"if has('unix')
-"	let g:airline_symbols.space = "\ua0"
-"endif
-let g:airline_symbols.space = "\ua0"
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
+" " fix messed up symbols
+" " TODO: test it under windows
+" "if has('unix')
+" "	let g:airline_symbols.space = "\ua0"
+" "endif
+" let g:airline_symbols.space = "\ua0"
 
 " unicode symbols
 " TODO: test it under windows
@@ -242,7 +249,7 @@ let g:airline_symbols.space = "\ua0"
 let g:airline_theme="bubblegum"
 
 " enable/disable enhanced tabline.
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 " configure non collapsing parent directories in buffer name. >
 "let g:airline#extensions#tabline#fnamecollapse = 0
@@ -257,21 +264,21 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
 " enable paste detection
-let g:airline_detect_paste=1
+" let g:airline_detect_paste=1
 
 " enable/disable automatic population of the `g:airline_symbols` dictionary
 " with powerline symbols.
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 
 " enable/disable fugitive/lawrencium integration
-let g:airline#extensions#branch#enabled=1
+" let g:airline#extensions#branch#enabled=1
 
 " change the text for when no branch is detected
-let g:airline#extensions#branch#empty_message = ''
+" let g:airline#extensions#branch#empty_message = ''
 
 " enable/disable eclim integration, which works well with the
 " |airline-syntastic| extension. >
-let g:airline#extensions#eclim#enabled = 0
+" let g:airline#extensions#eclim#enabled = 0
 
 "================================================
 " nerdtree
