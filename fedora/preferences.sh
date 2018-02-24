@@ -9,9 +9,12 @@ print_info "Set preferences"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_info " Terminal"
+print_info "Terminal"
 
-execute "mkdir -p ~/.config/xfce4/terminal/ && ln $PWD/terminalrc $HOME/.config/xfce4/terminal/terminalrc" "xfce4-terminal config"
+execute "mkdir -p ~/.config/xfce4/terminal/ && ln -sf $PWD/terminalrc $HOME/.config/xfce4/terminal/terminalrc" "xfce4-terminal config"
+
+print_info "Keyboard"
+execute "sudo cp $PWD/00-keyboard.conf /etc/X11/xorg.conf.d/" "00-keyboard.conf"
 
 #execute "gsettings set org.gnome.desktop.interface monospace-font-name 'Inconsolata 13'" \
 #    "Change font size"
