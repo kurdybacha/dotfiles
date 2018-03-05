@@ -7,25 +7,31 @@ Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.lcdfilter:              lcddefault
 Xft.hinting:                true
-Xft.hintstyle:              hintfull
+Xft.hintstyle:              hintslight
 
 !-------------------------------------------------------------------------------
+! Urxvt settings
+!-------------------------------------------------------------------------------
 
+URxvt.termName:             urxvt256c-ml
 URxvt.depth:                32
-! URxvt.geometry:             90x30
+URxvt.geometry:             90x30
 URxvt.transparent:          false
 URxvt.fading:               0
 ! URxvt.urgentOnBell:         true
 ! URxvt.visualBell:           true
 URxvt.loginShell:           true
-URxvt.saveLines:            50
+URxvt.saveLines:            12000
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
+! Fix font space
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt*font: xft:inconsolata:size=10
-URxvt*boldFont: xft:inconsolata:size=10
+URxvt*font: xft:inconsolata:medium:size=10
+URxvt*boldFont: xft:inconsolata:bold:medium:size=10
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
 ! URxvt*font: xft:monospace:pixelsize=13:antialias=true:hinting=true
 ! URxvt*boldFont: xft:monospace:pixelsize=13:antialias=true:hinting=true
@@ -34,8 +40,6 @@ URxvt*boldFont: xft:inconsolata:size=10
 ! URxvt*font: xft:inconsolata:pixelsize=13:antialias=true:hinting=true:style=Medium
 ! URxvt*boldFont: xft:inconsolata:pixelsize=13:antialias=true:hinting=true:style=Medium
 
-! Fix font space
-URxvt*letterSpace: 0
 
 ! Scrollbar
 URxvt.scrollStyle:          plain
@@ -54,30 +58,33 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
-! PaperColor Theme dark
 
-URxvt.background: #1c1c1c
-URxvt.foreground: #d0d0d0
+!-------------------------------------------------------------------------------
+! Color settings (PaperColor Theme dark)
+!-------------------------------------------------------------------------------
 
-URxvt.color0: #1c1c1c
-URxvt.color1: #af005f
-URxvt.color2: #5faf00
-URxvt.color3: #d7af5f
-URxvt.color4: #5fafd7
-URxvt.color5: #808080
-URxvt.color6: #d7875f
-URxvt.color7: #d0d0d0
-URxvt.color8: #585858
-URxvt.color9: #5faf5f
-URxvt.color10: #afd700
-URxvt.color11: #af87d7
-URxvt.color12: #ffaf00
-URxvt.color13: #ff5faf
-URxvt.color14: #00afaf
-URxvt.color15: #5f8787
 
-URxvt.color16: #5fafd7
-URxvt.color17: #d7af00
+*background: #1c1c1c
+*foreground: #d0d0d0
+*color0: #1c1c1c
+*color1: #af005f
+*color2: #5faf00
+*color3: #d7af5f
+*color4: #5fafd7
+*color5: #808080
+*color6: #d7875f
+*color7: #d0d0d0
+*color8: #585858
+*color9: #5faf5f
+*color10: #afd700
+*color11: #af87d7
+*color12: #ffaf00
+*color13: #ff5faf
+*color14: #00afaf
+*color15: #5f8787
+
+! URxvt.color16: #5fafd7
+! URxvt.color17: #d7af00
 
 
 !https://github.com/marhs/material-terminator/blob/master/config
