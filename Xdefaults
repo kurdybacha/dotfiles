@@ -52,40 +52,77 @@ URxvt.urlLauncher:          firefox
 
 ! Cursor
 URxvt.cursorBlink:          true
-URxvt.cursorColor:          #d0d0d0
 URxvt.cursorUnderline:      false
 
 ! Pointer
 URxvt.pointerBlank:         true
+
+!-------------------------------------------------------------------------------
+! Color settings (Google Theme dark)
+! https://github.com/chriskempson/base16-xresources
+!-------------------------------------------------------------------------------
+!
+! Base16 Google Dark
+! Scheme: Seth Wright (http://sethawright.com)
+
+*foreground:   #c5c8c6
+*background:   #1d1f21
+*cursorColor:  #c5c8c6
+
+*color0:       #1d1f21
+*color1:       #cc342b
+*color2:       #198844
+*color3:       #fba922
+*color4:       #3971ed
+*color5:       #a36ac7
+*color6:       #3971ed
+*color7:       #c5c8c6
+
+*color8:       #969896
+*color9:       #cc342b
+*color10:      #198844
+*color11:      #fba922
+*color12:      #3971ed
+*color13:      #a36ac7
+*color14:      #3971ed
+*color15:      #ffffff
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*color16:      #f96a38
+*color17:      #3971ed
+*color18:      #282a2e
+*color19:      #373b41
+*color20:      #b4b7b4
+*color21:      #e0e0e0
 
 
 !-------------------------------------------------------------------------------
 ! Color settings (PaperColor Theme dark)
 !-------------------------------------------------------------------------------
 
-
-*background: #1c1c1c
-*foreground: #d0d0d0
-*color0: #1c1c1c
-*color1: #af005f
-*color2: #5faf00
-*color3: #d7af5f
-*color4: #5fafd7
-*color5: #808080
-*color6: #d7875f
-*color7: #d0d0d0
-*color8: #585858
-*color9: #5faf5f
-*color10: #afd700
-*color11: #af87d7
-*color12: #ffaf00
-*color13: #ff5faf
-*color14: #00afaf
-*color15: #5f8787
+! *cursorColor:          #d0d0d0
+! *background: #1c1c1c
+! *foreground: #d0d0d0
+! *color0: #1c1c1c
+! *color1: #af005f
+! *color2: #5faf00
+! *color3: #d7af5f
+! *color4: #5fafd7
+! *color5: #808080
+! *color6: #d7875f
+! *color7: #d0d0d0
+! *color8: #585858
+! *color9: #5faf5f
+! *color10: #afd700
+! *color11: #af87d7
+! *color12: #ffaf00
+! *color13: #ff5faf
+! *color14: #00afaf
+! *color15: #5f8787
 
 ! URxvt.color16: #5fafd7
 ! URxvt.color17: #d7af00
-
 
 !https://github.com/marhs/material-terminator/blob/master/config
 
