@@ -56,3 +56,17 @@ qt() {
     #     │└─ search all files under each directory, recursively
     #     └─ ignore case
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Pomodoro countdown
+# Takes optional duration number in minutes
+# https://en.wikipedia.org/wiki/Pomodoro_Technique
+pomodoro() {
+    duration_sec=$((60*${1:-25})) #convert to seconds
+    pomodoro_end=$((`date +%s` + ${duration_sec}))
+    while [ "${pomodoro_end}" -ge `date +%s` ]; do
+        echo -ne "$(date -u --date @$((${pomodoro_end} - `date +%s`)) +%M:%S)\r"
+        sleep 0.2
+    done
+}
