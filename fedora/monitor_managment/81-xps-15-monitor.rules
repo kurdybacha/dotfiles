@@ -1,0 +1,40 @@
+# Copy this file to /etc/udev/rules.d/
+# These values seem to work for HDMI monitor in Dell XPS 15
+SUBSYSTEM=="drm", ACTION=="change", ENV{HOTPLUG}=="1" RUN+="/home/pawel/dotfiles/fedora/monitor_managment/monitor-hotplug.sh
+
+# udevadm monitor --udev --environment
+#
+# UDEV  [3712.273596] change   /devices/pci0000:00/0000:00:02.0/drm/card0 (drm)
+# ACTION=change
+# DEVLINKS=/dev/dri/by-path/pci-0000:00:02.0-card
+# DEVNAME=/dev/dri/card0
+# DEVPATH=/devices/pci0000:00/0000:00:02.0/drm/card0
+# DEVTYPE=drm_minor
+# HOTPLUG=1
+# ID_FOR_SEAT=drm-pci-0000_00_02_0
+# ID_PATH=pci-0000:00:02.0
+# ID_PATH_TAG=pci-0000_00_02_0
+# MAJOR=226
+# MINOR=0
+# SEQNUM=3752
+# SUBSYSTEM=drm
+# TAGS=:master-of-seat:seat:uaccess:
+# USEC_INITIALIZED=3786174
+#
+# UDEV  [3719.054974] change   /devices/pci0000:00/0000:00:02.0/drm/card0 (drm)
+# ACTION=change
+# DEVLINKS=/dev/dri/by-path/pci-0000:00:02.0-card
+# DEVNAME=/dev/dri/card0
+# DEVPATH=/devices/pci0000:00/0000:00:02.0/drm/card0
+# DEVTYPE=drm_minor
+# HOTPLUG=1
+# ID_FOR_SEAT=drm-pci-0000_00_02_0
+# ID_PATH=pci-0000:00:02.0
+# ID_PATH_TAG=pci-0000_00_02_0
+# MAJOR=226
+# MINOR=0
+# SEQNUM=3753
+# SUBSYSTEM=drm
+# TAGS=:master-of-seat:seat:uaccess:
+# USEC_INITIALIZED=3786174
+

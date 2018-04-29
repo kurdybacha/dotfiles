@@ -1,8 +1,8 @@
 name: cppzmq
-root: ~/Repo/cppzmq
+root: ~/opensource/cppzmq
 
 windows:
     - editor:
         - systemctl --user start rdm.service
-        - vim -c 'set makeprg=cd\ build/src\ &&\ make' src/main.cpp
+        - vim -c 'set makeprg=cmake\ --build\ build' -c ':FocusDispatch build/bin/unit_tests' zmq.hpp
     - tests:
