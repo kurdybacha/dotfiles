@@ -80,7 +80,7 @@ let g:tagbar_type_armasm = {
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 elseif executable('rg')
-    let g:ackprg = 'rg --vimgrep --smart-case'
+    let g:ackprg = 'rg --vimgrep --smart-case -g !tags'
 endif
 "nnoremap <leader>u :Ack! <cword><CR>
 nnoremap <leader>a :Ack!<Space>
