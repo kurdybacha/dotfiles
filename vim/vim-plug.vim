@@ -35,8 +35,8 @@ Plug '~/.vim/plugged/YouCompleteMe'
 "4 - Miscelaneous
 "================
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'| Plug 'scrooloose/nerdcommenter'
 Plug 'itchyny/calendar.vim'
 Plug 'mhinz/vim-startify'
