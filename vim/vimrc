@@ -12,7 +12,7 @@ source ~/.vim/functions.vim
 source ~/.vim/mappings.vim
 
 " Plugin-specific configuration.
- source ~/.vim/plugins.vim
+source ~/.vim/plugins.vim
 
 " Abbreviations
 source ~/.vim/abbrev.vim
@@ -22,7 +22,8 @@ source ~/.vim/augroup.vim"
 
 " Local overrides
 if filereadable(glob("~/.vim.local/vimrc"))
-    exe 'set rtp+=' .expand('~/.vim.local')
+    set rtp+=~/.vim.local
+    set rtp+=~/.vim.local/after
     " after changing your 'runtimepath', which would first unset the
     " filetype-detection autocommands, and then re-source to set
     " them again with the new 'runtimepath'
