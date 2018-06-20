@@ -211,9 +211,9 @@ highlight ExtraWhitespace ctermbg=52 guibg=#FF0000
 " https://github.com/Lokaltog/powerline-fonts
 "
 " check whether a dictionary if it exists
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 " " fix messed up symbols
 " " TODO: test it under windows
 " "if has('unix')
@@ -223,18 +223,18 @@ highlight ExtraWhitespace ctermbg=52 guibg=#FF0000
 
 " unicode symbols
 " TODO: test it under windows
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
 "let g:airline_left_sep = ''
@@ -249,16 +249,16 @@ highlight ExtraWhitespace ctermbg=52 guibg=#FF0000
 let g:airline_theme="bubblegum"
 
 " enable/disable enhanced tabline.
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " configure non collapsing parent directories in buffer name. >
 "let g:airline#extensions#tabline#fnamecollapse = 0
 
 " configure the formatting of filenames (see |filename-modifiers|). >
-" let g:airline#extensions#tabline#fnamemod = ':p:.'
+let g:airline#extensions#tabline#fnamemod = ':p:.'
 
 " enable/disable displaying buffers with a single tab.
-"let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_buffers = 1
 
 " configure how numbers are calculated in tab mode.
 "let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
@@ -268,7 +268,7 @@ let g:airline_theme="bubblegum"
 
 " enable/disable automatic population of the `g:airline_symbols` dictionary
 " with powerline symbols.
-" let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 
 " enable/disable fugitive/lawrencium integration
 " let g:airline#extensions#branch#enabled=1
