@@ -6,6 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # rtags - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 if [ -d rtags ]; then
     execute "git -C rtags pull --recurse-submodules" "rtags pull"
+    execute "git -C rtags submodule update --remote --recursive"
 else
     execute "git clone --recurse-submodule https://github.com/Andersbakken/rtags.git" "rtags clone"
 fi
@@ -17,6 +18,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # YouCompleteMe
 if [ -d "vim/plugged/YouCompleteMe" ]; then
     execute "git -C vim/plugged/YouCompleteMe pull --recurse-submodule" "YouCompleteMe pull"
+    execute "git -C vim/plugged/YouCompleteMe submodule update --remote --recursive"
 else
     execute "git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe" "YouCompleteMe clone"
 fi
