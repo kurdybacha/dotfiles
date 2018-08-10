@@ -166,7 +166,7 @@ nnoremap <leader>m :Marks<CR>
 " https://github.com/SirVer/ultisnips.git
 "===========================================
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:SnipsSnippetsDir = "~/.vim/UltiSnips"
+" let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips", "~/.UltiSnips"]
 let g:UltiSnipsExpandTrigger="<c-b>"
 
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
