@@ -54,6 +54,13 @@ let g:tagbar_type_armasm = {
 \}
 
 "===========================================
+" a.vim
+" https://github.com/vim-scripts/a.vim
+"===========================================
+" vertical splits and switches between e.g. h and cpp
+nnoremap <silent> <leader>s :AV <CR>
+
+"===========================================
 " vim-fugitive
 " https://github.com/tpope/vim-fugitive
 "===========================================
@@ -166,7 +173,8 @@ nnoremap <leader>m :Marks<CR>
 " https://github.com/SirVer/ultisnips.git
 "===========================================
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips", "~/.UltiSnips"]
+" let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+" let g:UltiSnipsSnippetDirectories=[$HOME."~/.vim/UltiSnips"]
 let g:UltiSnipsExpandTrigger="<c-b>"
 
 let g:UltiSnipsJumpForwardTrigger="<c-b>"

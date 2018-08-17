@@ -6,7 +6,7 @@
 let mapleader = ","
 
 "==============================
-" 2 - Alt related mappings 
+" 2 - Alt related mappings
 "==============================
 
 " go to next buffer
@@ -28,7 +28,7 @@ nnoremap <silent> <a-d> :call DumpMaps()<CR>
 noremap <a-q> :ccl<CR>
 
 "==============================
-" 3 - Ctrl related mappings 
+" 3 - Ctrl related mappings
 "==============================
 
 " switch windows quickly (this is now handled by vim-tmux-navigator)
@@ -44,7 +44,7 @@ nnoremap <c-left>   <c-w>H
 nnoremap <c-right>  <c-w>L
 
 "==============================
-" 4 - Miscelaneous mappings 
+" 4 - Miscelaneous mappings
 "==============================
 
 " clears highlighted searches

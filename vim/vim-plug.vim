@@ -43,6 +43,7 @@ Plug 'itchyny/calendar.vim'
 Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'vim-scripts/a.vim'
 
 "=========================
 "7 - Vim built-in plugins
