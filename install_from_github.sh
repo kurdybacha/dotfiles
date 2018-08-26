@@ -9,7 +9,7 @@ cmake_build() {
     local cmake_args="-H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} \
         -DCMAKE_EXPORT_COMPILE_COMMANDS=YES"
-    cmake_args+=(" $@")
+    cmake_args="$cmake_args $@"
     cmake $cmake_args
     cmake --build build -- -j5 && \
     cmake --build build --target install
@@ -19,8 +19,8 @@ git_clone() {
     repo=$(basename -- $1)
     repo_name="${repo##*.}" # remove .git if exists
     if [ -d ${repo_name} ]; then
-        git -C ${repo_name} pull --recurse-submodules
-        # git -C ${repo_name} submodule update --init --recursive
+        git -C ${repo_name} pull
+        git -C ${repo_name} submodule update --recursive
     else
         git clone --recurse-submodule -j5 https://github.com/$1
     fi
@@ -37,8 +37,8 @@ rtags_install() {
 youcompleteme_install() {
     pushd .
     if [ -d "vim/plugged/YouCompleteMe" ]; then
-        git -C vim/plugged/YouCompleteMe pull --recurse-submodule
-        git -C vim/plugged/YouCompleteMe submodule update --remote --recursive
+        git -C vim/plugged/YouCompleteMe pull
+        git -C vim/plugged/YouCompleteMe submodule update --recursive
     else
         git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe
     fi
