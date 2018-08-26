@@ -6,9 +6,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 INSTALL_PREFIX=${HOME}/Linux
 
 cmake_build() {
-    cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
+    local cmake_args=("$@")
+    cmake_args+=("-H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} \
-        -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=YES")
+    cmake $cmake_args
     cmake --build build -- -j5 && \
     cmake --build build --target install
 }
@@ -28,7 +30,7 @@ rtags_install() {
     pushd .
     git_clone "Andersbakken/rtags"
     cd rtags
-    cmake_build
+    cmake_build -DBUILD_TESTING=OFF
     popd
 }
 
