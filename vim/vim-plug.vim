@@ -31,6 +31,10 @@ Plug 'pangloss/vim-javascript'
 " manually installed, vim-plug will load, but will not try to install or
 " update
 Plug '~/.vim/plugged/YouCompleteMe'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 "================
 "4 - Miscelaneous

@@ -20,6 +20,8 @@ set ttimeout
 set ttimeoutlen=50                 " timeout for a key sequence complete
 "set pastetoggle=<F2>              " enables paste mode
 set noeol                          " no empty line at the end of file
+set signcolumn=yes                 " always show sign column
+autocmd FileType tagbar,nerdtree,qf setlocal signcolumn=no
 
 if has("browse")
 	set browsedir=buffer           " defaults to the current file's directory

@@ -29,6 +29,35 @@ let g:rtagsUseLocationList = 0
 let g:rtagsMaxSearchResultWindowHeight = 30
 
 "==========================================
+" vim-lsp (Language Server Protocol)
+" https://github.com/prabirshrestha/vim-lsp
+"==========================================
+
+" if executable('cquery')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'cquery',
+"         \ 'cmd': {server_info->['cquery']},
+"         \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+"         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+"         \ })
+" endif
+" let g:lsp_signs_enabled = 1         " enable signs
+" let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+" nnoremap <leader>ri :LspHover<CR>
+" nnoremap <leader>rj :LspDefinition<CR>
+
+" let g:lsp_async_completion = 1
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+
+" for asyncomplete.vim log
+" let g:asyncomplete_auto_popup=1
+" let g:asyncomplete_remove_duplicates=1
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+" let g:lsp_signs_error = {'text': 'x'}
+" let g:lsp_signs_warning = {'text': '‼'}
+
+"==========================================
 " tagbar
 " https://github.com/majutsushi/tagbar
 " http://majutsushi.github.io/tagbar/

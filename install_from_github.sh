@@ -3,27 +3,64 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "utils.sh"
 
-# rtags - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-if [ -d rtags ]; then
-    execute "git -C rtags pull --recurse-submodules" "rtags pull"
-    execute "git -C rtags submodule update --remote --recursive"
-else
-    execute "git clone --recurse-submodule https://github.com/Andersbakken/rtags.git" "rtags clone"
-fi
+INSTALL_PREFIX=${HOME}/Linux
 
-execute "cd rtags && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make -j4 && sudo make install" "rtags build"
+cmake_build() {
+    cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && \
+    cmake --build build -- -j5 && \
+    cmake --build build --target install
+}
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
+git_clone() {
+    repo=$(basename -- $1)
+    repo_name="${repo##*.}" # remove .git if exists
+    if [ -d ${repo_name} ]; then
+        git -C ${repo_name} pull --recurse-submodules
+        git -C ${repo_name} submodule update --remote --recursive
+    else
+        git clone --recurse-submodule -j5 https://github.com/$1
+    fi
+}
 
-# YouCompleteMe
-if [ -d "vim/plugged/YouCompleteMe" ]; then
-    execute "git -C vim/plugged/YouCompleteMe pull --recurse-submodule" "YouCompleteMe pull"
-    execute "git -C vim/plugged/YouCompleteMe submodule update --remote --recursive"
-else
-    execute "git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe" "YouCompleteMe clone"
-fi
-execute "cd vim/plugged/YouCompleteMe && ./install.py --clang-completer" "YouCompleteMe build"
+rtags_install() {
+    pushd .
+    git_clone "Andersbakken/rtags"
+    cd rtags
+    cmake_build
+    popd
+}
 
-# Powerline fonts
-execute "git clone https://github.com/powerline/fonts.git --depth=1" "Powerline font pull"
-execute "cd fonts && ./install.sh && cd .. && rm -rf fonts" "Powerline font install"
+youcompleteme_install() {
+    pushd .
+    if [ -d "vim/plugged/YouCompleteMe" ]; then
+        git -C vim/plugged/YouCompleteMe pull --recurse-submodule
+        git -C vim/plugged/YouCompleteMe submodule update --remote --recursive
+    else
+        git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe
+    fi
+    cd vim/plugged/YouCompleteMe && \
+    ./install.py --clang-completer
+    popd
+}
+
+powerline_fonts_install() {
+    pushd .
+    git_clone "powerline/fonts"
+    cd fonts && ./install.sh && cd .. && rm -rf fonts
+    popd
+}
+
+cquery_install() {
+    pushd .
+    git_clone "cquery-project/cquery"
+    cd cquery
+    cmake_build
+    popd
+}
+
+rtags_install
+youcompleteme_install
+powerline_fonts_install
+# cquery_install
