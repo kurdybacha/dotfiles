@@ -16,6 +16,10 @@ execute "mkdir -p ~/.config/xfce4/terminal/ && ln -sf $PWD/terminalrc $HOME/.con
 print_info "Keyboard"
 execute "sudo cp $PWD/00-keyboard.conf /etc/X11/xorg.conf.d/" "00-keyboard.conf"
 
+print_info "Touchpad"
+execute "sudo cp $PWD/70-touchpad.conf /etc/X11/xorg.conf.d/" "70-touchpad.conf"
+execute "sudo cp $PWD/80-synaptics.conf /etc/X11/xorg.conf.d/" "80-synaptics.conf"
+
 #execute "gsettings set org.gnome.desktop.interface monospace-font-name 'Inconsolata 13'" \
 #    "Change font size"
 #

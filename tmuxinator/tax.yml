@@ -1,0 +1,12 @@
+name: tax
+root: ~/Repo/degiro
+
+windows:
+    - source:
+        root: ~/Repo/degiro
+        panes:
+            - vim -c ":FocusDispatch make test" taxcal/core.py
+    - bash:
+        root: ~/Repo/degiro
+        panes:
+            -
