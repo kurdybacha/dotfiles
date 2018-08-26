@@ -6,10 +6,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 INSTALL_PREFIX=${HOME}/Linux
 
 cmake_build() {
-    local cmake_args=("$@")
-    cmake_args+=("-H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
+    local cmake_args="-H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} \
-        -DCMAKE_EXPORT_COMPILE_COMMANDS=YES")
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=YES"
+    cmake_args+=(" $@")
     cmake $cmake_args
     cmake --build build -- -j5 && \
     cmake --build build --target install
@@ -20,7 +20,7 @@ git_clone() {
     repo_name="${repo##*.}" # remove .git if exists
     if [ -d ${repo_name} ]; then
         git -C ${repo_name} pull --recurse-submodules
-        git -C ${repo_name} submodule update --remote --recursive
+        # git -C ${repo_name} submodule update --init --recursive
     else
         git clone --recurse-submodule -j5 https://github.com/$1
     fi
