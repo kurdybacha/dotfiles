@@ -70,3 +70,10 @@ pomodoro() {
         sleep 0.2
     done
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# CSV viewer
+tableview() {
+    column -s, -t < $1 | less -#4 -N -S
+}
