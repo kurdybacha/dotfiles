@@ -62,7 +62,17 @@ cquery_install() {
     popd
 }
 
+urxvt_extensions() {
+    pushd .
+    mkdir -p $HOME/.urxvt/ext
+    wget -P $HOME/.urxvt/ext https://raw.githubusercontent.com/majutsushi/urxvt-font-size/master/font-size
+    wget -P $HOME/.urxvt/ext https://raw.githubusercontent.com/muennich/urxvt-perls/master/keyboard-select
+    popd
+}
+
+mkdir -p $INSTALL_PREFIX/bin
 rtags_install
 youcompleteme_install
 powerline_fonts_install
+urxvt_extensions
 # cquery_install

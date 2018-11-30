@@ -1,0 +1,9 @@
+name: dop
+root: ~/Repo/dop
+
+windows:
+    - editor:
+        - systemctl --user start rdm.service
+        - vim -c 'set makeprg=cmake\ --build\ build'
+              -c ':FocusDispatch cmake -H. -Bbuild'
+    - tests:
