@@ -121,3 +121,22 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
     return os;
 }
 endsnippet
+
+snippet split "split string and returns vector of substrings"
+std::vector<std::string>
+split(const std::string &string, const std::string &delimiter = " ")
+{
+    std::vector<std::string> result;
+    auto first = std::cbegin(str);
+    while (first != std::cend(str)) {
+        const auto second = std::find_first_of(first, std::cend(str),
+            std::cbegin(delims), std::cend(delims));
+        if (first != second)
+            result.emplace_back(first, second);
+        if (second == std::cend(str))
+            break;
+        first = std::next(second);
+    }
+    return result;
+}
+endsnippet
