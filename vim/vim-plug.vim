@@ -27,6 +27,7 @@ Plug 'SirVer/ultisnips'| Plug 'honza/vim-snippets'
 Plug 'lyuts/vim-rtags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'pangloss/vim-javascript'
+Plug 'rhysd/vim-clang-format'
 "Plug 'https://github.com/Raimondi/delimitMate'
 " manually installed, vim-plug will load, but will not try to install or
 " update
