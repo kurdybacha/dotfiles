@@ -1,0 +1,13 @@
+name: stlab
+root: ~/opensource/stlab
+
+windows:
+    - editor:
+        - systemctl --user start rdm.service
+        - vim -c 'set makeprg=cmake\ --build\ build'
+              -c ':FocusDispatch
+                  conan install ./ -if build --build=missing -s build_type=Debug &&
+                  cmake -H. -Bbuild -Dstlab_testing=ON
+                                    -DCMAKE_BUILD_TYPE=debug
+                                    -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+    - tests:
