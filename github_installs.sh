@@ -1,9 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "utils.sh"
-
 INSTALL_PREFIX=${HOME}/Linux
+DOWNLOAD_DIR=${HOME}/Repo/opensource
 
 cmake_build() {
     local cmake_args="-H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
@@ -16,33 +14,33 @@ cmake_build() {
 }
 
 git_clone() {
-    repo=$(basename -- $1)
-    repo_name="${repo##*.}" # remove .git if exists
-    if [ -d ${repo_name} ]; then
-        git -C ${repo_name} pull
-        git -C ${repo_name} submodule update --recursive
+    if [ $# -eq 1 ]; then
+        repo=$(basename -- $1)
+        repo_name="${repo##*.}" # remove .git if exists
+        dst_dir=${DOWNLOAD_DIR}/${repo_name}/
     else
-        git clone --recurse-submodule -j5 https://github.com/$1
+        dst_dir=$2/
+    fi
+    if [ -d ${dst_dir} ]; then
+        git -C ${dst_dir} pull
+        git -C ${dst_dir} submodule update --recursive
+    else
+        git clone --recurse-submodule -j5 https://github.com/$1 ${dst_dir}
     fi
 }
 
 rtags_install() {
     pushd .
     git_clone "Andersbakken/rtags"
-    cd rtags
+    cd ${DOWNLOAD_DIR}/rtags
     cmake_build -DBUILD_TESTING=OFF
     popd
 }
 
 youcompleteme_install() {
     pushd .
-    if [ -d "vim/plugged/YouCompleteMe" ]; then
-        git -C vim/plugged/YouCompleteMe pull
-        git -C vim/plugged/YouCompleteMe submodule update --recursive
-    else
-        git clone --recurse-submodules https://github.com/Valloric/YouCompleteMe.git vim/plugged/YouCompleteMe
-    fi
-    cd vim/plugged/YouCompleteMe && \
+    git_clone "Valloric/YouCompleteMe" "${HOME}/.vim/plugged/YouCompleteMe"
+    cd "${HOME}/.vim/plugged/YouCompleteMe"
     ./install.py --clang-completer
     popd
 }
@@ -50,14 +48,15 @@ youcompleteme_install() {
 powerline_fonts_install() {
     pushd .
     git_clone "powerline/fonts"
-    cd fonts && ./install.sh && cd .. && rm -rf fonts
+    cd ${DOWNLOAD_DIR}/fonts
+    ./install.sh
     popd
 }
 
 cquery_install() {
     pushd .
     git_clone "cquery-project/cquery"
-    cd cquery
+    cd ${DOWNLOAD_DIR}/cquery
     cmake_build
     popd
 }
@@ -73,6 +72,6 @@ urxvt_extensions() {
 mkdir -p $INSTALL_PREFIX/bin
 rtags_install
 youcompleteme_install
-powerline_fonts_install
 urxvt_extensions
+#powerline_fonts_install
 # cquery_install

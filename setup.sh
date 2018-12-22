@@ -29,13 +29,13 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ask_for_sudo
+    # ask_for_sudo
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        chmod +x ./create_symbolic_links.sh
+    chmod +x ./create_symbolic_links.sh
     ./create_symbolic_links.sh
-        chmod +x ./vim/setup.sh
+    chmod +x ./vim/setup.sh
     ./vim/setup.sh
 
     if ! $skipQuestions; then
