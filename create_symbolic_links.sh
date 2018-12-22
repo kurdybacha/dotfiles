@@ -27,7 +27,7 @@ create_symlinks() {
         "vim"
         "vim/vimrc"
         "i3"
-        "Xdefaults"
+        "Xresources"
         "Xkbmap"
 
     )
