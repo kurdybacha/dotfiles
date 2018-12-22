@@ -11,11 +11,11 @@ main() {
 
     # Check supported distros
 
-    distro=$(echo $(os_distro) | tr '[:upper:]' '[:lower:]')
+    distro=$(echo $(os_distro) | tr '[:upper:]' '[:lower:]' | awk '{print $1}')
     case "$distro" in
-        fedora)
+        arch)
             ;;
-        ubuntu)
+        fedora)
             ;;
         *)
             print_info "Unsupported distribution"
@@ -44,6 +44,11 @@ main() {
 
         ask_for_confirmation "Do you want to configure your distro and install packages?"
         printf "\n"
+
+        if answer_is_yes; then
+            chmod +x ./xorg_configs/setup.sh
+            ./xorg_configs/setup.sh
+        fi
 
         if answer_is_yes; then
             chmod +x ./$distro/setup.sh

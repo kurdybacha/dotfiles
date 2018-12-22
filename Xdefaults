@@ -4,7 +4,7 @@
 
 Xft.dpi:                    96
 Xft.antialias:              true
-Xft.rgba:                   rgb
+Xft.rgba:                   none
 Xft.lcdfilter:              lcddefault
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
@@ -13,7 +13,7 @@ Xft.hintstyle:              hintslight
 ! Urxvt settings
 !-------------------------------------------------------------------------------
 
-URxvt.termName:             urxvt256c-ml
+URxvt.termName:             urxvt
 URxvt.depth:                32
 URxvt.geometry:             90x30
 URxvt.transparent:          false
@@ -30,8 +30,8 @@ URxvt.lineSpace: 0
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt*font: xft:inconsolata:medium:size=10
-URxvt*boldFont: xft:inconsolata:bold:medium:size=10
+URxvt*font: xft:Inconsolata:normal:size=10
+URxvt*boldFont: xft:Inconsolata:bold:normal:size=10
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
 ! URxvt*font: xft:monospace:pixelsize=13:antialias=true:hinting=true
 ! URxvt*boldFont: xft:monospace:pixelsize=13:antialias=true:hinting=true
