@@ -5,6 +5,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+ask_for_sudo
+
 print_info "Keyboard"
 execute "sudo cp $PWD/00-keyboard.conf /etc/X11/xorg.conf.d/" "00-keyboard.conf"
 print_info "Intel graphics"

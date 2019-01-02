@@ -2,13 +2,14 @@
 
 declare skipQuestions=false
 
-main() {
-    # Check that everything runs relative to this file
-    cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+create_symlinks() {
+    chmod +x ./create_symbolic_links.sh
+    ./create_symbolic_links.sh
+    chmod +x ./vim/setup.sh
+    ./vim/setup.sh
+}
 
-    # Load utils
-    . "utils.sh" || exit 1
-
+configure_os() {
     # Check supported distros
 
     distro=$(echo $(os_distro) | tr '[:upper:]' '[:lower:]' | awk '{print $1}')
@@ -19,83 +20,88 @@ main() {
             ;;
         *)
             print_info "Unsupported distribution"
-	    exit 1
+            exit 1
     esac
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    chmod +x ./xorg/setup.sh
+    ./xorg/setup.sh
+    chmod +x ./$distro/setup.sh
+    ./$distro/setup.sh
 
-    skip_questions "$@" \
-        && skipQuestions=true
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # ask_for_sudo
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    chmod +x ./create_symbolic_links.sh
-    ./create_symbolic_links.sh
-    chmod +x ./vim/setup.sh
-    ./vim/setup.sh
+    print_info "Git"
 
     if ! $skipQuestions; then
-
-        print_info "Install mode"
-
-        ask_for_confirmation "Do you want to configure your distro and install packages?"
-        printf "\n"
-
-        if answer_is_yes; then
-            chmod +x ./xorg_configs/setup.sh
-            ./xorg_configs/setup.sh
-        fi
-
-        if answer_is_yes; then
-            chmod +x ./$distro/setup.sh
-            ./$distro/setup.sh
-        fi
-
-        ask_for_confirmation "Do you want to install heavy dev tools (e.g. YouCompleteMe, rtags,..) ?"
-        printf "\n"
-
-        if answer_is_yes; then
-            chmod +x ./install_from_github.sh
-            ./install_from_github.sh
-        fi
-
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! $skipQuestions; then
-
-        print_info "Git"
-
         ask_for_confirmation "Do you want to setup git user and email?"
         printf "\n"
-
         if answer_is_yes; then
             ask "user.name: "
             git config --global user.name "$(get_answer)"
             ask "user.email: "
             git config --global user.email "$(get_answer)"
         fi
-
     fi
+}
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+install_extra() {
+    chmod +x ./github_installs.sh
+    ./github_installs.sh
+}
 
-    if ! $skipQuestions; then
+run_all() {
+    create_symlinks
+    configure_os
+    install_extra
+}
 
-        print_info "Restart"
+show_help() {
+    echo "Usage: $(basename "$0") [options]" >&2
+    echo
+    echo "   -l, --link             Create symbolic links"
+    echo "   -c, --config           Configures your system (install packages, xorg, keyboard, ...)"
+    echo "   -i, --install          Install (extra) software (rtags, youcompleteme, ...)"
+    echo "   -a, --all              Does all of the above"
+    echo
+    exit 1
+}
 
-        ask_for_confirmation "Do you want to restart?"
-        printf "\n"
+main() {
+    # Check that everything runs relative to this file
+    cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 
-        if answer_is_yes; then
-            sudo shutdown -r now &> /dev/null
-        fi
+    # Load utils
+    . "utils.sh" || exit 1
 
+    skip_questions "$@" \
+        && skipQuestions=true
+
+    if [ $# -eq 0 ]; then
+        show_help
+    else
+        for i in "$@"
+        do
+            case $i in
+                -l|--link)
+                    create_symlinks
+                    shift
+                    ;;
+                -i|--install)
+                    install_extra
+                    shift
+                    ;;
+                -c|--config)
+                    configure_os
+                    shift
+                    ;;
+                -a|--all)
+                    run_all
+                    shift
+                    ;;
+                *)
+                    show_help
+                    shift
+                    ;;
+            esac
+        done
     fi
 }
 

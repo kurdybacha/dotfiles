@@ -77,3 +77,9 @@ pomodoro() {
 tableview() {
     column -s, -t < $1 | less -#4 -N -S
 }
+
+# Screen brightness
+backlight() {
+    echo $1 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
+}
+
