@@ -10,6 +10,8 @@
 - git
 - ranger
 - i3
+- rtags
+- youcompleteme
 
 ## installation
 
