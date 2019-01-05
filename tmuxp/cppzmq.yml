@@ -1,0 +1,16 @@
+session_name: cppzmq
+start_directory: ~/opensource/cppzmq
+
+windows:
+    - window_name: editor
+      shell_command_before:
+          - systemctl --user start rdm.service
+      panes:
+          - vim -c 'set makeprg=cmake\ --build\ build'
+                -c ':FocusDispatch cmake -H. -Bbuild
+                    -DENABLE_DRAFTS=ON -DCMAKE_PREFIX_PATH=~/opensource/libzmq-build
+                    -DCMAKE_INSTALL_PREFIX=~/opensource/cppzmq-install
+                    -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1' zmq.hpp
+    - window_name: tests
+      panes:
+          -

@@ -18,7 +18,7 @@ create_symlinks() {
         "bash/bash_prompt"
         "bash/bashrc"
         "tmux.conf"
-        "tmuxinator"
+        "tmuxp"
 
         #"git/gitattributes"
         #"git/gitconfig"
@@ -28,6 +28,7 @@ create_symlinks() {
         "vim/vimrc"
         "i3"
         "i3status.conf"
+        "xinitrc"
         "Xresources"
         "Xkbmap"
 

@@ -11,7 +11,7 @@ set noswapfile                     " do not write .swp files
 set backspace=indent,eol,start     " see :help bs
 set helplang=en                    " help language
 set history=1000                   " command history
-set spelllang=en,pl                " set your favorite language here
+set spelllang=en                   " set your favorite language here
 set complete-=i                    " complete by scanning current and included files
 set completeopt=menu               " menu completion options
 set ttyfast                        " fast terminal connection
