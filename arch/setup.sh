@@ -1,22 +1,22 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../utils.sh"
+    && . "../utils.sh" \
+    && . "./archlib.sh"
 
-ask_for_sudo
+#ask_for_sudo
 
-for package in $(cat packages.txt); do
-    sudo pacman -S --noconfirm $package
-done
+main() {
+    install_fastest_mirror
+    install_packages
+    config_timezone
+    config_hardwareclock
+    config_keymap
+    config_locale
+    config_tlp
+    config_networkmanager
+    config_login_manager
+    config_sudo
+}
 
-echo "KEYMAP=pl" | sudo tee /etc/vconsole.conf
-
-sudo systemctl enable tlp.service
-sudo systemctl enable tlp-sleep.service
-sudo systemctl start tlp-sleep.service
-sudo systemctl start tlp.service
-sudo systemctl mask systemd-rfkill.service
-sudo systemctl mask systemd-rfkill.socket
-
-sudo systemctl enable NetworkManager
-sudo systemctl start NetworkManager
+main

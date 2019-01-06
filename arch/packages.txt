@@ -11,9 +11,12 @@ htop
 i3-wm
 i3lock
 i3status
+lightdm
+lightdm-gtk-greeter
 networkmanager
 openssh
 p2zip
+pacman-contrib
 perf
 ranger
 rxvt-unicode
@@ -24,7 +27,12 @@ tmuxp
 tree
 ttf-inconsolata
 udisks2
+unzip
 vim
+wget
+xf86-video-intel
 xfce4-screenshooter
-xorg
+xorg-apps
+xorg-server
 xorg-xinit
+zip
