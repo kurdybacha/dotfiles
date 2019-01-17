@@ -87,7 +87,7 @@ let g:tagbar_type_armasm = {
 " https://github.com/vim-scripts/a.vim
 "===========================================
 " vertical splits and switches between e.g. h and cpp
-nnoremap <silent> <leader>s :AV <CR>
+nnoremap <silent> <leader>s :A <CR>
 
 "===========================================
 " vim-fugitive
