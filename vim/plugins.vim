@@ -156,6 +156,7 @@ nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
+nnoremap <leader>l :Lines<CR>
 
 "nnoremap <leader>a :Rg<Space>
 ""vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
