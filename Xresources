@@ -29,15 +29,17 @@ URxvt.saveLines:            12000
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt*font: xft:Inconsolata:normal:size=10
-URxvt*boldFont: xft:Inconsolata:bold:normal:size=10
+! URxvt*font: xft:Inconsolata:normal:size=9:antialias=true:hinting=true
+! URxvt*boldFont: xft:Inconsolata:bold:normal:size=9:antialias=true:hinting=true
+URxvt*font: xft:Source Code Pro:size=8
+URxvt*boldFont: xft:Source Code Pro:size=8:bold
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
 ! URxvt*font: xft:monospace:pixelsize=13:antialias=true:hinting=true
 ! URxvt*boldFont: xft:monospace:pixelsize=13:antialias=true:hinting=true
 ! URxvt*font: xft:monospace:size=10:antialias=true:hinting=true
 ! URxvt*boldFont: xft:monospace:size=10:antialias=true:hinting=true
-! URxvt*font: xft:inconsolata:pixelsize=13:antialias=true:hinting=true:style=Medium
-! URxvt*boldFont: xft:inconsolata:pixelsize=13:antialias=true:hinting=true:style=Medium
+! URxvt*font: xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:style=Medium
+! URxvt*boldFont: xft:Inconsolata:pixelsize=13:antialias=true:hinting=true:style=Medium
 
 
 ! Scrollbar

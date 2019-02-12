@@ -55,4 +55,4 @@ unset -f source_bash_files
 #clear
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-export PATH=$HOME/Linux/bin:$PATH
+export PATH=$HOME/Linux/bin:$HOME/.bin:$PATH

@@ -5,6 +5,7 @@ aspell-en
 atool
 bash-completion
 chromium
+cmake
 dmenu
 feh
 fzf

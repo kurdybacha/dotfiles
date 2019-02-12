@@ -19,6 +19,7 @@ create_symlinks() {
         "bash/bashrc"
         "tmux.conf"
         "tmuxp"
+        "bin"
 
         #"git/gitattributes"
         #"git/gitconfig"
