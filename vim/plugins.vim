@@ -86,7 +86,7 @@ let g:tagbar_type_armasm = {
 " a.vim
 " https://github.com/vim-scripts/a.vim
 "===========================================
-" vertical splits and switches between e.g. h and cpp
+" Switches between e.g. h and cpp
 nnoremap <silent> <leader>s :A <CR>
 
 "===========================================
@@ -113,15 +113,20 @@ nnoremap <silent> <leader>s :A <CR>
 " https://github.com/mileszs/ack.vim.git
 "======================================
 
-"if executable('ag')
-"    let g:ackprg = 'ag --vimgrep'
-"elseif executable('rg')
-"    let g:ackprg = 'rg --vimgrep --smart-case -g !tags'
-"endif
-""nnoremap <leader>u :Ack! <cword><CR>
-"nnoremap <leader>a :Ack!<Space>
-""vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
-"vnoremap <leader>u y:Ack! <C-r>=fnameescape(@")<CR>
+" if executable('ag')
+"     let g:ackprg = 'ag --vimgrep'
+" elseif executable('rg')
+"     let g:ackprg = 'rg --vimgrep --smart-case -g !tags'
+" endif
+" " let g:ack_use_dispatch = 1
+" nnoremap <leader>u :Ack! <cword><CR>
+" nnoremap <leader>U :Ack! --no-ignore<cword><CR>
+" nnoremap <leader>a :Ack!<Space>
+" nnoremap <leader>A :Ack! --no-ignore<Space>
+" vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
+" vnoremap <leader>A y:Ack! --no-ignore <C-r>=fnameescape(@")<CR><CR>
+" vnoremap <leader>u y:Ack! <C-r>=fnameescape(@")<CR>
+" vnoremap <leader>U y:Ack! --no-ignore <C-r>=fnameescape(@")<CR>
 
 
 "======================================
@@ -144,51 +149,31 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" Changing defaults binding from Alt-a and Alt-d as it clashes with i3
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,ctrl-d:deselect-all'
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.<q-args>,
+  \   1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
-nnoremap <leader>l :Lines<CR>
+nnoremap <leader>l :BLines<CR>
 
-nnoremap <leader>a :Rg<CR>
-nnoremap <leader>A :Rg --no-ignore<CR>
-vnoremap <leader>u y:Rg <C-r>=fnameescape(@")<CR><CR>
-vnoremap <leader>U y:Rg --no-ignore <C-r>=fnameescape(@")<CR><CR>
+nnoremap <leader>a :Rg!<Space>
+nnoremap <leader>A :Rg! --no-ignore<Space>
+nnoremap <leader>u :Rg! <C-r><C-w><CR>
+nnoremap <leader>U :Rg! --no-ignore <C-r><C-w><CR>
 
-"======================================
-" CtrlP
-" https://github.com/kien/ctrlp.vim.git
-"======================================
-
-"nnoremap <leader>b :CtrlPBuffer<CR>
-"" The Silver Searcher
-"if executable('/usr/local/bin/ag')
-"  " Use ag over grep
-"  set grepprg=/usr/local/bin/ag\ --ignore-case\ --nogroup\ --nocolor\ --ignore\ .git\ --ignore\ .svn\ --ignore\ .obj\ --ignore\ .moc\ --ignore\ .DS_Store\ --ignore\ \"**/*.sym\"\ -g ""'
-"  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-"  let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --ignore .git --ignore .svn --ignore .obj --ignore .moc --ignore .DS_Store --ignore "**/*.sym" -g ""'
-"
-"  " ag is fast enough that CtrlP doesn't need to cache
-"  let g:ctrlp_use_caching = 0
-"endif
-"
-""let g:ctrlp_user_command = 'find %s -type f'
-""let g:ctrlp_use_caching = 1
-"let g:p_max_files=0
-"let g:ctrlp_max_depth=40
-""let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
-""let g:ctrlp_match_window = 'min:4,max:72'
-"let g:ctrlp_by_filename=1
-""let g:ctrlp_regexp = 1
-"let g:ctrlp_working_path_mode = 0 "search from current directory instead of project root
-"let g:ctrlp_follow_symlinks=1
-"" Use vim's current working directory but fall back to the file directory
-"" if it's way off.
-""let g:ctrlp_custom_ignore = 'git\|moc\|obj'
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir'  : '\v[\/]\.(obj|moc|git|hg|svn)$',
-"  \ 'file' : '\v\.(exe|so|dll|class|aux|log|d)$',
-"  \}
+vnoremap <leader>a y:Rg! <C-r>=fnameescape(@")<CR><CR>
+vnoremap <leader>A y:Rg! --no-ignore <C-r>=fnameescape(@")<CR><CR>
+vnoremap <leader>u y:Rg! <C-r>=fnameescape(@")<CR>
+vnoremap <leader>U y:Rg! --no-ignore <C-r>=fnameescape(@")<CR>
 
 "===========================================
 " UltiSnips
