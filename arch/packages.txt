@@ -31,6 +31,7 @@ perf
 poppler
 python
 ranger
+ripgrep
 rxvt-unicode
 strace
 the_silver_searcher
