@@ -4,6 +4,7 @@ alsa-utils
 aspell-en
 atool
 bash-completion
+bc
 chromium
 cmake
 dmenu
