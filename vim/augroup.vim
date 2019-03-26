@@ -25,5 +25,9 @@ if has("autocmd")
         autocmd BufEnter * call matchadd('MyLineTooLongMarker', '\%86v\S', 100)
     augroup END
 
+    augroup javascript
+        autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
+    augroup END
+
 
 endif

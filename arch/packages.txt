@@ -4,6 +4,7 @@ alsa-utils
 aspell-en
 atool
 bash-completion
+bc
 chromium
 cmake
 dmenu
@@ -31,6 +32,7 @@ perf
 poppler
 python
 ranger
+ripgrep
 rxvt-unicode
 strace
 the_silver_searcher
