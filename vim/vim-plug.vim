@@ -35,6 +35,12 @@ Plug 'w0rp/ale'
 " manually installed, vim-plug will load, but will not try to install or
 " update
 " Plug '~/.vim/plugged/YouCompleteMe'
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'prabirshrestha/asyncomplete.vim'

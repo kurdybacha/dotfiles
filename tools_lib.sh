@@ -69,9 +69,3 @@ urxvt_extensions() {
     popd
 }
 
-mkdir -p $INSTALL_PREFIX/bin
-rtags_install
-youcompleteme_install
-urxvt_extensions
-#powerline_fonts_install
-# cquery_install

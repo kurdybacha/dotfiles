@@ -29,7 +29,7 @@ configure_os() {
     ./$distro/setup.sh
 
     print_info "Git"
-
+    git config --global mergetool.keepBackup false
     if ! $skipQuestions; then
         ask_for_confirmation "Do you want to setup git user and email?"
         printf "\n"

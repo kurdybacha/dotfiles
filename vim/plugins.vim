@@ -10,7 +10,8 @@
 let g:ale_sign_error='●'
 let g:ale_sign_warning='.'
 let g:ale_linters = {
-    \ 'javascript': ['eslint']
+    \ 'javascript': ['eslint'],
+    \ 'python': ['pyls']
     \ }
 let g:ale_fixers = {
     \ 'javascript': ['eslint']
@@ -18,6 +19,13 @@ let g:ale_fixers = {
 let g:ale_javascript_eslint_executable='npx eslint'
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_text_changed='never'
+let g:ale_completion_enabled = 1
+
+nnoremap <leader>jd :ALEGoToDefinition
+nnoremap <leader>jt :ALEGoToTypeDefinition
+nnoremap <leader>jr :ALEFindReferences
+nnoremap <leader>jh :ALEHover
+nnoremap <leader>js :ALESymbolSearch
 
 "===============================================
 " YouCompleteMe
@@ -36,6 +44,11 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_max_diagnostics_to_display = 50
 let g:ycm_confirm_extra_conf = 0
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_use_clangd = 1
 
 "==========================================
 " vim-rtags
@@ -46,9 +59,28 @@ let g:rtagsUseLocationList = 0
 let g:rtagsMaxSearchResultWindowHeight = 30
 
 "==========================================
+" LanguageClient-neovim
+" https://github.com/autozimu/LanguageClient-neovim
+"==========================================
+"
+" let g:LanguageClient_serverCommands = {
+"     \ 'python': ['/usr/bin/pyls'],
+"     \ }
+
+" nnoremap <leader>jj :call LanguageClient_contextMenu()<CR>
+"==========================================
 " vim-lsp (Language Server Protocol)
 " https://github.com/prabirshrestha/vim-lsp
 "==========================================
+
+" if executable('pyls')
+"     " pip install python-language-server
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+"  endif
 
 " if executable('cquery')
 "     au User lsp_setup call lsp#register_server({
