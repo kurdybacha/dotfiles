@@ -91,3 +91,12 @@ datediff() {
     d2=$(date -d "$2" +%s)
     echo $(( (d1 - d2) / 86400 )) days
 }
+
+# Rebases chain of branches
+# git rebase master branch1
+# rebase-chain branch2 branch3
+rebase-chain() {
+  for i in ${@}; do
+    git rebase --onto HEAD ORIG_HEAD $i || break
+  done
+}
