@@ -1,5 +1,5 @@
 session_name: cppzmq
-start_directory: ~/opensource/cppzmq
+start_directory: ~/Repo/opensource/cppzmq
 
 windows:
     - window_name: editor

@@ -56,7 +56,7 @@ Plug 'scrooloose/nerdtree'| Plug 'scrooloose/nerdcommenter'
 Plug 'itchyny/calendar.vim'
 Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/a.vim'
 
 "=========================

@@ -56,6 +56,11 @@ config_networkmanager() {
     $asudo systemctl start NetworkManager
 }
 
+config_timesync() {
+    $asudo systemctl enable systemd-timesyncd
+    $asudo systemctl start systemd-timesyncd
+}
+
 config_login_manager() {
     $asudo systemctl enable lightdm.service
     $asudo sed -i 's/#greeter-session=.*/greeter-session=lightdm-gtk-greeter/g' \
