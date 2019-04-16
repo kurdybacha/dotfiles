@@ -1,15 +1,11 @@
-name: buy
-root: ~/Repo/buy_vs_rent
+session_name: buy
+start_directory: ~/Repo/buy_vs_rent
 
 windows:
-    - client:
-        root: ~/Repo/buy_vs_rent/client
-        layout: 1a88,211x54,0,0[211x39,0,0,0,211x14,0,40,2]
-        panes:
-            - vim public/index.html
-            - npm start
-    - server:
-        root: ~/Repo/buy_vs_rent/server
-        layout: main-horizontal 
-        panes:
-            - vim
+    - window_name: editor
+      panes:
+        - vim src/App.js
+        - npm start
+    - window_name: test
+      panes:
+        - vim

@@ -76,3 +76,8 @@ config_sudo() {
     $asudo grep -q "${NOPASS_SHUTDOWN}" /etc/sudoers && \
         echo "${NOPASS_SHUTDOWN}" | $asudo tee -a /etc/sudoers
 }
+
+confg_backlight() {
+    $asudo systemctl enable systemd-backlight
+    $asudo systemctl start systemd-backlight
+}

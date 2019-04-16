@@ -73,6 +73,11 @@ pomodoro() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+tvplay() {
+    # check output of $aplay -L | grep :CARD
+    DL_AUDIODRIVER="alsa" AUDIODEV="hdmi:PCH" ffplay $1
+}
+
 # CSV viewer
 tableview() {
     column -s, -t < $1 | less -#4 -N -S
