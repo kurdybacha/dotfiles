@@ -11,7 +11,8 @@ let g:ale_sign_error='●'
 let g:ale_sign_warning='.'
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
-    \ 'python': ['pyls']
+    \ 'python': ['pylint'],
+    \ 'cpp': ['clangd']
     \ }
 let g:ale_fixers = {
     \ 'javascript': ['eslint']
@@ -20,21 +21,23 @@ let g:ale_javascript_eslint_executable='npx eslint'
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_completion_enabled = 1
+" let g:ale_cpp_clangd_executable='clangd -background-index'
+" let g:ale_cpp_clangd_options='-background-index'
 
-nnoremap <leader>jd :ALEGoToDefinition
-nnoremap <leader>jt :ALEGoToTypeDefinition
-nnoremap <leader>jr :ALEFindReferences
-nnoremap <leader>jh :ALEHover
-nnoremap <leader>js :ALESymbolSearch
+nnoremap <leader>jd :ALEGoToDefinition<CR>
+nnoremap <leader>jt :ALEGoToTypeDefinition<CR>
+nnoremap <leader>jr :ALEFindReferences<CR>
+nnoremap <leader>jh :ALEHover<CR>
+nnoremap <leader>js :ALESymbolSearch <C-r><C-w><CR>
 
 "===============================================
 " YouCompleteMe
 " https://github.com/Valloric/YouCompleteMe
 "===============================================
 
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gt :YcmCompleter GoTo<CR>
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>gt :YcmCompleter GoTo<CR>
 
 " not used for semantic completion (default: 2)
 " let g:ycm_min_num_of_chars_for_completion = 2
@@ -49,6 +52,7 @@ let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 let g:ycm_clangd_binary_path = exepath("clangd")
 let g:ycm_use_clangd = 1
+let g:ycm_clangd_args = ["-background-index"]
 
 "==========================================
 " vim-rtags
@@ -66,6 +70,26 @@ let g:rtagsMaxSearchResultWindowHeight = 30
 " let g:LanguageClient_serverCommands = {
 "     \ 'python': ['/usr/bin/pyls'],
 "     \ }
+" let s:LanguageClient_serverCommands_c = [
+"       \ 'clangd',
+"       \ '-all-scopes-completion',
+"       \ '-background-index',
+"       \ '-clang-tidy',
+"       \ '-compile_args_from=filesystem',
+"       \ '-completion-style=detailed',
+"       \ '-function-arg-placeholders',
+"       \ '-header-insertion-decorators',
+"       \ '-include-ineligible-results',
+"       \ '-index',
+"       \ '-index-file=clangd.dex',
+"       \ '-input-style=standard',
+"       \ '-j=12',
+"       \ '-pch-storage=disk',
+"       \ '-static-func-full-module-prefix',
+"       \ '-use-dbg-addr',
+"       \ '-use-dex-index',
+"       \ '-view-background',
+"       \ ]
 
 " nnoremap <leader>jj :call LanguageClient_contextMenu()<CR>
 "==========================================
@@ -350,7 +374,7 @@ let g:airline_powerline_fonts=1
 "================================================
 
 let NERDTreeCaseSensitiveSort = 1
-let NERDTreeChDirMode         = 1
+let NERDTreeChDirMode         = 0
 let NERDTreeQuitOnOpen        = 0
 let NERDTreeShowHidden        = 1
 let NERDTreeShowLineNumbers   = 1

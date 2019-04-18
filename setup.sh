@@ -30,6 +30,7 @@ configure_os() {
 
     print_info "Git"
     git config --global mergetool.keepBackup false
+    git config --global merge.tool vimdiff
     if ! $skipQuestions; then
         ask_for_confirmation "Do you want to setup git user and email?"
         printf "\n"
