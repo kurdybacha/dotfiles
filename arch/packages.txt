@@ -22,6 +22,7 @@ lightdm
 lightdm-gtk-greeter
 lynx
 mediainfo
+mpv
 networkmanager
 nm-connection-editor
 openssh

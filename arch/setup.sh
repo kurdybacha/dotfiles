@@ -17,6 +17,7 @@ main() {
     config_networkmanager
     config_login_manager
     config_sudo
+    config_backlight
 }
 
 main
