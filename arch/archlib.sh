@@ -7,9 +7,17 @@ fi
 
 install_packages() {
     $asudo pacman -Syu
-    for package in $(cat packages.txt); do
+    for package in $(cat $1); do
         $asudo pacman -S --noconfirm --needed $package
     done
+}
+
+install_desktop() {
+    install_packages desktop.txt
+}
+
+install_development() {
+    install_packages development.txt
 }
 
 install_fastest_mirror() {

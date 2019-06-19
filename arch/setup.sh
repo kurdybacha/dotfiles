@@ -8,7 +8,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
     install_fastest_mirror
-    install_packages
+    install_development
+    install_desktop
     config_timezone
     config_hardwareclock
     config_keymap
