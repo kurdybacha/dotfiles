@@ -58,6 +58,7 @@ Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 " Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-scripts/a.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 "=========================
 "7 - Vim built-in plugins
