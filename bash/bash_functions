@@ -105,3 +105,7 @@ rebase-chain() {
     git rebase --onto HEAD ORIG_HEAD $i || break
   done
 }
+
+date_diff() {
+    python -c "from datetime import date; print (date(2019,7,28)-date(2019,7,5))"
+}

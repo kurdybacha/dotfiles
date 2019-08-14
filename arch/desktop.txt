@@ -1,6 +1,7 @@
 alsa-utils
 aspell-en
 atool
+bind-tools
 chromium
 dmenu
 feh

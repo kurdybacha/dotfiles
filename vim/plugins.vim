@@ -11,7 +11,7 @@ let g:ale_sign_error='●'
 let g:ale_sign_warning='.'
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
-    \ 'python': ['pylint'],
+    \ 'python': ['flake8'],
     \ 'cpp': ['clangd']
     \ }
 let g:ale_fixers = {
