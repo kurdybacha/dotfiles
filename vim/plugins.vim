@@ -11,12 +11,15 @@ let g:ale_sign_error='●'
 let g:ale_sign_warning='.'
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
-    \ 'python': ['flake8'],
-    \ 'cpp': ['clangd']
+    \ 'python': ['flake8', 'pylint', 'pyls' ],
     \ }
 let g:ale_fixers = {
     \ 'javascript': ['eslint']
     \ }
+" Disable pycodestyle and let flake8 or pylint do the work
+let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
+                                       \ 'plugins': {
+                                          \ 'pycodestyle': {'enabled': v:false}}}}
 let g:ale_javascript_eslint_executable='npx eslint'
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_text_changed='never'
@@ -70,6 +73,7 @@ let g:rtagsMaxSearchResultWindowHeight = 30
 " let g:LanguageClient_serverCommands = {
 "     \ 'python': ['/usr/bin/pyls'],
 "     \ }
+" let g:LanguageClient_diagnosticsEnable = 0
 " let s:LanguageClient_serverCommands_c = [
 "       \ 'clangd',
 "       \ '-all-scopes-completion',
@@ -90,7 +94,7 @@ let g:rtagsMaxSearchResultWindowHeight = 30
 "       \ '-use-dex-index',
 "       \ '-view-background',
 "       \ ]
-
+"
 " nnoremap <leader>jj :call LanguageClient_contextMenu()<CR>
 "==========================================
 " vim-lsp (Language Server Protocol)
@@ -104,26 +108,26 @@ let g:rtagsMaxSearchResultWindowHeight = 30
 "         \ 'cmd': {server_info->['pyls']},
 "         \ 'whitelist': ['python'],
 "         \ })
-"  endif
-
-" if executable('cquery')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'cquery',
-"         \ 'cmd': {server_info->['cquery']},
-"         \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
-"         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-"         \ })
 " endif
+"
+" " if executable('cquery')
+" "     au User lsp_setup call lsp#register_server({
+" "         \ 'name': 'cquery',
+" "         \ 'cmd': {server_info->['cquery']},
+" "         \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+" "         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+" "         \ })
+" " endif
 " let g:lsp_signs_enabled = 1         " enable signs
-" let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-" nnoremap <leader>ri :LspHover<CR>
-" nnoremap <leader>rj :LspDefinition<CR>
-
+" " let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+" " nnoremap <leader>ri :LspHover<CR>
+" " nnoremap <leader>rj :LspDefinition<CR>
+"
 " let g:lsp_async_completion = 1
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
-
-" for asyncomplete.vim log
+"
+" " for asyncomplete.vim log
 " let g:asyncomplete_auto_popup=1
 " let g:asyncomplete_remove_duplicates=1
 " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
