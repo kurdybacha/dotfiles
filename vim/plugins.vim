@@ -14,7 +14,8 @@ let g:ale_linters = {
     \ 'python': ['flake8', 'pylint', 'pyls' ],
     \ }
 let g:ale_fixers = {
-    \ 'javascript': ['eslint']
+    \ 'javascript': ['eslint'],
+    \ 'python': ['black']
     \ }
 " Disable pycodestyle and let flake8 or pylint do the work
 let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
@@ -51,11 +52,11 @@ let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_max_diagnostics_to_display = 50
 let g:ycm_confirm_extra_conf = 0
 " Let clangd fully control code completion
-let g:ycm_clangd_uses_ycmd_caching = 0
+" let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
-let g:ycm_clangd_binary_path = exepath("clangd")
-let g:ycm_use_clangd = 1
-let g:ycm_clangd_args = ["-background-index"]
+" let g:ycm_clangd_binary_path = exepath("clangd")
+" let g:ycm_use_clangd = 1
+" let g:ycm_clangd_args = ["-background-index"]
 
 "==========================================
 " vim-rtags

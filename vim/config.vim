@@ -14,6 +14,7 @@ set history=1000                   " command history
 set spelllang=en                   " set your favorite language here
 set complete-=i                    " complete by scanning current and included files
 set completeopt=menu               " menu completion options
+set completeopt+=noinsert          " disable auto insert
 set ttyfast                        " fast terminal connection
 set hidden                         " don't discard buffers
 set ttimeout
