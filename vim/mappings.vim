@@ -19,8 +19,8 @@ nnoremap <a-p> :bp<CR>
 nnoremap <a-s> :wa<CR>
 
 " close current buffer and move to the previous one
-nmap <leader>w :bd<CR>
-" nmap <leader>w :bp <BAR> bd #<CR>
+" nmap <leader>w :bd<CR>
+nmap <leader>w :bp <BAR> bd #<CR>
 
 
 " save all current mappings on a text file

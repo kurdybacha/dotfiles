@@ -12,6 +12,7 @@ let g:ale_sign_warning='.'
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
     \ 'python': ['flake8', 'pylint', 'pyls' ],
+    \ 'cpp': [],
     \ }
 let g:ale_fixers = {
     \ 'javascript': ['eslint'],
