@@ -1,6 +1,7 @@
 alsa-utils
 aspell-en
 atool
+autorandr
 bind-tools
 chromium
 feh
@@ -8,10 +9,10 @@ gpicview
 i3-wm
 i3lock
 i3status
+imagemagick
 libcaca
 lightdm
 lightdm-gtk-greeter
-imagemagick
 lynx
 mediainfo
 mpv
@@ -22,6 +23,7 @@ otf-font-awesome
 p7zip
 pacman-contrib
 poppler
+pulsemixer
 rofi
 rxvt-unicode
 the_silver_searcher
