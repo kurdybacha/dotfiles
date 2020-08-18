@@ -69,10 +69,33 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
+
 !-------------------------------------------------------------------------------
 ! Color settings (Google Theme dark)
 ! https://github.com/chriskempson/base16-xresources
 !-------------------------------------------------------------------------------
+
+! Custom
+*.foreground:   #d3d0c8
+*.background:   #212121
+*.cursorColor:   #d3d0c8
+*.highlightColor:#3A3A3A
+*.color0:       #1d1f21
+*.color8:       #75715e
+*.color1:       #cc342b
+*.color9:       #f92672
+*.color2:       #a6e22e
+*.color10:      #a6e22e
+*.color3:       #fba922
+*.color11:      #f4bf75
+*.color4:       #3971ed
+*.color12:      #66d9ef
+*.color5:       #a36ac7
+*.color13:      #ae81ff
+*.color6:       #3971ed
+*.color14:      #a1efe4
+*.color7:       #c5c8c6
+*.color15:      #f9f8f5
 
 ! Base16 Classic Dark
 ! Scheme: Jason Heeris (http://heeris.id.au)
@@ -153,7 +176,7 @@ URxvt.pointerBlank:         true
 ! #define base0D #3971ed
 ! #define base0E #a36ac7
 ! #define base0F #3971ed
-! 
+ 
 ! *foreground:   base05
 ! #ifdef background_opacity
 ! *background:   [background_opacity]base00
@@ -194,48 +217,48 @@ URxvt.pointerBlank:         true
 ! Color settings (PaperColor Theme dark)
 !-------------------------------------------------------------------------------
 
- *cursorColor:          #d0d0d0
- *background: #1c1c1c
- *foreground: #d0d0d0
- *color0: #1c1c1c
- *color1: #af005f
- *color2: #5faf00
- *color3: #d7af5f
- *color4: #5fafd7
- *color5: #808080
- *color6: #d7875f
- *color7: #d0d0d0
- *color8: #585858
- *color9: #5faf5f
- *color10: #afd700
- *color11: #af87d7
- *color12: #ffaf00
- *color13: #ff5faf
- *color14: #00afaf
- *color15: #5f8787
+!*cursorColor:          #d0d0d0
+!*background: #1c1c1c
+!*foreground: #d0d0d0
+!*color0: #1c1c1c
+!*color1: #af005f
+!*color2: #5faf00
+!*color3: #d7af5f
+!*color4: #5fafd7
+!*color5: #808080
+!*color6: #d7875f
+!*color7: #d0d0d0
+!*color8: #585858
+!*color9: #5faf5f
+!*color10: #afd700
+!*color11: #af87d7
+!! *color12: #ffaf00
+!*color12: #77b2f6
+!*color13: #ff5faf
+!*color14: #00afaf
+!*color15: #5f8787
+!
+! URxvt.color16: #5fafd7
+! URxvt.color17: #d7af00
 
- URxvt.color16: #5fafd7
- URxvt.color17: #d7af00
-
-https://github.com/marhs/material-terminator/blob/master/config
-
-URxvt.background: #1c1c1c
-URxvt.foreground: #d0d0d0
-
-
-URxvt.color0: #1c1c1c
-URxvt.color1: #c62828
-URxvt.color2: #558b2e
-URxvt.color3: #f9a825
-URxvt.color4: #1565c1
-URxvt.color5: #6a1e9a
-URxvt.color6: #00838f
-URxvt.color7: #d0d0d0
-URxvt.color8: #969694
-URxvt.color9: #f15250
-URxvt.color10: #86bd47
-URxvt.color11: #f8e63a
-URxvt.color12: #77b2f6
-URxvt.color13: #b963c8
-URxvt.color14: #25c3dc
-URxvt.color15: #ffffff
+!https://github.com/marhs/material-terminator/blob/master/config
+!
+!*background: #1c1c1c
+!*foreground: #d0d0d0
+!*color0: #1c1c1c
+!*color1: #c62828
+!*color2: #558b2e
+!*color3: #f9a825
+!*color4: #1565c1
+!! grep file name use this one below
+!*color5: #b48ecc
+!*color6: #00838f
+!*color7: #d0d0d0
+!*color8: #969694
+!*color9: #f15250
+!*color10: #86bd47
+!*color11: #f8e63a
+!*color12: #77b2f6
+!*color13: #b963c8
+!*color14: #25c3dc
+!*color15: #ffffff

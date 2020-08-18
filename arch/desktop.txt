@@ -5,6 +5,7 @@ autorandr
 bind-tools
 chromium
 feh
+fzf
 gpicview
 i3-wm
 i3lock
@@ -28,6 +29,7 @@ rofi
 rxvt-unicode
 the_silver_searcher
 tk
+tldr
 tree
 ttf-inconsolata
 ttf-liberation

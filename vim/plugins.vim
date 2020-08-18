@@ -2,6 +2,15 @@
 " Installed plugins
 "==================
 
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'transparent_background': 0
+  \     }
+  \   }
+  \ }
+
+
 "===============================================
 " Asynchronous Lint Engine
 " https://github.com/w0rp/ale
@@ -11,12 +20,15 @@ let g:ale_sign_error='●'
 let g:ale_sign_warning='.'
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
-    \ 'python': ['flake8', 'pylint', 'pyls' ],
-    \ 'cpp': [],
+    \ 'python': ['flake8', 'pyls' ],
+    \ 'cpp': ['clangd'],
+    \ 'dart': ['dart_language_server'],
     \ }
 let g:ale_fixers = {
     \ 'javascript': ['eslint'],
-    \ 'python': ['black']
+    \ 'python': ['black'],
+    \ 'cpp': ['clang-format'],
+    \ 'dart': ['dartfmt'],
     \ }
 " Disable pycodestyle and let flake8 or pylint do the work
 let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
@@ -213,30 +225,30 @@ nnoremap <silent> <leader>s :A <CR>
 " https://github.com/junegunn/fzf.vim
 "======================================
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 " Changing defaults binding from Alt-a and Alt-d as it clashes with i3
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,ctrl-d:deselect-all'
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -g !tags '.<q-args>,
-  \   1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --line-number --no-heading --color=always --smart-case -g !tags '.<q-args>,
+"   \   1,
+"   \   <bang>0 ? fzf#vim#with_preview('up:60%')
+"   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+"   \   <bang>0)
 
 nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -253,6 +265,17 @@ vnoremap <leader>a y:Rg! <C-r>=fnameescape(@")<CR><CR>
 vnoremap <leader>A y:Rg! --no-ignore <C-r>=fnameescape(@")<CR><CR>
 vnoremap <leader>u y:Rg! <C-r>=fnameescape(@")<CR>
 vnoremap <leader>U y:Rg! --no-ignore <C-r>=fnameescape(@")<CR>
+
+
+"===========================================
+" vim-flutter
+" https://github.com/thosakwe/vim-flutter
+"===========================================
+nnoremap <leader>fr :FlutterRun<cr>
+nnoremap <leader>fq :FlutterQuit<cr>
+nnoremap <leader>fr :FlutterHotReload<cr>
+nnoremap <leader>fR :FlutterHotRestart<cr>
+nnoremap <leader>fD :FlutterVisualDebug<cr>
 
 "===========================================
 " UltiSnips
