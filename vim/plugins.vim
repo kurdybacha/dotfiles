@@ -10,6 +10,63 @@ let g:PaperColor_Theme_Options = {
   \   }
   \ }
 
+"===============================================
+" Conquer of Completion
+" https://github.com/neoclide/coc.nvim
+"===============================================
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+ if (index(['vim','help'], &filetype) >= 0)
+   execute 'h '.expand('<cword>')
+ else
+   call CocAction('doHover')
+ endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>j  <Plug>(coc-codeaction-selected)
+nmap <leader>j  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>jc  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>jf  <Plug>(coc-fix-current)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 
 "===============================================
 " Asynchronous Lint Engine
@@ -24,28 +81,28 @@ let g:ale_linters = {
     \ 'cpp': ['clangd'],
     \ 'dart': ['dart_language_server'],
     \ }
-let g:ale_fixers = {
-    \ 'javascript': ['eslint'],
-    \ 'python': ['black'],
-    \ 'cpp': ['clang-format'],
-    \ 'dart': ['dartfmt'],
-    \ }
+" let g:ale_fixers = {
+"     \ 'javascript': ['eslint'],
+"     \ 'python': ['black'],
+"     \ 'cpp': ['clang-format'],
+"     \ 'dart': ['dartfmt'],
+"     \ }
 " Disable pycodestyle and let flake8 or pylint do the work
 let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
                                        \ 'plugins': {
                                           \ 'pycodestyle': {'enabled': v:false}}}}
-let g:ale_javascript_eslint_executable='npx eslint'
-let g:ale_lint_on_enter=0
-let g:ale_lint_on_text_changed='never'
-let g:ale_completion_enabled = 1
-" let g:ale_cpp_clangd_executable='clangd -background-index'
-" let g:ale_cpp_clangd_options='-background-index'
-
-nnoremap <leader>jd :ALEGoToDefinition<CR>
-nnoremap <leader>jt :ALEGoToTypeDefinition<CR>
-nnoremap <leader>jr :ALEFindReferences<CR>
-nnoremap <leader>jh :ALEHover<CR>
-nnoremap <leader>js :ALESymbolSearch <C-r><C-w><CR>
+" let g:ale_javascript_eslint_executable='npx eslint'
+" let g:ale_lint_on_enter=0
+" let g:ale_lint_on_text_changed='never'
+" let g:ale_completion_enabled = 1
+" " let g:ale_cpp_clangd_executable='clangd -background-index'
+" " let g:ale_cpp_clangd_options='-background-index'
+"
+" nnoremap <leader>gd :ALEGoToDefinition<CR>
+" nnoremap <leader>gt :ALEGoToTypeDefinition<CR>
+" nnoremap <leader>gr :ALEFindReferences<CR>
+" nnoremap <leader>gh :ALEHover<CR>
+" nnoremap <leader>gs :ALESymbolSearch <C-r><C-w><CR>
 
 "===============================================
 " YouCompleteMe
@@ -59,11 +116,11 @@ nnoremap <leader>js :ALESymbolSearch <C-r><C-w><CR>
 " not used for semantic completion (default: 2)
 " let g:ycm_min_num_of_chars_for_completion = 2
 
-let g:ycm_always_populate_location_list = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_autoclose_preview_window_after_completion = 0
-let g:ycm_max_diagnostics_to_display = 50
-let g:ycm_confirm_extra_conf = 0
+" let g:ycm_always_populate_location_list = 1
+" let g:ycm_add_preview_to_completeopt = 0
+" let g:ycm_autoclose_preview_window_after_completion = 0
+" let g:ycm_max_diagnostics_to_display = 50
+" let g:ycm_confirm_extra_conf = 0
 " Let clangd fully control code completion
 " let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
@@ -76,8 +133,8 @@ let g:ycm_confirm_extra_conf = 0
 " https://github.com/lyuts/vim-rtags
 "==========================================
 
-let g:rtagsUseLocationList = 0
-let g:rtagsMaxSearchResultWindowHeight = 30
+" let g:rtagsUseLocationList = 0
+" let g:rtagsMaxSearchResultWindowHeight = 30
 
 "==========================================
 " LanguageClient-neovim

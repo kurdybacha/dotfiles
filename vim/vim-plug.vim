@@ -31,6 +31,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'aklt/plantuml-syntax'

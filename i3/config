@@ -134,8 +134,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # toggle monitors
-# bindsym $mod+Shift+m exec --no-startup-id /home/pawel/.bin/monitors.sh
+exec_always --no-startup-id autorandr --change
 bindsym $mod+Shift+m exec --no-startup-id autorandr --change
+# bindsym $mod+Shift+m exec --no-startup-id /home/pawel/.bin/monitors.sh
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 1dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 1dB- unmute
