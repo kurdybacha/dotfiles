@@ -7,6 +7,7 @@
 
 # Use vi mode in command line
 set -o vi
+set editing-mode vi
 
 # Use Alt+. to recall last argument (like in Emacs-mode)
 bind -m vi-command ".":insert-last-argument
