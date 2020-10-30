@@ -52,3 +52,12 @@ export PYTHONIOENCODING="UTF-8"
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 
 unset SSH_ASKPASS
+
+export PATH=$HOME/Linux/bin:$HOME/.bin:$HOME/.local/bin:$PATH
+
+PYENV_BIN_DIR="$HOME/.pyenv/bin"
+if [ -d ${PYENV_BIN_DIR} ]; then 
+    export PATH="$PYENV_BIN_DIR:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi

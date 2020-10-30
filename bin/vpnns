@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# set -xv
+
+function require_root() {
+    if [[ $UID != 0 ]]; then
+        echo "This must be run as root."
+        exit 1
+    fi
+}
+require_root
+
+NETNS="avpn"
+WIRELESS_INTERFACE="wlp2s0"
+OUT_IF="${NETNS}0"
+IN_IF="${NETNS}1"
+NETWORK="10.200.200"
+OUT_IP="${NETWORK}.1"
+IN_IP="${NETWORK}.2"
+VPN_SERVER="217.173.100.238"
+
+NSEXEC="ip netns exec $NETNS"
+
+function iface_up() {
+    ip netns add $NETNS
+
+    $NSEXEC ip addr add 127.0.0.1/8 dev lo
+    $NSEXEC ip link set lo up
+    ip link add "${OUT_IF}" type veth peer name "${IN_IF}"
+    ip link set "${OUT_IF}" up
+    ip link set "${IN_IF}" netns "${NETNS}" up
+    ip addr add "${OUT_IP}"/24 dev "${OUT_IF}"
+    $NSEXEC ip addr add "${IN_IP}"/24 dev "${IN_IF}"
+    # $NSEXEC ip link set dev "${IN_IF}" mtu 1492
+    $NSEXEC ip route add "${VPN_SERVER}" via "${OUT_IP}" dev "${IN_IF}"
+    $NSEXEC ip route add default via "${OUT_IP}" dev "${IN_IF}"
+
+    sysctl -q net.ipv4.ip_forward=1
+
+    # iptables -A FORWARD -s "10.200.200.0/24" -j ACCEPT \
+    #     -m comment --comment "for $NETNS"
+    # iptables -t nat -A POSTROUTING -s "10.200.200.0/24" \
+    #     -m comment --comment "for $NETNS" -j MASQUERADE
+
+
+    mkdir -p "/etc/netns/${NETNS}"
+    echo 'nameserver 8.8.8.8' > /etc/netns/${NETNS}/resolv.conf
+
+    # iptables -t nat -A POSTROUTING -o "${WIRELESS_INTERFACE}" -m mark --mark 0x29a -j MASQUERADE
+    iptables -A INPUT ! -i ${OUT_IF} -s ${NETWORK}.0/24 -j DROP
+    iptables -t nat -A POSTROUTING -s ${NETWORK}.0/24 -o wl+ -j MASQUERADE
+    iptables --policy FORWARD ACCEPT
+
+    # ip netns exec ${NETNS} ping -q www.google.ie
+}
+
+function iface_down() {
+    rm -rf /etc/netns/${NETNS}
+
+
+    # iptables -t nat -D POSTROUTING -o "${WIRELESS_INTERFACE}" -m mark --mark 0x29a -j MASQUERADE
+
+    # iptables -t nat -D POSTROUTING -s 10.200.200.0/24 ! -d 10.200.200.0/24 -m mark --mark 0x29a -j MASQUERADE
+    # iptables -t mangle -D PREROUTING -i "${OUT_IF}" -j MARK --set-xmark 0x29a/0xffffffff
+
+    iptables -D INPUT ! -i ${OUT_IF} -s ${NETWORK}.0/24 -j DROP
+    iptables -t nat -D POSTROUTING -s ${NETWORK}.0/24 -o wl+ -j MASQUERADE
+    iptables --policy FORWARD DROP
+
+    sysctl -q net.ipv4.ip_forward=0
+
+    # iptables -D FORWARD -s "10.200.200.0/24" -j ACCEPT \
+    #     -m comment --comment "for $NETNS"
+    # iptables -t nat -D POSTROUTING -s "10.200.200.0/24" \
+    #     -m comment --comment "for $NETNS" -j MASQUERADE
+
+    ip netns delete ${NETNS}
+}
+
+function run() {
+    shift
+    exec $NSEXEC sudo -u $(whoami) "$@"
+}
+
+function start_vpn() {
+    $NSEXEC vpnc /etc/vpnc/dublinarista.conf
+    # while ! ${NSEXEC} ip a show dev tun0 up; do
+    #     sleep .5
+    # done
+}
+
+case "$1" in
+    up) 
+        iface_up ;;
+    down)
+        iface_down ;;
+    run)
+        run "$@" ;;
+    start_vpn)
+        start_vpn ;;
+    *)
+        echo "Syntax: $0 up|down|run|start_vpn"
+        exit 1
+        ;;
+esac
