@@ -180,3 +180,5 @@ else
 	  set t_Co=256
 	" endif
 endif
+
+let g:netrw_http_cmd="curl -L -o"

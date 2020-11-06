@@ -8,8 +8,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+if [ -f /usr/share/fzf/key-bindings.bash ]; then
+   . /usr/share/fzf/key-bindings.bash
+   . /usr/share/fzf/completion.bash
+fi
