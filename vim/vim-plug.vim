@@ -24,19 +24,20 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 "Plug 'mileszs/ack.vim'
 " Plug 'SirVer/ultisnips'| Plug 'honza/vim-snippets'
-Plug 'lyuts/vim-rtags'
+" Plug 'lyuts/vim-rtags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rhysd/vim-clang-format'
 "JavaScript related
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'aklt/plantuml-syntax'
 "Android related
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'milch/vim-fastlane'
 Plug 'thosakwe/vim-flutter'
 "Plug 'https://github.com/Raimondi/delimitMate'
 " manually installed, vim-plug will load, but will not try to install or
