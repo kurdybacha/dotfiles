@@ -27,11 +27,12 @@ create_symlinks() {
 
         "vim"
         "vim/vimrc"
-        "i3"
-        "i3status.conf"
-        "xinitrc"
-        "Xresources"
-        "Xkbmap"
+        "sway"
+        #"i3"
+        #"i3status.conf"
+        #"xinitrc"
+        "Xdefaults"
+        #"Xkbmap"
 
     )
 
