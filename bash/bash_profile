@@ -55,5 +55,3 @@ unset -f source_bash_files
 #clear
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-export PATH="$HOME/.cargo/bin:$PATH"

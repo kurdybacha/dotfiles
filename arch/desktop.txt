@@ -6,6 +6,7 @@ chromium
 feh
 fzf
 gpicview
+grim
 i3status
 imagemagick
 libcaca
@@ -22,7 +23,9 @@ poppler
 pulsemixer
 rofi
 rxvt-unicode
+slurp
 sway
+swayidle
 swaylock
 the_silver_searcher
 tk
@@ -33,6 +36,5 @@ ttf-liberation
 udisks2
 unrar
 unzip
-xfce4-screenshooter
 xorg-server-xwayland
 zip

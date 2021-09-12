@@ -15,9 +15,10 @@ let g:PaperColor_Theme_Options = {
 " https://github.com/neoclide/coc.nvim
 "===============================================
 
+let g:coc_global_extensions = ['coc-pyright', 'coc-flutter', 'coc-clangd' ]
+
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -49,7 +50,7 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
+" Example: `<leader>jap` for current paragraph
 xmap <leader>j  <Plug>(coc-codeaction-selected)
 nmap <leader>j  <Plug>(coc-codeaction-selected)
 
@@ -57,6 +58,10 @@ nmap <leader>j  <Plug>(coc-codeaction-selected)
 nmap <leader>jc  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>jf  <Plug>(coc-fix-current)
+
+imap <C-b> <Plug>(coc-snippets-expand)
+let g:coc_snippet_next = '<c-f>'
+let g:coc_snippet_prev = '<c-b>'
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -67,30 +72,33 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
 "===============================================
 " Asynchronous Lint Engine
 " https://github.com/w0rp/ale
 "===============================================
 
-let g:ale_sign_error='●'
-let g:ale_sign_warning='.'
-let g:ale_linters = {
-    \ 'javascript': ['eslint'],
-    \ 'python': ['flake8', 'pyls' ],
-    \ 'cpp': ['clangd'],
-    \ 'dart': ['dart_language_server'],
-    \ }
-" let g:ale_fixers = {
-"     \ 'javascript': ['eslint'],
-"     \ 'python': ['black'],
-"     \ 'cpp': ['clang-format'],
-"     \ 'dart': ['dartfmt'],
-"     \ }
+"let g:ale_sign_error='●'
+"let g:ale_sign_warning='.'
+"let g:ale_linters = {
+"    \ 'javascript': ['eslint'],
+"    \ 'python': ['flake8', 'pyls' ],
+"    \ 'cpp': ['clangd'],
+"    \ 'dart': ['dartanalyzer'],
+"    \ }
+"let g:ale_fixers = {
+"    \ 'javascript': ['eslint'],
+"    \ 'python': ['black'],
+"    \ 'cpp': ['clang-format'],
+"    \ 'dart': ['dartfmt'],
+"    \ }
 " Disable pycodestyle and let flake8 or pylint do the work
-let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
-                                       \ 'plugins': {
-                                          \ 'pycodestyle': {'enabled': v:false}}}}
+" let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
+"                                        \ 'plugins': {
+"                                           \ 'pycodestyle': {'enabled': v:false}}}}
 " let g:ale_javascript_eslint_executable='npx eslint'
 " let g:ale_lint_on_enter=0
 " let g:ale_lint_on_text_changed='never'
@@ -98,112 +106,11 @@ let g:ale_python_pyls_config = {'pyls': {'configurationSource':['pycodestyle'],
 " " let g:ale_cpp_clangd_executable='clangd -background-index'
 " " let g:ale_cpp_clangd_options='-background-index'
 "
-" nnoremap <leader>gd :ALEGoToDefinition<CR>
-" nnoremap <leader>gt :ALEGoToTypeDefinition<CR>
-" nnoremap <leader>gr :ALEFindReferences<CR>
-" nnoremap <leader>gh :ALEHover<CR>
-" nnoremap <leader>gs :ALESymbolSearch <C-r><C-w><CR>
-
-"===============================================
-" YouCompleteMe
-" https://github.com/Valloric/YouCompleteMe
-"===============================================
-
-" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-" nnoremap <leader>gt :YcmCompleter GoTo<CR>
-
-" not used for semantic completion (default: 2)
-" let g:ycm_min_num_of_chars_for_completion = 2
-
-" let g:ycm_always_populate_location_list = 1
-" let g:ycm_add_preview_to_completeopt = 0
-" let g:ycm_autoclose_preview_window_after_completion = 0
-" let g:ycm_max_diagnostics_to_display = 50
-" let g:ycm_confirm_extra_conf = 0
-" Let clangd fully control code completion
-" let g:ycm_clangd_uses_ycmd_caching = 0
-" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
-" let g:ycm_clangd_binary_path = exepath("clangd")
-" let g:ycm_use_clangd = 1
-" let g:ycm_clangd_args = ["-background-index"]
-
-"==========================================
-" vim-rtags
-" https://github.com/lyuts/vim-rtags
-"==========================================
-
-" let g:rtagsUseLocationList = 0
-" let g:rtagsMaxSearchResultWindowHeight = 30
-
-"==========================================
-" LanguageClient-neovim
-" https://github.com/autozimu/LanguageClient-neovim
-"==========================================
-"
-" let g:LanguageClient_serverCommands = {
-"     \ 'python': ['/usr/bin/pyls'],
-"     \ }
-" let g:LanguageClient_diagnosticsEnable = 0
-" let s:LanguageClient_serverCommands_c = [
-"       \ 'clangd',
-"       \ '-all-scopes-completion',
-"       \ '-background-index',
-"       \ '-clang-tidy',
-"       \ '-compile_args_from=filesystem',
-"       \ '-completion-style=detailed',
-"       \ '-function-arg-placeholders',
-"       \ '-header-insertion-decorators',
-"       \ '-include-ineligible-results',
-"       \ '-index',
-"       \ '-index-file=clangd.dex',
-"       \ '-input-style=standard',
-"       \ '-j=12',
-"       \ '-pch-storage=disk',
-"       \ '-static-func-full-module-prefix',
-"       \ '-use-dbg-addr',
-"       \ '-use-dex-index',
-"       \ '-view-background',
-"       \ ]
-"
-" nnoremap <leader>jj :call LanguageClient_contextMenu()<CR>
-"==========================================
-" vim-lsp (Language Server Protocol)
-" https://github.com/prabirshrestha/vim-lsp
-"==========================================
-
-" if executable('pyls')
-"     " pip install python-language-server
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->['pyls']},
-"         \ 'whitelist': ['python'],
-"         \ })
-" endif
-"
-" " if executable('cquery')
-" "     au User lsp_setup call lsp#register_server({
-" "         \ 'name': 'cquery',
-" "         \ 'cmd': {server_info->['cquery']},
-" "         \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
-" "         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-" "         \ })
-" " endif
-" let g:lsp_signs_enabled = 1         " enable signs
-" " let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-" " nnoremap <leader>ri :LspHover<CR>
-" " nnoremap <leader>rj :LspDefinition<CR>
-"
-" let g:lsp_async_completion = 1
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
-"
-" " for asyncomplete.vim log
-" let g:asyncomplete_auto_popup=1
-" let g:asyncomplete_remove_duplicates=1
-" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
-" let g:lsp_signs_error = {'text': 'x'}
-" let g:lsp_signs_warning = {'text': '‼'}
+"nnoremap <leader>gd :ALEGoToDefinition<CR>
+"nnoremap <leader>gt :ALEGoToTypeDefinition<CR>
+"nnoremap <leader>gr :ALEFindReferences<CR>
+"nnoremap <leader>gh :ALEHover<CR>
+"nnoremap <leader>gs :ALESymbolSearch <C-r><C-w><CR>
 
 "==========================================
 " tagbar
@@ -256,26 +163,6 @@ nnoremap <silent> <leader>s :A <CR>
 "    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
 "    \ ]
 "
-"======================================
-" Ack
-" https://github.com/mileszs/ack.vim.git
-"======================================
-
-" if executable('ag')
-"     let g:ackprg = 'ag --vimgrep'
-" elseif executable('rg')
-"     let g:ackprg = 'rg --vimgrep --smart-case -g !tags'
-" endif
-" " let g:ack_use_dispatch = 1
-" nnoremap <leader>u :Ack! <cword><CR>
-" nnoremap <leader>U :Ack! --no-ignore<cword><CR>
-" nnoremap <leader>a :Ack!<Space>
-" nnoremap <leader>A :Ack! --no-ignore<Space>
-" vnoremap <leader>a y:Ack! <C-r>=fnameescape(@")<CR><CR>
-" vnoremap <leader>A y:Ack! --no-ignore <C-r>=fnameescape(@")<CR><CR>
-" vnoremap <leader>u y:Ack! <C-r>=fnameescape(@")<CR>
-" vnoremap <leader>U y:Ack! --no-ignore <C-r>=fnameescape(@")<CR>
-
 
 "======================================
 " fzf
@@ -299,13 +186,13 @@ nnoremap <silent> <leader>s :A <CR>
 
 " Changing defaults binding from Alt-a and Alt-d as it clashes with i3
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,ctrl-d:deselect-all'
-" command! -bang -nargs=* Rg
-"   \ call fzf#vim#grep(
-"   \   'rg --column --line-number --no-heading --color=always --smart-case -g !tags '.<q-args>,
-"   \   1,
-"   \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"   \   <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -g !tags '.<q-args>,
+  \   1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -328,11 +215,11 @@ vnoremap <leader>U y:Rg! --no-ignore <C-r>=fnameescape(@")<CR>
 " vim-flutter
 " https://github.com/thosakwe/vim-flutter
 "===========================================
-nnoremap <leader>fr :FlutterRun<cr>
-nnoremap <leader>fq :FlutterQuit<cr>
-nnoremap <leader>fr :FlutterHotReload<cr>
-nnoremap <leader>fR :FlutterHotRestart<cr>
-nnoremap <leader>fD :FlutterVisualDebug<cr>
+" nnoremap <leader>fr :FlutterRun<cr>
+" nnoremap <leader>fq :FlutterQuit<cr>
+" nnoremap <leader>fr :FlutterHotReload<cr>
+" nnoremap <leader>fR :FlutterHotRestart<cr>
+" nnoremap <leader>fD :FlutterVisualDebug<cr>
 
 "===========================================
 " UltiSnips
@@ -348,7 +235,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-f>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:snips_author = 'Pawel Kurdybacha'
+" let g:snips_author = 'Pawel Kurdybacha'
 
 "===========================================
 " delimitmate
@@ -500,50 +387,52 @@ nnoremap <F3>  :Calendar -position=tab<cr>
 " https://github.com/mhinz/vim-startify
 "===========================================
 
-let g:startify_files_number = 5
+let g:startify_change_to_dir = 0
 
-highlight StartifyFooter  ctermfg=green
-highlight StartifyFooter  guifg=green
-highlight StartifyHeader  ctermfg=red
-highlight StartifyHeader  guifg=red
-
-let g:startify_skiplist = [
-		\ 'COMMIT_EDITMSG',
-		\ $VIMRUNTIME .'/doc',
-		\ 'bundle/.*/doc',
-		\ '\.DS_Store'
-		\ ]
-
-let g:startify_bookmarks = [
-			\'~/.vimrc',
-			\'~/.vim/abbrev.vim',
-			\'~/.vim/augroup.vim',
-			\'~/.vim/config.vim',
-			\'~/.vim/mappings.vim',
-			\'~/.vim/neobundle.vim',
-			\'~/.vim/plugins.vim'
-			\]
+" let g:startify_files_number = 5
+"
+" highlight StartifyFooter  ctermfg=green
+" highlight StartifyFooter  guifg=green
+" highlight StartifyHeader  ctermfg=red
+" highlight StartifyHeader  guifg=red
+"
+" let g:startify_skiplist = [
+"         \ 'COMMIT_EDITMSG',
+"         \ $VIMRUNTIME .'/doc',
+"         \ 'bundle/.*/doc',
+"         \ '\.DS_Store'
+"         \ ]
+"
+" let g:startify_bookmarks = [
+"             \'~/.vimrc',
+"             \'~/.vim/abbrev.vim',
+"             \'~/.vim/augroup.vim',
+"             \'~/.vim/config.vim',
+"             \'~/.vim/mappings.vim',
+"             \'~/.vim/neobundle.vim',
+"             \'~/.vim/plugins.vim'
+"             \]
 
 " ascii text: http://patorjk.com/software/taag/
-let g:startify_custom_header = [
-            \'     _   _      _ _        ______                  _ ',
-            \'    | | | |    | | |       | ___ \                | |',
-            \'    | |_| | ___| | | ___   | |_/ /__ ___     _____| |',
-            \'    |  _  |/ _ \ | |/ _ \  |  __/ _  \ \ /\ / / _ \ |',
-            \'    | | | |  __/ | | (_) | | | | (_| |\ V  V /  __/ |',
-            \'    \_| |_/\___|_|_|\___/  \_|  \____| \_/\_/ \___|_|',
-            \ '',
-			\ ]
-
-let g:startify_custom_footer = [
-	\ '',
-    \'   “There are only two kinds of languages: the ones people complain about and the ones nobody uses.”',
-    \'   ― Bjarne Stroustrup',
-	\ '',
-	\'   “It is not that I am so smart ,it is just that I stay with problems longer.”',
-	\ '  - Albert Einstein',
-	\ '',
-	\ ]
+" let g:startify_custom_header = [
+"             \'     _   _      _ _        ______                  _ ',
+"             \'    | | | |    | | |       | ___ \                | |',
+"             \'    | |_| | ___| | | ___   | |_/ /__ ___     _____| |',
+"             \'    |  _  |/ _ \ | |/ _ \  |  __/ _  \ \ /\ / / _ \ |',
+"             \'    | | | |  __/ | | (_) | | | | (_| |\ V  V /  __/ |',
+"             \'    \_| |_/\___|_|_|\___/  \_|  \____| \_/\_/ \___|_|',
+"             \ '',
+"             \ ]
+"
+" let g:startify_custom_footer = [
+"     \ '',
+"     \'   “There are only two kinds of languages: the ones people complain about and the ones nobody uses.”',
+"     \'   ― Bjarne Stroustrup',
+"     \ '',
+"     \'   “It is not that I am so smart ,it is just that I stay with problems longer.”',
+"     \ '  - Albert Einstein',
+"     \ '',
+"     \ ]
 
 
 if has('gui_running')
@@ -554,10 +443,10 @@ endif
 " undotree
 " https://github.com/mbbill/undotree
 "========================================
-nnoremap <silent> <F6> :UndotreeToggle<CR>
-let g:undotree_WindowLayout = 2
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_SplitWidth = 40
+" nnoremap <silent> <F6> :UndotreeToggle<CR>
+" let g:undotree_WindowLayout = 2
+" let g:undotree_SetFocusWhenToggle = 1
+" let g:undotree_SplitWidth = 40
 
 "======================================
 " man

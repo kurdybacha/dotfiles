@@ -58,10 +58,10 @@ endif
 
 " centralize undo files
 " the directory must be created manually
-if has("persistent_undo")
-	set undodir=~/.vim/.undodir
-	set undofile
-endif
+" if has("persistent_undo")
+" 	set undodir=~/.vim/.undodir
+" 	set undofile
+" endif
 
 "======
 " Sound
