@@ -7,13 +7,9 @@ fi
 
 install_packages() {
     $asudo pacman -Syu
-    for package in $(cat $1); do
+    for package in $(cat packages.txt); do
         $asudo pacman -S --noconfirm --needed $package
     done
-}
-
-install_packages() {
-    install_packages packages.txt
 }
 
 config_fastest_mirror() {
@@ -46,8 +42,6 @@ config_keymap() {
 config_tlp() {
     $asudo systemctl enable tlp.service
     $asudo systemctl start tlp.service
-    $asudo systemctl enable tlp-sleep.service
-    $asudo systemctl start tlp-sleep.service
     $asudo systemctl mask systemd-rfkill.service
     $asudo systemctl mask systemd-rfkill.socket
 }

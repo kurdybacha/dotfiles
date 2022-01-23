@@ -19,6 +19,7 @@ i3status
 imagemagick
 ipython
 libcaca
+lightdm
 lynx
 mediainfo
 mpv
@@ -33,15 +34,18 @@ poppler
 pulsemixer
 python
 ranger
+reflector
 ripgrep
 rofi
 slurp
 strace
+sudo
 sway
 swayidle
 swaylock
 tk
 tldr
+tlp
 tmux
 tmuxp
 tree

@@ -7,8 +7,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 #ask_for_sudo
 
 main() {
-    config_fastest_mirror
     install_packages
+    config_fastest_mirror
     config_timezone
     config_hardwareclock
     config_keymap
@@ -16,7 +16,6 @@ main() {
     config_tlp
     config_login_manager
     config_sudo
-    config_backlight
 }
 
 main
