@@ -198,7 +198,7 @@ input type:touchpad {
     natural_scroll enabled
 }
 
-output "*" bg ~/Documents/solar_system.jpg fill
+#output "*" bg ~/Documents/solar_system.jpg fill
 #
 #input "2:1:ps/2_synaptics_touchpad" {
 #    dwt enabled

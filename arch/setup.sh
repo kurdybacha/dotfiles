@@ -14,7 +14,7 @@ main() {
     config_keymap
     config_locale
     config_tlp
-    config_login_manager
+    #config_login_manager
     config_sudo
 }
 

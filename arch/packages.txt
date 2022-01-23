@@ -19,7 +19,6 @@ i3status
 imagemagick
 ipython
 libcaca
-lightdm
 lynx
 mediainfo
 mpv
