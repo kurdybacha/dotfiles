@@ -20,6 +20,7 @@ imagemagick
 ipython
 libcaca
 lynx
+man-db
 mediainfo
 mpv
 networkmanager
@@ -35,7 +36,6 @@ python
 ranger
 reflector
 ripgrep
-rofi
 slurp
 strace
 sudo
@@ -55,4 +55,5 @@ unrar
 unzip
 vim
 wget
+wofi
 zip

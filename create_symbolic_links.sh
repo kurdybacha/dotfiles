@@ -30,7 +30,7 @@ create_symlinks() {
         "vim/vimrc"
         "sway"
         #"i3"
-        #"i3status.conf"
+        "i3status.conf"
         #"xinitrc"
         "Xdefaults"
         #"Xkbmap"
