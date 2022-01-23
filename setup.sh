@@ -23,7 +23,7 @@ configure_os() {
             exit 1
     esac
 
-    chmod +x ./xorg/setup.sh
+    #chmod +x ./xorg/setup.sh
     ./xorg/setup.sh
     chmod +x ./$distro/setup.sh
     ./$distro/setup.sh
