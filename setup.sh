@@ -44,8 +44,6 @@ configure_os() {
 }
 
 install_extra() {
-    chmod +x ./github_installs.sh
-    ./github_installs.sh
 }
 
 run_all() {
