@@ -85,10 +85,13 @@ tableview() {
 
 mp4dump() {
     MP4_DIR=$1
-    DUMP_DIR="~/Downloads/dump"
+    DUMP_DIR=${2:-$HOME/Downloads/dump}
     mkdir -p $DUMP_DIR
     for mp4 in $MP4_DIR/*MP4; do
-        ffmpeg -i $mp4 -vcodec libx265 -crf 28 $DUMP_DIR/$(basename $mp4)
+        DEST_FILE=$DUMP_DIR/$(basename $mp4)
+        if [ ! -f  $DEST_FILE ]; then
+            ffmpeg -i $mp4 -vcodec libx265 -crf 28 $DEST_FILE 
+        fi
     done
     echo "Compressed videos are in $DUMP_DIR"
 }
