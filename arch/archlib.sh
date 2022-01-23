@@ -12,20 +12,13 @@ install_packages() {
     done
 }
 
-install_desktop() {
-    install_packages desktop.txt
+install_packages() {
+    install_packages packages.txt
 }
 
-install_development() {
-    install_packages development.txt
-}
-
-install_fastest_mirror() {
-    $asudo pacman -S --noconfirm --needed pacman-contrib reflector
-    sudo reflector -l 100 -f 50 -c BE -c NL -c FR -c DE -c GB \
-        --sort rate --threads 5 --verbose --save /tmp/mirrorlist.new && \
-    rankmirrors -n 0 /tmp/mirrorlist.new > /tmp/mirrorlist && \
-    sudo cp /tmp/mirrorlist /etc/pacman.d
+config_fastest_mirror() {
+    $asudo systemctl enable reflector.service
+    $asudo systemctl start reflector.service
 }
 
 config_timezone() {
@@ -52,17 +45,17 @@ config_keymap() {
 
 config_tlp() {
     $asudo systemctl enable tlp.service
+    $asudo systemctl start tlp.service
     $asudo systemctl enable tlp-sleep.service
     $asudo systemctl start tlp-sleep.service
-    $asudo systemctl start tlp.service
     $asudo systemctl mask systemd-rfkill.service
     $asudo systemctl mask systemd-rfkill.socket
 }
 
-config_networkmanager() {
-    $asudo systemctl enable NetworkManager
-    $asudo systemctl start NetworkManager
-}
+#config_networkmanager() {
+#    $asudo systemctl enable NetworkManager
+#    $asudo systemctl start NetworkManager
+#}
 
 config_timesync() {
     $asudo systemctl enable systemd-timesyncd

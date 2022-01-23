@@ -7,15 +7,13 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 #ask_for_sudo
 
 main() {
-    install_fastest_mirror
-    install_development
-    install_desktop
+    config_fastest_mirror
+    install_packages
     config_timezone
     config_hardwareclock
     config_keymap
     config_locale
     config_tlp
-    config_networkmanager
     config_login_manager
     config_sudo
     config_backlight
