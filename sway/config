@@ -181,9 +181,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command    i3status
-        # font pango:       Source Code Pro 8
+#        #font pango:       Source Code Pro 8
         position          bottom
-        workspace_buttons yes
+#        workspace_buttons yes
 }
 
 input type:keyboard {
