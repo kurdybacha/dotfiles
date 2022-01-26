@@ -8,7 +8,6 @@ bash-completion
 bc
 bind-tools
 brightnessctl
-feh
 firefox
 fzf
 fzf
@@ -18,6 +17,7 @@ grim
 htop
 i3status
 imagemagick
+imv
 ipython
 libcaca
 lynx
@@ -43,6 +43,7 @@ sudo
 sway
 swayidle
 swaylock
+sysstat
 tk
 tldr
 tlp
