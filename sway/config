@@ -9,8 +9,6 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-exec xrdb -load ~/.Xresources
-
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -144,6 +142,11 @@ bindsym $mod+Shift+e exit
 # toggle monitors
 bindswitch lid:on output eDP-1 disable
 bindswitch lid:off output eDP-1 enable
+
+set $output-primary DP-6
+set $output-secondary eDP-1
+output $output-primary pos 0 0
+output $output-secondary pos 2560 0
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 1dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 1dB- unmute

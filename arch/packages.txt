@@ -10,7 +10,6 @@ bind-tools
 brightnessctl
 firefox
 fzf
-fzf
 git
 gpicview
 grim
@@ -21,6 +20,7 @@ imv
 ipython
 libcaca
 lynx
+make
 man-db
 mediainfo
 mpv
