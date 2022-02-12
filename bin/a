@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+import argparse
+import os
+import subprocess
+import sys
+
+parser = argparse.ArgumentParser()
+
+subparsers = parser.add_subparsers(dest='command')
+
+build = subparsers.add_parser('create', help='Creates a new dev cotainer')
+build.add_argument(
+    '--type', type=str,
+    choices=[
+        'flutter-dev',
+        'python-dev'
+    ],
+    help='Type of a container', required=True)
+build.add_argument('name', help='Name of a container', nargs='?')
+
+shell = subparsers.add_parser('shell', help='Shells into a dev container')
+shell.add_argument('name', help='Name of the container')
+
+args = parser.parse_args()
+
+if args.command == 'create':
+
+    p = subprocess.run(
+        f'docker container ls -f name=^{args.name}$ -q',
+        shell=True, capture_output=True)
+    if p.stdout:
+        sys.exit(f'Container "{args.name}" already exists')
+    p = subprocess.run(
+        f"docker build --target {args.type} -t {args.type} "
+        f"--build-arg UID=$(id -u) --build-arg GID=$(id -g) "
+        f"-f Dockerfile .", shell=True
+    )
+    if p.returncode == 0:
+        subprocess.run(
+            f"docker run -id -v $HOME:$HOME --name {args.name} {args.type}",
+            shell=True
+        )
+elif args.command == 'shell':
+     subprocess.run(
+         f'docker exec -it {args.name} /bin/bash',
+         shell=True)
