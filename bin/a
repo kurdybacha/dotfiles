@@ -34,14 +34,18 @@ if args.command == 'create':
     p = subprocess.run(
         f"docker build --target {args.type} -t {args.type} "
         f"--build-arg UID=$(id -u) --build-arg GID=$(id -g) "
-        f"-f Dockerfile .", shell=True
+        f"-f $HOME/.bin/Dockerfile .", shell=True
     )
     if p.returncode == 0:
         subprocess.run(
-            f"docker run -id -v $HOME:$HOME --name {args.name} {args.type}",
+            f'docker run -id -v $HOME:$HOME -h {args.name} '
+            f'--name {args.name} {args.type}',
             shell=True
         )
 elif args.command == 'shell':
-     subprocess.run(
-         f'docker exec -it {args.name} /bin/bash',
-         shell=True)
+     p = subprocess.run(f'docker start {args.name}', shell=True)
+     if p.returncode == 0:
+         subprocess.run(
+             f'docker exec -it {args.name} sh -c "tmux at || tmux new"',
+             shell=True
+         )

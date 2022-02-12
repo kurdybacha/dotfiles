@@ -43,13 +43,9 @@ configure_os() {
     fi
 }
 
-install_extra() {
-}
-
 run_all() {
     create_symlinks
     configure_os
-    install_extra
 }
 
 show_help() {

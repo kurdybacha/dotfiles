@@ -49,8 +49,6 @@ export NODE_REPL_HISTORY_SIZE=10000
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr
 export PYTHONIOENCODING="UTF-8"
 
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-
 unset SSH_ASKPASS
 
 export PATH=$HOME/Linux/bin:$HOME/.bin:$HOME/.local/bin:$PATH

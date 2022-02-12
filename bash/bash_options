@@ -36,7 +36,7 @@ export HISTCONTROL=ignoredups:erasedups
 # append history entries..
 shopt -s histappend
 # store bash history immediately
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Do not attempt to search the PATH for possible completions when
 # completion is attempted on an empty line
