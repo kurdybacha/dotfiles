@@ -37,7 +37,7 @@ config_locale() {
 
 config_keymap() {
     echo "KEYMAP=pl" | $asudo tee /etc/vconsole.conf
-    echo options hid_apple swap_opt_cmd=1 fnmode=2 | $asudo tee /etc/modprobe.d/hid_apple.conf
+    echo options hid_apple swap_opt_cmd=1 fnmode=2 iso_layout=1 | $asudo tee /etc/modprobe.d/hid_apple.conf
 }
 
 config_tlp() {
