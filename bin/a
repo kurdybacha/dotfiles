@@ -12,7 +12,7 @@ subparsers = parser.add_subparsers(dest='command')
 build = subparsers.add_parser('create', help='Creates a new dev cotainer')
 build.add_argument(
     '--type', type=str,
-    choices=[
+    choices = [
         'flutter-dev',
         'python-dev'
     ],
@@ -32,13 +32,14 @@ if args.command == 'create':
     if p.stdout:
         sys.exit(f'Container "{args.name}" already exists')
     p = subprocess.run(
-        f"docker build --target {args.type} -t {args.type} "
-        f"--build-arg UID=$(id -u) --build-arg GID=$(id -g) "
-        f"-f $HOME/.bin/Dockerfile .", shell=True
+        f'docker build --target {args.type} -t {args.type} '
+        f'--build-arg UID=$(id -u) --build-arg GID=$(id -g) '
+        f'-f $HOME/.bin/Dockerfile .', shell=True
     )
     if p.returncode == 0:
         subprocess.run(
             f'docker run -id -v $HOME:$HOME -h {args.name} '
+            f'--privileged --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb '
             f'--name {args.name} {args.type}',
             shell=True
         )
@@ -46,6 +47,8 @@ elif args.command == 'shell':
      p = subprocess.run(f'docker start {args.name}', shell=True)
      if p.returncode == 0:
          subprocess.run(
-             f'docker exec -it {args.name} sh -c "tmux at || tmux new"',
+             f'docker exec -e HISTFILE=/workspace/.bash_history '
+             f'-it {args.name} '
+             f'/bin/bash -c "source ~/.bashrc && (tmux at || tmux new)"',
              shell=True
          )
