@@ -10,13 +10,13 @@ let mapleader = ","
 "==============================
 
 " go to next buffer
-nnoremap <a-n> :bn<CR>
+" nnoremap <a-n> :bn<CR>
 
 " go to previous buffer
-nnoremap <a-p> :bp<CR>
+" nnoremap <a-p> :bp<CR>
 
 " saves all buffers
-nnoremap <a-s> :wa<CR>
+" nnoremap <a-s> :wa<CR>
 
 " close current buffer and move to the previous one
 " nmap <leader>w :bd<CR>
