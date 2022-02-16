@@ -37,8 +37,10 @@ if args.command == 'create':
         f'-f $HOME/.bin/Dockerfile .', shell=True
     )
     if p.returncode == 0:
+        subprocess.run(f'docker volume create {args.name}', shell=True)
         subprocess.run(
-            f'docker run -id -v $HOME:$HOME -h {args.name} '
+            f'docker run -id -h {args.name} '
+            f'-v $HOME:$HOME -v {args.name}/workspace '
             f'--privileged --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb '
             f'--name {args.name} {args.type}',
             shell=True
