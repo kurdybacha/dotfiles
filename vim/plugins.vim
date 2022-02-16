@@ -194,7 +194,7 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-nnoremap <c-p> :Files<CR>
+nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
@@ -210,6 +210,12 @@ vnoremap <leader>A y:Rg! --no-ignore <C-r>=fnameescape(@")<CR><CR>
 vnoremap <leader>u y:Rg! <C-r>=fnameescape(@")<CR>
 vnoremap <leader>U y:Rg! --no-ignore <C-r>=fnameescape(@")<CR>
 
+
+"===========================================
+" dart-vim-plugin
+"===========================================
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
 
 "===========================================
 " vim-flutter
