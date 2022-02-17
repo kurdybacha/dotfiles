@@ -1,56 +1,63 @@
 #!/usr/bin/python
 
 import argparse
-import os
 import subprocess
 import sys
 
 parser = argparse.ArgumentParser()
 
-subparsers = parser.add_subparsers(dest='command')
+subparsers = parser.add_subparsers(dest="command")
 
-build = subparsers.add_parser('create', help='Creates a new dev cotainer')
+build = subparsers.add_parser("create", help="Creates a new dev cotainer")
 build.add_argument(
-    '--type', type=str,
-    choices = [
-        'flutter-dev',
-        'python-dev'
-    ],
-    help='Type of a container', required=True)
-build.add_argument('name', help='Name of a container', nargs='?')
+    "--type",
+    type=str,
+    choices=["flutter-dev", "python-dev"],
+    help="Type of a container",
+    required=True,
+)
+build.add_argument("name", help="Name of a container", nargs="?")
 
-shell = subparsers.add_parser('shell', help='Shells into a dev container')
-shell.add_argument('name', help='Name of the container')
+shell = subparsers.add_parser("shell", help="Shells into a dev container")
+shell.add_argument("name", help="Name of the container")
+shell.add_argument("-c", help="Command to run")
 
 args = parser.parse_args()
 
-if args.command == 'create':
+if args.command == "create":
 
     p = subprocess.run(
-        f'docker container ls -f name=^{args.name}$ -q',
-        shell=True, capture_output=True)
+        f"docker container ls -f name=^{args.name}$ -q", shell=True, capture_output=True
+    )
     if p.stdout:
         sys.exit(f'Container "{args.name}" already exists')
     p = subprocess.run(
-        f'docker build --target {args.type} -t {args.type} '
-        f'--build-arg UID=$(id -u) --build-arg GID=$(id -g) '
-        f'-f $HOME/.bin/Dockerfile .', shell=True
+        f"docker build --target {args.type} -t {args.type} "
+        f"--build-arg UID=$(id -u) --build-arg GID=$(id -g) "
+        f"-f $HOME/.bin/Dockerfile .",
+        shell=True,
     )
     if p.returncode == 0:
-        subprocess.run(f'docker volume create {args.name}', shell=True)
+        subprocess.run(f"docker volume create {args.name}", shell=True)
         subprocess.run(
-            f'docker run -id -h {args.name} '
-            f'-v $HOME:$HOME -v {args.name}/workspace '
-            f'--privileged --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb '
-            f'--name {args.name} {args.type}',
-            shell=True
+            f"docker run -id -h {args.name} "
+            f"-v $HOME:$HOME -v {args.name}/workspace "
+            f"--privileged --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb "
+            f"--name {args.name} {args.type}",
+            shell=True,
         )
-elif args.command == 'shell':
-     p = subprocess.run(f'docker start {args.name}', shell=True)
-     if p.returncode == 0:
-         subprocess.run(
-             f'docker exec -e HISTFILE=/workspace/.bash_history '
-             f'-it {args.name} '
-             f'/bin/bash -c "source ~/.bashrc && (tmux at || tmux new)"',
-             shell=True
-         )
+elif args.command == "shell":
+    p = subprocess.run(
+        f"docker ps -f name=^{args.name}$ -q", shell=True, capture_output=True
+    )
+    if not p.stdout:
+        p = subprocess.run(f"docker start {args.name}", shell=True)
+    if p.returncode == 0:
+        subprocess.run(
+            f"docker exec -e HISTFILE=/workspace/.bash_history "
+            f"-it {args.name} "
+            f'/bin/bash -c "{args.c}"'
+            if args.c
+            else "",
+            shell=True,
+        )
