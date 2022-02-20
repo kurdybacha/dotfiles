@@ -16,6 +16,9 @@ build.add_argument(
     help="Type of a container",
     required=True,
 )
+build.add_argument(
+    "--docker-run-args", type=str, help="Native docker run commands", required=False
+)
 build.add_argument("name", help="Name of a container", nargs="?")
 
 shell = subparsers.add_parser("shell", help="Shells into a dev container")
@@ -39,13 +42,16 @@ if args.command == "create":
     )
     if p.returncode == 0:
         subprocess.run(f"docker volume create {args.name}", shell=True)
-        subprocess.run(
-            f"docker run -id -h {args.name} "
-            f"-v $HOME:$HOME -v {args.name}/workspace "
+        cmd = (
+            f"docker run -id -h {args.name} -P "
+            f"-v $HOME:$HOME -v {args.name}:/workspace "
             f"--privileged --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb "
-            f"--name {args.name} {args.type}",
-            shell=True,
         )
+        if args.docker_run_args:
+            cmd += f"{args.docker_run_args} "
+        cmd += f"--name {args.name} {args.type}"
+        print(cmd)
+        subprocess.run(cmd, shell=True)
 elif args.command == "shell":
     p = subprocess.run(
         f"docker ps -f name=^{args.name}$ -q", shell=True, capture_output=True
@@ -56,6 +62,8 @@ elif args.command == "shell":
         subprocess.run(
             f"docker exec -e HISTFILE=/workspace/.bash_history "
             f"-it {args.name} /bin/bash "
-            f'-c "{args.c}"' if args.c else "",
+            f'-c "{args.c}"'
+            if args.c
+            else "",
             shell=True,
         )
