@@ -12,6 +12,7 @@ RUN pacman -Suy --noconfirm && pacman --noconfirm -S \
     git \
     make \
     man-db \
+    npm \
     openssh \
     python \
     ranger \
@@ -73,3 +74,16 @@ RUN curl -o /tmp/flutter.tar.xz $FLUTTER_URL && \
     flutter precache && \
     yes "y" | flutter doctor --android-licenses && \
     flutter doctor
+
+
+FROM base-dev as python-dev
+ARG USER=pawel
+ENV WORKSPACE="/workspace"
+
+RUN sudo pacman -Suy --noconfirm &&  sudo pacman --noconfirm -S \
+    python-black
+
+USER $USER
+WORKDIR $WORKSPACE
+
+RUN sudo chown -R $USER $WORKSPACE

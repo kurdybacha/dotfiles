@@ -55,9 +55,7 @@ elif args.command == "shell":
     if p.returncode == 0:
         subprocess.run(
             f"docker exec -e HISTFILE=/workspace/.bash_history "
-            f"-it {args.name} "
-            f'/bin/bash -c "{args.c}"'
-            if args.c
-            else "",
+            f"-it {args.name} /bin/bash "
+            f'-c "{args.c}"' if args.c else "",
             shell=True,
         )
