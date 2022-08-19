@@ -20,7 +20,8 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-eunuch'
+"<cr> mapping conflicts with coc.vim
+"Plug 'tpope/vim-eunuch'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'mileszs/ack.vim'

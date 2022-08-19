@@ -12,9 +12,10 @@ set backspace=indent,eol,start     " see :help bs
 set helplang=en                    " help language
 set history=1000                   " command history
 set spelllang=en                   " set your favorite language here
-set complete-=i                    " complete by scanning current and included files
-set completeopt=menu               " menu completion options
-set completeopt+=noinsert          " disable auto insert
+"For some reason below complete breaks coc completion confirmation
+"set complete-=i                    " complete by scanning current and included files
+"set completeopt=menu               " menu completion options
+"set completeopt+=noinsert          " disable auto insert
 set ttyfast                        " fast terminal connection
 set hidden                         " don't discard buffers
 set ttimeout

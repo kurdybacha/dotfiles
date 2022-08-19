@@ -49,6 +49,9 @@ nnoremap <c-right>  <c-w>L
 " 4 - Miscelaneous mappings
 "==============================
 
+" override with sudo
+cmap w!! w !sudo tee > /dev/null %
+
 " clears highlighted searches
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
