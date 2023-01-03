@@ -45,6 +45,7 @@ if args.command == "create":
         cmd = (
             f"docker run -id -h {args.name} -P "
             f"-v $HOME:$HOME -v {args.name}:/workspace "
+            #f"--expose 1313:1313 "
             f"--privileged --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb "
         )
         if args.docker_run_args:

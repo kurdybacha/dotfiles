@@ -26,6 +26,9 @@ RUN pacman -Suy --noconfirm && pacman --noconfirm -S \
 RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER $USER
 
+######### FLUTTER ##############
+# Inspired by https://github.com/matsp/docker-flutter
+
 FROM base-dev as flutter-dev
 ARG USER=pawel
 ENV WORKSPACE="/workspace"
@@ -36,13 +39,15 @@ ENV ANDROID_BUILD_TOOLS_VERSION="29.0.3"
 ENV ANDROID_ARCHITECTURE="x86_64"
 ENV ANDROID_SDK_ROOT="/opt/android-sdk"
 ENV ANDROID_PREFS_ROOT="$WORKSPACE"
-ENV FLUTTER_VERSION="2.10.1"
+ENV FLUTTER_VERSION="2.10.5"
 ENV FLUTTER_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$FLUTTER_VERSION-stable.tar.xz"
 ENV FLUTTER_HOME="/opt/flutter"
+
 ENV PATH="$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/platforms:$FLUTTER_HOME/bin/cache/dart-sdk/bin:$FLUTTER_HOME/bin:$PATH"
 
 RUN sudo pacman -Suy --noconfirm &&  sudo pacman --noconfirm -S \
-    jdk8-openjdk
+    jdk8-openjdk \
+    ruby
 
 USER $USER
 WORKDIR $WORKSPACE
@@ -62,8 +67,6 @@ RUN sudo chown -R $USER $WORKSPACE && \
     yes "y" | sdkmanager "platforms;android-$ANDROID_VERSION" && \
     yes "y" | sdkmanager "platform-tools" && \
     yes "y" | sdkmanager "cmdline-tools;latest"
-    #&& yes "y" | sdkmanager "emulator" \
-    #&& yes "y" | sdkmanager "system-images;android-$ANDROID_VERSION;google_apis_playstore;$ANDROID_ARCHITECTURE" \
 
 # flutter
 RUN curl -o /tmp/flutter.tar.xz $FLUTTER_URL && \
@@ -75,6 +78,15 @@ RUN curl -o /tmp/flutter.tar.xz $FLUTTER_URL && \
     yes "y" | flutter doctor --android-licenses && \
     flutter doctor
 
+# fastlane
+RUN sudo gem install --no-user-install -NV \
+    fastlane \
+    fastlane-plugin-firebase_app_distribution
+
+############################
+
+
+######### PYTHON ##############
 
 FROM base-dev as python-dev
 ARG USER=pawel
@@ -87,3 +99,5 @@ USER $USER
 WORKDIR $WORKSPACE
 
 RUN sudo chown -R $USER $WORKSPACE
+
+############################
