@@ -25,7 +25,7 @@ create_symlinks() {
         #"git/gitconfig"
         #"git/gitignore"
 
-        "alacritty.yml"
+        "alacritty.toml"
         "vim"
         "vim/vimrc"
         "sway"
